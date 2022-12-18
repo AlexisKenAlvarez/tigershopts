@@ -59,3 +59,20 @@ export interface Values {
     confirmpassword: string,
     verified: boolean
 }
+
+export interface Users {
+    email: string,
+    username: string,
+    fullname: string,
+    facebook: string,
+    phone: string,
+    studentno: string,
+    course: string,
+    yearsection: string,
+    password: string,
+    verified: boolean
+}
+
+export interface VerifyQuery {
+    verified: boolean
+}

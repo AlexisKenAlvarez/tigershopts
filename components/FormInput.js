@@ -1,5 +1,5 @@
 export default function FormInput(props) {
-    const { error, ...inputProps } = props
+    const { error, onChange, ...inputProps } = props
     return (
         <>
             <div className="mt-5">
@@ -12,7 +12,7 @@ export default function FormInput(props) {
                     }
 
                 </div>
-                <input {...inputProps} className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" style={error[props.name] === '' ? {backgroundColor: '#e2f3e7'} : {backgroundColor: '#FCE3E4'}}></input>
+                <input {...inputProps} className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" style={error[props.name] === '' ? {backgroundColor: '#e2f3e7'} : {backgroundColor: '#FCE3E4'}} onChange={onChange}></input>
             </div>
 
         </>

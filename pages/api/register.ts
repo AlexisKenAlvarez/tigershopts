@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { PrismaClient } from '@prisma/client'
 import { hash } from 'bcrypt';
-const bcrypt = require('bcrypt');
+import { nanoid } from 'nanoid'
+import Email from '../../utils/email'
 
 const prisma = new PrismaClient()
+const baseUrl = String(process.env.NEXT_PUBLIC_BASE_URL)
 
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
@@ -11,6 +13,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     const password = valuesData.password
 
     const hashed = await hash(password, 10,)
+
+    const id = nanoid(48);
+    console.log(id);
 
     try {
         const user = await prisma.users.findMany({
@@ -23,6 +28,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             res.status(409).json({ status: "This email is already registered" })
         } else {
             try {
+                const genToken: string = id
+                const url = `${baseUrl}verified/${valuesData.email}/${genToken}`
+                await new Email(valuesData.email, url).sendMagicLink()
+
+
                 await prisma.users.create({
                     data: {
                         email: valuesData.email,
@@ -37,6 +47,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                         verified: false
                     }
                 })
+
+                await prisma.tokens.create({
+                    data: {
+                        email: valuesData.email,
+                        token: genToken
+                    }
+                })
+
+
                 res.status(200).json({ status: "Added user to database" })
 
             } catch (error) {
@@ -49,9 +68,5 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         console.log(error);
         res.json({ status: "Failed to do query on check users" })
     }
-
-
-
-
 
 }

@@ -67,6 +67,11 @@ export const Login: NextPage<Inputs> = (props) => {
         password: ''
     })
 
+    const [valuesError, setError] = useState({
+        email: '',
+        password: ''
+    })
+
     const router = useRouter()
 
     const navigateSignup = () => {
@@ -84,11 +89,30 @@ export const Login: NextPage<Inputs> = (props) => {
             "Content-Type": "application/json"
             },
     
-            body: JSON.stringify({ })
+            body: JSON.stringify({ 
+                email: values.email,
+                password: values.password
+             })
     
         }).then((response) => {
-            router.push("/")
-        }) 
+            return response.json()
+        }).then((response) => {
+            if(!response.loggedIn) {
+                if (response.name === 'email') {
+                    setError(current => ({...current, [response.name]: response.status}))
+                } else if (response.name === 'password'){
+                    setError(current => ({...current, email: ''}))
+                    setError(current => ({...current, [response.name]: response.status}))
+                }
+                console.log(response);
+
+                console.log("Not loggedin");
+            } else {
+                setError(current => ({...current, password: ''}))
+                router.push("/")
+                console.log("logged in")
+            }
+        })
     }
     
 
@@ -113,7 +137,7 @@ export const Login: NextPage<Inputs> = (props) => {
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</h1>
                             {props.inputs.map((value: InputVal) => {
                                 return (
-                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} />
+                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError}/>
                                 )
                             })}
 
