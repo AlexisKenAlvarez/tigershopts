@@ -56,17 +56,17 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                 })
 
 
-                res.status(200).json({ status: "Added user to database" })
+                res.status(200).json({ status: "Added user to database", success: true })
 
             } catch (error) {
-                res.json({ status: "Failed to add user" })
+                res.json({ status: "Failed to add user", success: false  })
                 console.log(error);
             }
 
         }
     } catch (error) {
         console.log(error);
-        res.json({ status: "Failed to do query on check users" })
+        res.json({ status: "Failed to do query on check users", success: false  })
     }
 
 }

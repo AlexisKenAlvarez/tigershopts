@@ -11,6 +11,8 @@ import LongButton from "../components/LongButton"
 import { verify } from "jsonwebtoken"
 import { GetServerSideProps, NextPage } from "next"
 import { Inputs, Values } from "../types"
+import Link from "next/link"
+
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const secret = process.env.NEXT_PUBLIC_SECRET || ''
@@ -168,9 +170,10 @@ const Signup: NextPage<Inputs> = (props) => {
     const [page2go, set2go] = useState(false)
     const [page3go, set3go] = useState(false)
 
-
     const [page, setPage] = useState(1)
     const router = useRouter()
+
+    const [done, setDone] = useState(false)
 
 
     const navigateLogin = () => {
@@ -375,6 +378,10 @@ const Signup: NextPage<Inputs> = (props) => {
             setFirst(current => ({ ...current, check3: false }))
             setPage(current => current - 2)
         }
+
+        if (data.success) {
+            setDone(true)
+        }
     }
 
     const handleBackPage = () => {
@@ -441,6 +448,10 @@ const Signup: NextPage<Inputs> = (props) => {
         setPage(current => current + 1)
     }
 
+    const registerDone = () => {
+        setDone(true)
+    }
+
 
     return (
         <>
@@ -451,11 +462,14 @@ const Signup: NextPage<Inputs> = (props) => {
 
                 <div className="bg-white h-screen w-full fixed top-0 z-[-1] lg:hidden"></div>
 
-                <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[620px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl">
+                <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[620px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl relative">
                     <AuthNavMobile text="login" onClick={navigateLogin} />
+
 
                     <div className="w-full">
                         <div className="w-[80%] mx-auto max-w-[350px] font-inter mt-6 pb-10">
+
+
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-6 text-greenBg text-shadow-md lg:mt-14">Hello, Tiger!</h1>
 
                             <div className="flex mx-auto w-fit mt-6 justify-center items-center">
@@ -491,11 +505,28 @@ const Signup: NextPage<Inputs> = (props) => {
                                     </div>
                                 }
                             </div>
+
                         </div>
                     </div>
 
                     <AuthSide head1="Create your account to start shopping with us!" head2="Already have an account? Click login below." buttonText="login" onClick={navigateLogin} />
 
+                    <div className="bg-[#1B783A] rounded-3xl w-full h-full z-3 absolute right-[-0.5rem] bottom-[-0.5rem] transition-all ease-in-out delay-[0.6s] duration-[0.2s] pointer-events-none hidden lg:block" style={done ? { opacity: "1" } : { opacity: "0" }}></div>
+
+                    <div className="bg-white rounded-3xl h-full z-3 absolute top-0 left-0 transition-all ease-in-out duration-[0.5s] px-7 pointer-events-none" style={done ? { width: "100%", opacity: "1", pointerEvents: "auto" } : { width: "0%", opacity: "0" }}>
+                        <div className="flex flex-col justify-center items-center h-[85%]">
+                            <Image src="/tiger.webp" width="200" height="20" alt="Tiger" />
+                            <h1 className="text-center font-extrabold mt-10 text-xl text-greenBg">Account successfuly created</h1>
+                            <p className="max-w-[400px] text-center mx-auto mt-2 text-sm">Please check your spam or important mails if the mail is not showing in your mailbox.</p>
+
+                            <div className="w-64">
+                                <Link href="/login">
+                                    <LongButton name="Click here to login" />
+                                </Link>
+                            </div>
+                        </div>
+
+                    </div>
 
 
                 </div>

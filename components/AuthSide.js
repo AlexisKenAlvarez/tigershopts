@@ -4,7 +4,7 @@ const AuthSide = (props) => {
 
     const { head1, head2, buttonText, onClick } = props
     return (
-        <div className="bg-greenBg h-full w-[65%] hidden lg:block rounded-3xl relative">
+        <div className="bg-greenBg h-full w-[65%] hidden lg:block rounded-3xl relative z-1">
             <Image src="/bgtiger.png" fill alt="BackgroundImage " sizes="(min-width: 20em) 33vw,(min-width: 44em) 100vw" priority={true} className="pointer-events-none" />
             <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto mt-16" unoptimized={true}/>
 

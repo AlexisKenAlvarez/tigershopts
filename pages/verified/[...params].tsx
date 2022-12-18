@@ -48,8 +48,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   } else {
     console.log("token does not exist");
     return {
-      props: {
-        verified: false
+      redirect: {
+        destination: '/404',
+        permanent: false
       }
     }
   }

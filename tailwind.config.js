@@ -5,9 +5,42 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+
     extend: {
+      textFillColor: theme => theme('borderColor'),
+      textStrokeColor: theme => theme('borderColor'),
+      textStrokeWidth: theme => theme('borderWidth'),
+      paintOrder: {
+        'fsm': { paintOrder: 'fill stroke markers' },
+        'fms': { paintOrder: 'fill markers stroke' },
+        'sfm': { paintOrder: 'stroke fill markers' },
+        'smf': { paintOrder: 'stroke markers fill' },
+        'mfs': { paintOrder: 'markers fill stroke' },
+        'msf': { paintOrder: 'markers stroke fill' },
+      },
+
+      letterSpacing: {
+        verytight: '-0.5rem',
+        tightest: '-.075em',
+        tighter: '-.05em',
+        tight: '-.025em',
+        normal: '0',
+        wide: '.025em',
+        wider: '.05em',
+        widest: '.1em',
+        widest: '.25em',
+      },
+
+      variants: { // all the following default to ['responsive']
+        textFillColor: ['responsive'],
+        textStrokeColor: ['responsive'],
+        textStrokeWidth: ['responsive'],
+        paintOrder: ['responsive'],
+      },
+
       fontFamily: {
         'inter': ['Inter'],
+        'poppins': ['Poppins']
       },
 
       colors: {
@@ -23,6 +56,7 @@ module.exports = {
     },
   },
   plugins: [
-    require('tailwindcss-textshadow')
+    require('tailwindcss-textshadow'),
+    require('tailwindcss-text-fill-stroke')(), // no options to configure
   ],
 }
