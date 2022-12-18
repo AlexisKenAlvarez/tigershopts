@@ -11,7 +11,8 @@ import LongButton from "../components/LongButton"
 import { verify } from "jsonwebtoken"
 import { GetServerSideProps, NextPage } from "next"
 import { Inputs, Values } from "../types"
-import Link from "next/link"
+import { AnimatePresence } from "framer-motion"
+import Completed from "../components/register/Completed"
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -511,22 +512,10 @@ const Signup: NextPage<Inputs> = (props) => {
 
                     <AuthSide head1="Create your account to start shopping with us!" head2="Already have an account? Click login below." buttonText="login" onClick={navigateLogin} />
 
-                    <div className="bg-[#1B783A] rounded-3xl w-full h-full z-3 absolute right-[-0.5rem] bottom-[-0.5rem] transition-all ease-in-out delay-[0.6s] duration-[0.2s] pointer-events-none hidden lg:block" style={done ? { opacity: "1" } : { opacity: "0" }}></div>
 
-                    <div className="bg-white rounded-3xl h-full z-3 absolute top-0 left-0 transition-all ease-in-out duration-[0.5s] px-7 pointer-events-none" style={done ? { width: "100%", opacity: "1", pointerEvents: "auto" } : { width: "0%", opacity: "0" }}>
-                        <div className="flex flex-col justify-center items-center h-[85%]">
-                            <Image src="/tiger.webp" width="200" height="20" alt="Tiger" />
-                            <h1 className="text-center font-extrabold mt-10 text-xl text-greenBg">Account successfuly created</h1>
-                            <p className="max-w-[400px] text-center mx-auto mt-2 text-sm">Please check your spam or important mails if the mail is not showing in your mailbox.</p>
-
-                            <div className="w-64">
-                                <Link href="/login">
-                                    <LongButton name="Click here to login" />
-                                </Link>
-                            </div>
-                        </div>
-
-                    </div>
+                    <AnimatePresence>
+                        {done ? <Completed/> : null}
+                    </AnimatePresence>
 
 
                 </div>
