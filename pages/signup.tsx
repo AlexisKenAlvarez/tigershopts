@@ -13,7 +13,6 @@ import { GetServerSideProps, NextPage } from "next"
 import { Inputs, Values } from "../types"
 import { AnimatePresence, motion } from "framer-motion"
 import Completed from "../components/register/Completed"
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
