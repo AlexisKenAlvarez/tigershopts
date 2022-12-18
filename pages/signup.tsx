@@ -11,8 +11,9 @@ import LongButton from "../components/LongButton"
 import { verify } from "jsonwebtoken"
 import { GetServerSideProps, NextPage } from "next"
 import { Inputs, Values } from "../types"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Completed from "../components/register/Completed"
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -363,26 +364,48 @@ const Signup: NextPage<Inputs> = (props) => {
         }
     }, [page3go])
 
-    const register = async () => {
-        const response = await fetch('/api/register', {
-            method: 'POST',
-            body: JSON.stringify({ values }),
-            headers: {
-                'Content-Type': 'application/json'
+    const loaderVar = {
+        start: {
+            rotate: [0, 360, 750, 1080, 1420, 1800],
+            transition: {
+                repeat: Infinity,
+                duration: 3,
+                ease: "linear",
             }
-        })
+        }
+    }
 
-        const data = await response.json()
-        console.log(data);
-        if (data.status === 'This email is already registered') {
-            setError(current => ({ ...current, email: 'Email already registered' }))
-            setFirst(current => ({ ...current, check3: false }))
-            setPage(current => current - 2)
+    const [debounce, setDebounce] = useState(false)
+    const register = async () => {
+        if (!debounce) {
+            setDebounce(true)
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                body: JSON.stringify({ values }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            const data = await response.json()
+            console.log(data);
+            if (data.status === 'This email is already registered') {
+                setError(current => ({ ...current, email: 'Email already registered' }))
+                setFirst(current => ({ ...current, check3: false }))
+                setPage(current => current - 2)
+                setDebounce(false)
+            }
+
+            if (data.success) {
+                setDone(true)
+                setTimeout(() => {
+                    setDebounce(false)
+                    
+                }, 1000);
+
+            }
         }
 
-        if (data.success) {
-            setDone(true)
-        }
     }
 
     const handleBackPage = () => {
@@ -502,7 +525,7 @@ const Signup: NextPage<Inputs> = (props) => {
                                 {page < 3 ? <ShortButton name="Next" className="ml-auto" onClick={handleNextPage} /> :
                                     <div className="flex flex-row w-full gap-4">
                                         <ShortButton name="Back" className="mr-auto" onClick={handleBackPage} />
-                                        <LongButton name="Create my account" onClick={handleNextPage} />
+                                        <LongButton name={debounce ? "Processing..." : "Create my account"} onClick={handleNextPage} />
                                     </div>
                                 }
                             </div>
@@ -514,7 +537,7 @@ const Signup: NextPage<Inputs> = (props) => {
 
 
                     <AnimatePresence>
-                        {done ? <Completed/> : null}
+                        {done ? <Completed /> : null}
                     </AnimatePresence>
 
 
