@@ -9,7 +9,7 @@ const AuthNavMobile = (props) => {
                 onClick={onClick}>
                     {props.text}
                 </div>
-                <Image src="/logo.png" alt="Logo" width='200' height='20' className="w-20" />
+                <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-20" />
             </div>
         </div>
     )
