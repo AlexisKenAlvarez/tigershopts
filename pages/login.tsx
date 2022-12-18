@@ -10,7 +10,7 @@ import { verify } from "jsonwebtoken"
 import { GetServerSideProps, NextPage } from "next"
 import { Inputs, InputVal, LoginValues } from "../types"
 
-export const getServerSideProps: GetServerSideProps = async(context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const secret = process.env.NEXT_PUBLIC_SECRET || ''
     const jwt = context.req.cookies['authToken'] || ''
@@ -79,42 +79,51 @@ export const Login: NextPage<Inputs> = (props) => {
     }
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setValues(current => ({...current, [e.target.name]: e.target.value}))
+        setValues(current => ({ ...current, [e.target.name]: e.target.value }))
     }
 
+    const [debounce, setDebounce] = useState(false)
     const handleLogin = async () => {
-        fetch("/api/login", {
-            method: "post",
-            headers: {
-            "Content-Type": "application/json"
-            },
-    
-            body: JSON.stringify({ 
-                email: values.email,
-                password: values.password
-             })
-    
-        }).then((response) => {
-            return response.json()
-        }).then((response) => {
-            if(!response.loggedIn) {
-                if (response.name === 'email') {
-                    setError(current => ({...current, [response.name]: response.status}))
-                } else if (response.name === 'password'){
-                    setError(current => ({...current, email: ''}))
-                    setError(current => ({...current, [response.name]: response.status}))
-                }
-                console.log(response);
+        if (!debounce) {
+            setDebounce(true)
+            fetch("/api/login", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
 
-                console.log("Not loggedin");
-            } else {
-                setError(current => ({...current, password: ''}))
-                router.push("/")
-                console.log("logged in")
-            }
-        })
+                body: JSON.stringify({
+                    email: values.email,
+                    password: values.password
+                })
+
+            }).then((response) => {
+                return response.json()
+            }).then((response) => {
+                if (!response.loggedIn) {
+                    if (response.name === 'email') {
+                        setError(current => ({ ...current, [response.name]: response.status }))
+                        setDebounce(false)
+
+                    } else if (response.name === 'password') {
+                        setError(current => ({ ...current, email: '' }))
+                        setError(current => ({ ...current, [response.name]: response.status }))
+                        setDebounce(false)
+                    }
+                    console.log(response);
+                    setDebounce(false)
+                    console.log("Not loggedin");
+                } else {
+                    setError(current => ({ ...current, password: '' }))
+                    router.push("/")
+                    console.log("logged in")
+                    setDebounce(false)
+                }
+            })
+        }
+
     }
-    
+
 
     return (
         <>
@@ -137,13 +146,13 @@ export const Login: NextPage<Inputs> = (props) => {
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</h1>
                             {props.inputs.map((value: InputVal) => {
                                 return (
-                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError}/>
+                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} />
                                 )
                             })}
 
                             <p className="mt-4 ml-1 cursor-pointer">Forgot your password?</p>
 
-                            <LongButton name="Login" onClick={handleLogin} />
+                            <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin} />
 
                         </div>
                     </div>
