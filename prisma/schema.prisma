@@ -21,7 +21,7 @@ model Users {
   course      String
   yearsection String
   password    String
-  verified    Boolean @default(false) 
+  verified    Boolean @default(false)
 }
 
 model Tokens {

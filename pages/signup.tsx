@@ -472,10 +472,6 @@ const Signup: NextPage<Inputs> = (props) => {
         setPage(current => current + 1)
     }
 
-    const registerDone = () => {
-        setDone(true)
-    }
-
     const [closed, setClosed] = useState(false)
 
     const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
