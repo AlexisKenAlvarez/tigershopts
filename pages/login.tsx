@@ -9,6 +9,8 @@ import FormInputLogin from "../components/FormInputLogin"
 import { verify } from "jsonwebtoken"
 import { GetServerSideProps, NextPage } from "next"
 import { Inputs, InputVal, LoginValues } from "../types"
+import { AnimatePresence } from "framer-motion"
+import LoginRetry from '../components/register/LoginRetry'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
@@ -83,6 +85,8 @@ export const Login: NextPage<Inputs> = (props) => {
     }
 
     const [debounce, setDebounce] = useState(false)
+    const [awaiting, setAwaiting] = useState(false)
+
     const handleLogin = async () => {
         if (!debounce) {
             setDebounce(true)
@@ -100,6 +104,10 @@ export const Login: NextPage<Inputs> = (props) => {
             }).then((response) => {
                 return response.json()
             }).then((response) => {
+                if (response.awaiting) {
+                    setAwaiting(true)
+
+                }
                 if (!response.loggedIn) {
                     if (response.name === 'email') {
                         setError(current => ({ ...current, [response.name]: response.status }))
@@ -134,10 +142,14 @@ export const Login: NextPage<Inputs> = (props) => {
 
                 <div className="bg-white h-screen w-full fixed top-0 z-[-1] lg:hidden"></div>
 
-                <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[550px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl">
+                <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[550px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl relative">
                     <AuthNavMobile text="signup" onClick={navigateSignup} />
 
                     <AuthSide head1="Log in your account to start shopping with us!" head2="No account yet? Click sign up below." buttonText="sign up" onClick={navigateSignup} />
+
+                    <AnimatePresence>
+                        {awaiting ? <LoginRetry email={values.email}/> : null}
+                    </AnimatePresence>
 
                     <div className="w-full">
 
@@ -153,6 +165,7 @@ export const Login: NextPage<Inputs> = (props) => {
                             <p className="mt-4 ml-1 cursor-pointer">Forgot your password?</p>
 
                             <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin} />
+                            <p onClick={() => {setAwaiting(true)}}>Test only</p>
 
                         </div>
                     </div>

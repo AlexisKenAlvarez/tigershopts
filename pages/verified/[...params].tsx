@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import Image from "next/image"
 import Link from "next/link";
 import LongButton from "../../components/LongButton";
+import { useEffect } from 'react'
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
@@ -59,6 +60,16 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const Verified: NextPage<VerifyQuery> = (props) => {
 
+  useEffect(() => {
+    const email = sessionStorage.getItem('sent');
+    
+      if (email) {
+        sessionStorage.removeItem("sent");
+      }
+  
+
+  }, [])
+  
   return (
     <>
       <div className="w-full flex justify-center items-center font-inter">

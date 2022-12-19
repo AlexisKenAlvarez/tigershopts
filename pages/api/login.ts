@@ -20,26 +20,40 @@ export default async function(req: NextApiRequest, res: NextApiResponse) {
         })
 
         if (user.length >= 1) {
-            compare(password, user[0].password, function(err, result) {
+            compare(password, user[0].password, async function(err, result) {
                 if (!err && result) {
-                    const token = sign(
-                        {
-                            exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
-                            username: user[0].username
-                        },
-                        secret
-                    )
-                
-                    const serialized = serialize("authToken", token, {
-                        httpOnly: true,
-                        secure: process.env.NODE_ENV !== 'development',
-                        sameSite: "strict",
-                        maxAge: 60 * 60 * 1,
-                        path: '/'
+
+                    const verify = await prisma.tokens.findMany({
+                        where: {
+                            email: email
+                        }
                     })
 
-                    res.setHeader('Set-Cookie', serialized)
-                    res.status(200).json({status: 'Login success!', loggedIn: true})
+                    if (verify.length > 0) {
+                        res.status(401).json({status: 'Awaiting confirmation!', loggedIn: false, awaiting: true})
+
+                    } else {
+                        const token = sign(
+                            {
+                                exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
+                                username: user[0].username
+                            },
+                            secret
+                        )
+                    
+                        const serialized = serialize("authToken", token, {
+                            httpOnly: true,
+                            secure: process.env.NODE_ENV !== 'development',
+                            sameSite: "strict",
+                            maxAge: 60 * 60 * 1,
+                            path: '/'
+                        })
+    
+                        res.setHeader('Set-Cookie', serialized)
+                        res.status(200).json({status: 'Login success!', loggedIn: true})
+                    }
+
+
 
                 } else {
                     console.log(err);
