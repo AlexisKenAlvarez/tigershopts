@@ -165,7 +165,6 @@ export const Login: NextPage<Inputs> = (props) => {
                             <p className="mt-4 ml-1 cursor-pointer">Forgot your password?</p>
 
                             <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin} />
-                            <p onClick={() => {setAwaiting(true)}}>Test only</p>
 
                         </div>
                     </div>
