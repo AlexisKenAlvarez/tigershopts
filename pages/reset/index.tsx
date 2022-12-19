@@ -9,7 +9,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
 }
 
-const VerifiedIndex: NextPage = () => {
+const ResetIndex: NextPage = () => {
     return (
         <>
 
@@ -17,4 +17,4 @@ const VerifiedIndex: NextPage = () => {
     )
 }
 
-export default VerifiedIndex
+export default ResetIndex

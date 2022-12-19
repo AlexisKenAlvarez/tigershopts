@@ -24,7 +24,7 @@ model Users {
   verified    Boolean @default(false)
 }
 
-model Passtokens {
+model Pass {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String
   token String

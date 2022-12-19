@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const email = params[0]
   const token = params[1]
 
-  const isValid = await prisma.passtokens.findMany({
+  const isValid = await prisma.pass.findMany({
     where: {
       email: email,
       token: token

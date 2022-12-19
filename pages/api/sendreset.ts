@@ -22,14 +22,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         })
 
         if (exists.length > 0) {
-            const user = await prisma.passtokens.findMany({
+            const user = await prisma.pass.findMany({
                 where: {
                     email: email
                 }
             })
 
             if (user.length > 0) {
-                const resetToken = await prisma.passtokens.deleteMany({
+                const resetToken = await prisma.pass.deleteMany({
                     where: {
                         email: email
                     }
@@ -40,7 +40,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             const url = `${baseUrl}verified/${email}/${genToken}`
             await new Email(email, url).sendMagicLink()
 
-            const newToken = await prisma.passtokens.create({
+            const newToken = await prisma.pass.create({
                 data: {
                     email: email,
                     token: genToken
