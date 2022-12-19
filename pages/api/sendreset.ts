@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client'
 import { nanoid } from 'nanoid'
-import Email from '../../utils/email';
+import Password from '../../utils/email';
+
 
 const prisma = new PrismaClient()
 
@@ -37,8 +38,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
             }
 
             const genToken: string = id
-            const url = `${baseUrl}verified/${email}/${genToken}`
-            await new Email(email, url).sendMagicLink()
+            const url = `${baseUrl}reset/${email}/${genToken}`
+            await new Password(email, url).sendMagicLink()
 
             const newToken = await prisma.pass.create({
                 data: {

@@ -33,12 +33,37 @@ const Forgotpassword = () => {
         }
     }
 
+    const [debounce, setDebounce] = useState(false)
+    const [sent, setSent] = useState(false)
     const handleSubmit = () => {
-        if (validateEmail(email)) {
-            setError('')
-        } else {
-            setError("Invalid Email")
+        if (!debounce) {
+            setDebounce(true)
+            if (validateEmail(email)) {
+                setError('')
+                fetch("/api/sendreset", {
+                    method: "post",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email: email })
+                }).then((response) => {
+                    return response.json()
+                }).then((response) => {
+                    if (response.success) {
+                        setDebounce(true)
+                        setSent(true)
+                        sessionStorage.set("password", email)
+                    } else {
+                        setDebounce(false)
+
+                    }
+                })
+            } else {
+                setError("Invalid Email")
+                setDebounce(false)
+            }
         }
+
     }
 
     return (
@@ -55,19 +80,20 @@ const Forgotpassword = () => {
                     <p className='text-greenSteps text-center max-w-[17rem] mx-auto mt-6 font-medium text-sm'>Enter the information needed below to reset your password.</p>
 
                     <div className='max-w-[350px] w-[75%] mx-auto'>
-                        <h1 className='text-center text-greenSteps font-medium text-xl mt-10 mb-6'>Enter your CvSU email:</h1>
                         {input.map(val => {
                             return (
                                 <div key={val.id}>
+                                    <h1 className='text-center text-greenSteps font-medium text-xl mt-10 mb-6'>Enter your CvSU email:</h1>
+
                                     {error === '' ? null : <p className='text-xs text-center text-redError'>Invalid CvSU Email</p>}
-                                    
-                                    <input {...val} className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" onChange={onChange} value={email} style={error === '' ? {} : {backgroundColor: '#FCE3E4'}}></input>
+
+                                    <input {...val} className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" onChange={onChange} value={email} style={error === '' ? {} : { backgroundColor: '#FCE3E4' }}></input>
                                 </div>
 
                             )
                         })}
 
-                        <LongButton name="Send link" onClick={handleSubmit}/>
+                        <LongButton name={debounce ? "Processing..." : "Confirm"} onClick={handleSubmit} />
 
                         <div className='w-fit mx-auto'>
                             <Link href="/login" className='w-fit'>
