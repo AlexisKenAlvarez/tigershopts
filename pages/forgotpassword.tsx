@@ -15,7 +15,6 @@ const Forgotpassword = () => {
         }
     ]
 
-
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }
