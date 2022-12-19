@@ -30,7 +30,7 @@ model Tokens {
   token String
 }
 
-model TokenResets {
+model Passtokens {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String
   token String

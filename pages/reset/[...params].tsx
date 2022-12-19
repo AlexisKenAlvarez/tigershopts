@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const email = params[0]
   const token = params[1]
 
-  const isValid = await prisma.tokenResets.findMany({
+  const isValid = await prisma.passtokens.findMany({
     where: {
       email: email,
       token: token
@@ -45,7 +45,7 @@ interface myProp {
 }
 
 
-const Verified: NextPage<myProp>= ({valid}) => {
+const Reset: NextPage<myProp>= ({valid}) => {
 
 
   return (
@@ -67,4 +67,4 @@ const Verified: NextPage<myProp>= ({valid}) => {
   )
 }
 
-export default Verified
+export default Reset
