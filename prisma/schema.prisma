@@ -29,3 +29,9 @@ model Tokens {
   email String
   token String
 }
+
+model Reset {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  email String
+  token String
+}
