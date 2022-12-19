@@ -36,7 +36,7 @@ const Forgotpassword = () => {
 
     const handleSubmit = () => {
         if (validateEmail(email)) {
-
+            setError('')
         } else {
             setError("Invalid Email")
         }
@@ -51,7 +51,7 @@ const Forgotpassword = () => {
 
                 <div className="bg-white h-screen w-full fixed top-0 z-[-1] lg:hidden"></div>
 
-                <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[60%] lg:min-h-[450px] lg:max-h-[450px] lg:w-[37%] lg:max-w-[800px] mx-auto lg:rounded-3xl relative shadow-customBorder z-2">
+                <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[60%] lg:min-h-[450px] lg:max-h-[470px] lg:w-[37%] lg:max-w-[800px] mx-auto lg:rounded-3xl relative shadow-customBorder z-2">
                     <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto mt-10 lg:mt-[-2.5rem]" unoptimized={true} />
                     <p className='text-greenSteps text-center max-w-[17rem] mx-auto mt-6 font-medium text-sm'>Enter the information needed below to reset your password.</p>
 
@@ -60,8 +60,9 @@ const Forgotpassword = () => {
                         {input.map(val => {
                             return (
                                 <div key={val.id}>
-                                    <p className='text-xs text-center'>Invalid CvSU Email</p>
-                                    <input {...val} className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" onChange={onChange} value={email}></input>
+                                    {error === '' ? null : <p className='text-xs text-center text-redError'>Invalid CvSU Email</p>}
+                                    
+                                    <input {...val} className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" onChange={onChange} value={email} style={error === '' ? {} : {backgroundColor: '#FCE3E4'}}></input>
                                 </div>
 
                             )
@@ -71,7 +72,7 @@ const Forgotpassword = () => {
 
                         <div className='w-fit mx-auto'>
                             <Link href="/login" className='w-fit'>
-                                <p className='mt-5 font-bold text-greenButton text-center'>Back to Login</p>
+                                <p className='mt-5 font-bold text-greenButton text-center text-[15px] hover:text-[16px] transition-all ease-in-out'>Back to Login</p>
                             </Link>
                         </div>
 

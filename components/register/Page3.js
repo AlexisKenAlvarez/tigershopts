@@ -3,7 +3,7 @@ import FormInputSmall from '../FormInputSmall'
 import FormInputShort from '../FormInputShort'
 
 const Page3 = (props) => {
-    const { inputsHalf, inputsFull, value, onChange, error } = props
+    const { onBlur, onFocus, inputsHalf, inputsFull, value, onChange, error } = props
     return (
         <>
             <div className='flex gap-x-6'>
@@ -16,7 +16,7 @@ const Page3 = (props) => {
 
             {inputsFull.map((val) => {
                 return (
-                    <FormInputSmall key={val.id} {...val} value={value[val.name]} onChange={onChange} error={error}/> 
+                    <FormInputSmall key={val.id} {...val} value={value[val.name]} onChange={onChange} error={error} onBlur={onBlur} onFocus={onFocus}/> 
                 )
             })}
 

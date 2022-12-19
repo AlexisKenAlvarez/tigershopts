@@ -476,6 +476,20 @@ const Signup: NextPage<Inputs> = (props) => {
         setDone(true)
     }
 
+    const [closed, setClosed] = useState(false)
+
+    const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === 'password' || e.target.name === 'confirmpassword') {
+            setClosed(true)
+        }
+    }
+
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === 'password' || e.target.name === 'confirmpassword') {
+            setClosed(false)
+        }
+    }
+
 
     return (
         <>
@@ -512,7 +526,7 @@ const Signup: NextPage<Inputs> = (props) => {
                             <p className="text-sm text-center text-greenSteps font-medium mt-4">Student Information</p>
                             {page === 1 ? <Page1 inputs={props.inputs} onChange={handleChange} value={values} error={valuesError} /> :
                                 page === 2 ? <Page2 inputs={props.page2inputs} onChange={handleChange} value={values} error={valuesError} /> :
-                                    page === 3 ? <Page3 inputsFull={props.page3full} inputsHalf={props.page3half} onChange={handleChange} value={values} error={valuesError} /> : null}
+                                    page === 3 ? <Page3 inputsFull={props.page3full} inputsHalf={props.page3half} onChange={handleChange} value={values} error={valuesError} onFocus={handleFocus} onBlur={handleBlur} /> : null}
 
                             {page === 3 ?
                                 <div className="flex gap-x-4 mt-6">
@@ -533,7 +547,7 @@ const Signup: NextPage<Inputs> = (props) => {
                         </div>
                     </div>
 
-                    <AuthSide head1="Create your account to start shopping with us!" head2={<>Already have an account? Click <b>login</b> below.</>}buttonText="login" onClick={navigateLogin} />
+                    <AuthSide head1="Create your account to start shopping with us!" head2={<>Already have an account? Click <b>login</b> below.</>}buttonText="login" onClick={navigateLogin} closed={closed}/>
 
 
                     <AnimatePresence>

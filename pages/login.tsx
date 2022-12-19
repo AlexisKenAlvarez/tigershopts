@@ -133,6 +133,19 @@ export const Login: NextPage<Inputs> = (props) => {
 
     }
 
+    const [closed, setClosed] = useState(false)
+
+    const handleFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === 'password') {
+            setClosed(true)
+        }
+    }
+
+    const handleBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.name === 'password') {
+            setClosed(false)
+        }
+    }
 
     return (
         <>
@@ -146,7 +159,7 @@ export const Login: NextPage<Inputs> = (props) => {
                 <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[550px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl relative">
                     <AuthNavMobile text="signup" onClick={navigateSignup} />
 
-                    <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} />
+                    <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} closed={closed}/>
 
                     <AnimatePresence>
                         {awaiting ? <LoginRetry email={values.email} /> : null}
@@ -159,12 +172,12 @@ export const Login: NextPage<Inputs> = (props) => {
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</h1>
                             {props.inputs.map((value: InputVal) => {
                                 return (
-                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} />
+                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} onFocus={handleFocus} onBlur={handleBlur}/>
                                 )
                             })}
 
                             <Link href="/forgotpassword">
-                                <p className="mt-4 ml-1 cursor-pointer">Forgot your password?</p>
+                                <p className="mt-4 ml-1 cursor-pointer mb-10">Forgot your password?</p>
                             </Link>
 
                             <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin} />
