@@ -11,6 +11,7 @@ import { GetServerSideProps, NextPage } from "next"
 import { Inputs, InputVal, LoginValues } from "../types"
 import { AnimatePresence } from "framer-motion"
 import LoginRetry from '../components/register/LoginRetry'
+import Link from "next/link"
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
@@ -148,7 +149,7 @@ export const Login: NextPage<Inputs> = (props) => {
                     <AuthSide head1="Log in your account to start shopping with us!" head2="No account yet? Click sign up below." buttonText="sign up" onClick={navigateSignup} />
 
                     <AnimatePresence>
-                        {awaiting ? <LoginRetry email={values.email}/> : null}
+                        {awaiting ? <LoginRetry email={values.email} /> : null}
                     </AnimatePresence>
 
                     <div className="w-full">
@@ -162,7 +163,9 @@ export const Login: NextPage<Inputs> = (props) => {
                                 )
                             })}
 
-                            <p className="mt-4 ml-1 cursor-pointer">Forgot your password?</p>
+                            <Link href="/forgotpassword">
+                                <p className="mt-4 ml-1 cursor-pointer">Forgot your password?</p>
+                            </Link>
 
                             <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin} />
 

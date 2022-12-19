@@ -94,12 +94,12 @@ const LoginRetry = ({ email }) => {
                 <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { delay: 1, duration: 0.5 } }} className="flex flex-col justify-center items-center h-[85%]">
                     <Image src="/tiger.webp" width="200" height="20" alt="Tiger" />
                     <h1 className="text-center font-extrabold mt-10 text-xl text-greenBg">Check your inbox</h1>
-                    <p className="max-w-[400px] text-center mx-auto mt-2 text-sm">We've already sent you an email verification link. Please click the link to verify your account.</p>
+                    <p className="max-w-[400px] text-center mx-auto mt-2 text-sm">We&aposve already sent you an email verification link. Please click the link to verify your account.</p>
 
                     <div className="w-64">
 
                         <LongButton name={message} onClick={handleNewToken} />
-                        <p onClick={() => {window.location.reload(false);}} className="text-center mt-4 font-bold cursor-pointer">Back to Login</p>
+                        <p onClick={() => {window.location.reload(false)}} className="text-center mt-4 font-bold cursor-pointer">Back to Login</p>
                     </div>
                 </motion.div>
 
