@@ -146,7 +146,7 @@ export const Login: NextPage<Inputs> = (props) => {
                 <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[550px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl relative">
                     <AuthNavMobile text="signup" onClick={navigateSignup} />
 
-                    <AuthSide head1="Log in your account to start shopping with us!" head2="No account yet? Click sign up below." buttonText="sign up" onClick={navigateSignup} />
+                    <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} />
 
                     <AnimatePresence>
                         {awaiting ? <LoginRetry email={values.email} /> : null}

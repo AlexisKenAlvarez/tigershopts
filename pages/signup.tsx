@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import AuthNavMobile from "../components/AuthNavMobile"
 import AuthSide from "../components/AuthSide"
 import ShortButton from "../components/ShortButton"
+import BackButton from "../components/BackButton"
 import Page1 from "../components/register/Page1"
 import Page2 from "../components/register/Page2"
 import Page3 from "../components/register/Page3"
@@ -520,10 +521,10 @@ const Signup: NextPage<Inputs> = (props) => {
                                 : null}
 
                             <div className="flex">
-                                {page === 2 ? <ShortButton name="Back" className="mr-auto" onClick={handleBackPage} /> : null}
+                                {page === 2 ? <BackButton name="Back" className="mr-auto" onClick={handleBackPage} /> : null}
                                 {page < 3 ? <ShortButton name="Next" className="ml-auto" onClick={handleNextPage} /> :
                                     <div className="flex flex-row w-full gap-4">
-                                        <ShortButton name="Back" className="mr-auto" onClick={handleBackPage} />
+                                        <BackButton name="Back" className="mr-auto" onClick={handleBackPage} />
                                         <LongButton name={debounce ? "Processing..." : "Create my account"} onClick={handleNextPage} />
                                     </div>
                                 }
@@ -532,7 +533,7 @@ const Signup: NextPage<Inputs> = (props) => {
                         </div>
                     </div>
 
-                    <AuthSide head1="Create your account to start shopping with us!" head2="Already have an account? Click login below." buttonText="login" onClick={navigateLogin} />
+                    <AuthSide head1="Create your account to start shopping with us!" head2={<>Already have an account? Click <b>login</b> below.</>}buttonText="login" onClick={navigateLogin} />
 
 
                     <AnimatePresence>
