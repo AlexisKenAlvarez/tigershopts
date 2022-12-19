@@ -7,7 +7,7 @@ const prisma = new PrismaClient()
 
 const baseUrl = String(process.env.NEXT_PUBLIC_BASE_URL)
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     const email = req.body.email
 
