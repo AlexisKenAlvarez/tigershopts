@@ -22,14 +22,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         })
 
         if (exists.length > 0) {
-            const user = await prisma.tokenresets.findMany({
+            const user = await prisma.tokenResets.findMany({
                 where: {
                     email: email
                 }
             })
 
             if (user.length > 0) {
-                const resetToken = await prisma.tokenresets.deleteMany({
+                const resetToken = await prisma.tokenResets.deleteMany({
                     where: {
                         email: email
                     }
@@ -40,7 +40,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const url = `${baseUrl}verified/${email}/${genToken}`
             await new Email(email, url).sendMagicLink()
 
-            const newToken = await prisma.tokenresets.create({
+            const newToken = await prisma.tokenResets.create({
                 data: {
                     email: email,
                     token: genToken
