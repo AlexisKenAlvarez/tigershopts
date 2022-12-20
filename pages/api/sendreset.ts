@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client'
 import { nanoid } from 'nanoid'
-import Password from '../../utils/email';
+import Password from '../../utils/password';
 
 
 const prisma = new PrismaClient()

@@ -19,6 +19,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 password: hashed
             }
         })
+
+        const remove = await prisma.pass.deleteMany({
+            where: {
+                email: email
+            }
+        })
+
         res.status(200).json({status: "Change password success", success: true})
         console.log(change)
     } catch (error) {

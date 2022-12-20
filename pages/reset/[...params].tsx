@@ -131,7 +131,7 @@ const Reset: NextPage<myProp> = ({ valid, email }) => {
     if (check1 && check2) {
       if (!debounce) {
         setDebounce(true)
-        fetch("/api/sendreset", {
+        fetch("/api/resetpassword", {
           method: "post",
           headers: {
             "Content-Type": "application/json"
@@ -143,6 +143,7 @@ const Reset: NextPage<myProp> = ({ valid, email }) => {
           if (response.success) {
             setDebounce(false)
             Router.push("/login")
+            sessionStorage.removeItem("password");
           } else {
             setDebounce(true)
             console.log("There was an error");
