@@ -59,14 +59,28 @@ const NewProduct = ({ username }: { username: string }) => {
         if (!debounce) {
             setDebounce(true)
             const form = new FormData()
+            const formImage = new FormData()
 
             form.append('name', name)
             form.append('desc', desc)
             form.append('stock', stock)
             form.append('org', username)
-            form.append('image', imageInput || '')
 
-            const data = await fetch('https://api.cloudinary.com/v1_1/dnfsr6bms/image/upload')
+            formImage.append('file', imageInput || '')
+            formImage.append('name', name)
+            formImage.append('upload_preset', 'my-uploads')
+
+
+            const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`, {
+                method: 'POST',
+                body: formImage
+            }).then((response) => {
+                setDebounce(false)
+                return response.json()
+
+            })
+
+            console.log(data.secure_url);
 
             // fetch("/api/create/upload", {
             //     method: 'POST',
