@@ -4,6 +4,7 @@ import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { Status } from "../types";
 
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const secret = process.env.NEXT_PUBLIC_SECRET || ''
   const jwt = context.req.cookies['authToken'] || ''

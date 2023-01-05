@@ -36,3 +36,9 @@ model Tokens {
   token String
 }
 
+model Products {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  org String
+  products Json?
+}
+

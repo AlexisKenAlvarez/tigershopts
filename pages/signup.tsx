@@ -501,7 +501,7 @@ const Signup: NextPage<Inputs> = (props) => {
 
 
                     <div className="w-full">
-                        <div className="w-[80%] mx-auto max-w-[350px] font-inter mt-6 pb-10">
+                        <div className="w-[80%] mx-auto max-w-[350px] font-inter pb-10" style={done ? {marginTop: "0"} : {marginTop: "1.5rem"}}>
 
 
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-6 text-greenBg text-shadow-md lg:mt-14">Hello, Tiger!</h1>

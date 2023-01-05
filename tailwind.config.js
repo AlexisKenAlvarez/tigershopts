@@ -40,7 +40,8 @@ module.exports = {
 
       fontFamily: {
         'inter': ['Inter'],
-        'poppins': ['Poppins']
+        'poppins': ['Poppins'],
+        'raleway': ['Raleway']
       },
 
       colors: {

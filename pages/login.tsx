@@ -12,6 +12,7 @@ import { Inputs, InputVal, LoginValues } from "../types"
 import { AnimatePresence } from "framer-motion"
 import LoginRetry from '../components/register/LoginRetry'
 import Link from "next/link"
+import Head from 'next/head';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
@@ -149,6 +150,12 @@ export const Login: NextPage<Inputs> = (props) => {
 
     return (
         <>
+
+            <Head>
+                <title>Tigershop | Login</title>
+                <meta property="og:title" content="My page title" key="title" />
+            </Head>
+
             <div className="main-bg font-inter h-screen flex justify-center items-center">
                 <div className="bg-orangeBg h-screen w-full fixed top-0 z-[-2]">
                     <Image src="/cvsu.png" alt="CvSU" fill></Image>
@@ -159,7 +166,7 @@ export const Login: NextPage<Inputs> = (props) => {
                 <div className="bg-white h-screen w-full p-0 mt-0 lg:h-[90%] lg:min-h-[550px] lg:max-h-[650px] lg:w-[90%] lg:max-w-[1000px] lg:flex mx-auto lg:rounded-3xl relative">
                     <AuthNavMobile text="signup" onClick={navigateSignup} />
 
-                    <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} closed={closed}/>
+                    <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} closed={closed} />
 
                     <AnimatePresence>
                         {awaiting ? <LoginRetry email={values.email} /> : null}
@@ -172,7 +179,7 @@ export const Login: NextPage<Inputs> = (props) => {
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</h1>
                             {props.inputs.map((value: InputVal) => {
                                 return (
-                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} onFocus={handleFocus} onBlur={handleBlur}/>
+                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} onFocus={handleFocus} onBlur={handleBlur} />
                                 )
                             })}
 
