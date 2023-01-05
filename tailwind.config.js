@@ -52,7 +52,11 @@ module.exports = {
         greenHover: '#366345',
         greenButton: '#1B4E2C',
         greenSteps: '#023815',
-        redError: '#C3252E'
+        redError: '#C3252E',
+        redLight: '#FCE3E4',
+        redNew: '#E12D3C',
+        maroonText: '#850008',
+        cancel: '#627D98'
       },
       boxShadow: {
         customBorder: '10px 10px 0px 0px rgba(0,120,41,1)'

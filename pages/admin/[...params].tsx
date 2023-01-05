@@ -127,7 +127,7 @@ const Admin: NextPage<myProp> = (props) => {
     }
 
     const sideNav = (
-        <div className="sidenav bg-greenSteps lg:w-[20rem] h-full lg:block translate-x-[-100%] absolute lg:relative lg:translate-x-[0%] w-full transition-all ease-in-out duration-[0.3s] z-10" style={navActive ? { transform: "translateX(0%)" } : {}}>
+        <div className="sidenav bg-greenSteps lg:w-[20rem] h-full lg:block translate-x-[-100%] absolute lg:relative lg:translate-x-[0%] w-full transition-all ease-in-out duration-[0.3s] z-30" style={navActive ? { transform: "translateX(0%)" } : {}}>
             <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto mt-16" unoptimized={true} />
             <TiArrowBack className="absolute top-5 left-5 text-4xl text-orangeText lg:hidden" onClick={() => { setActive(false) }} />
 

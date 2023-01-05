@@ -20,24 +20,36 @@ interface prod {
 const Products = ({ username, products }: { username: String, products: prod[] }) => {
     const router = useRouter()
     const [span, setSpan] = useState<String>('')
+    const [toDelete, setDelete] = useState<String>('')
+
     const handleExpand = (name: String) => {
         if (name === span) {
             setSpan('')
         } else{
             setSpan(name)
         }
+    }
 
+    const handleToDelete = (name: String) => {
+        setDelete(name)
+    }
+
+    const closeDelete = () => {
+        setDelete('')
     }
 
     return (
 
         <>
+            {
+                toDelete === '' ? null : <DeleteComponent name={toDelete} close={closeDelete}/>
+            }
+
             <a onClick={() => { router.push('/admin/products/new') }} className="flex items-center gap-x-2 cursor-pointer">
                 <IoMdAddCircle className='text-greenSteps text-2xl mt-1' />
                 <h2 className="text-2xl font-bold text-greenSteps">Add product</h2>
             </a>
 
-            <DeleteComponent/>
 
             <div className="w-full sm:w-fit h-[70vh] mt-10 overflow-y-scroll grid sm:grid-cols-2 gap-y-6 sm:gap-y-8 sm:gap-x-10 pb-2 md:grid-cols-3 no-scrollbar xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 transition-all ease-in-out select-none" style={{gridAutoRows: "minmax(20rem, 20rem)"}}>
                 {products.map((items) => {
@@ -52,8 +64,8 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                                     <div className='w-full h-[2.5rem] flex items-center border-t-[1.5px] border-t-black justify-between'>
                                         <p className='ml-3 text-greenBg font-semibold font-'>0 Favorites</p>
                                         <div className='flex items-center gap-x-2 mr-3'>
-                                            <FaTrashAlt className='cursor-pointer'/>
-                                            <MdEdit className='cursor-pointer'/>
+                                            <FaTrashAlt className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => {handleToDelete(items.name)}}/>
+                                            <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]'/>
                                         </div>
                                     </div>
 
@@ -75,6 +87,8 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                     )
                 })}
             </div>
+            
+
         </>
 
     );
