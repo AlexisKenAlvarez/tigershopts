@@ -42,7 +42,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const url = context.req.url || ''
 
 
-    if (url.includes('/admin/products')) {
+    if (url.includes('/admin')) {
 
         try {
             verify(jwt, secret);
