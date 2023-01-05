@@ -63,7 +63,7 @@ const Delete: FunctionComponent<myProp> = (props) => {
                 <div className='text-sm flex w-fit mx-auto mt-6 gap-x-4'>
                     <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-cancel text-white flex justify-center items-center cursor-pointer hover:opacity-70' onClick={close}>Cancel</div>
                     <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-maroonText text-white flex justify-center items-center cursor-pointer gap-x-2 hover:bg-redNew transition-all ease-in-out duration-[0.2s]' onClick={handleDelete}>
-                        <p>Delete</p>
+                        <p>{debounce ? '...' : "Delete"}</p>
                         <FaTrashAlt />
                     </div>
 
