@@ -65,7 +65,7 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                         <>
                             <div className='flex flex-col border-[1.5px] h-full w-[13rem] border-black rounded-2xl pb-3' style={span === items.name ? {gridRowStart: "span 2"} : {}}>
                                 <div className='h-[12rem] border-2 rounded-2xl'>
-                                    <Image src={`/uploads/${items.image}`} alt={`${items.name}`} width="100" height="100" className='w-full h-full rounded-t-2xl object-contain select-none'></Image>
+                                    <Image src={items.image} alt={`${items.name}`} width="100" height="100" className='w-full h-full rounded-t-2xl object-contain select-none'></Image>
                                 </div>
 
                                 <div className=' h-[7rem] text-clip'>

@@ -58,16 +58,9 @@ const NewProduct = ({ username }: { username: string }) => {
     const sendData = async () => {
         if (!debounce) {
             setDebounce(true)
-            const form = new FormData()
             const formImage = new FormData()
 
-            form.append('name', name)
-            form.append('desc', desc)
-            form.append('stock', stock)
-            form.append('org', username)
-
             formImage.append('file', imageInput || '')
-            formImage.append('name', name)
             formImage.append('upload_preset', 'my-uploads')
 
 
@@ -76,26 +69,38 @@ const NewProduct = ({ username }: { username: string }) => {
                 body: formImage
             }).then((response) => {
                 setDebounce(false)
+                
                 return response.json()
+            }).then((r) => {
 
+                fetch("/api/create/upload", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+    
+                    body: JSON.stringify({
+                        name,
+                        desc,
+                        stock,
+                        org: username,
+                        image: r.secure_url
+                    })
+    
+                }).then((response) => {
+                    return response.json();
+                }).then((response) => {
+                    console.log(response)
+                    setDebounce(false)
+                    // After adding new product, redirect back
+                    router.push("/admin/products", undefined)
+    
+    
+                })
             })
 
-            console.log(data.secure_url);
-
-            // fetch("/api/create/upload", {
-            //     method: 'POST',
-            //     body: form
-
-            // }).then((response) => {
-            //     return response.json();
-            // }).then((response) => {
-            //     console.log(response)
-            //     setDebounce(false)
-            //     // After adding new product, redirect back
-            //     router.push("/admin/products", undefined)
 
 
-            // })
         }
 
     }
