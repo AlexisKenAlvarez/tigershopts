@@ -63,13 +63,10 @@ const NewProduct = ({ username }: { username: string }) => {
             formImage.append('file', imageInput || '')
             formImage.append('upload_preset', 'my-uploads')
 
-
             const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`, {
                 method: 'POST',
                 body: formImage
             }).then((response) => {
-                setDebounce(false)
-                
                 return response.json()
             }).then((r) => {
 
