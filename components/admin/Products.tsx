@@ -1,7 +1,7 @@
 import { Prisma } from '@prisma/client';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { IoMdAddCircle } from 'react-icons/io'
 import { FaTrashAlt } from 'react-icons/fa'
 import { MdEdit } from 'react-icons/md'
@@ -20,7 +20,9 @@ interface prod {
 const Products = ({ username, products }: { username: String, products: prod[] }) => {
     const router = useRouter()
     const [span, setSpan] = useState<String>('')
-    const [toDelete, setDelete] = useState<String>('')
+    const [toDeleteName, setDelete] = useState<String>('')
+    const [toDeleteImage, setDeleteImage] = useState<String>('')
+
 
     const handleExpand = (name: String) => {
         if (name === span) {
@@ -30,19 +32,25 @@ const Products = ({ username, products }: { username: String, products: prod[] }
         }
     }
 
-    const handleToDelete = (name: String) => {
+    const handleToDelete = (name: String, imageName: String) => {
         setDelete(name)
+        setDeleteImage(imageName)
     }
 
     const closeDelete = () => {
         setDelete('')
+        setDeleteImage('')
+    }
+
+    const refreshData = () => {
+        router.replace(router.asPath)
     }
 
     return (
 
         <>
             {
-                toDelete === '' ? null : <DeleteComponent name={toDelete} close={closeDelete}/>
+                toDeleteName === '' ? null : <DeleteComponent name={toDeleteName} close={closeDelete} image={toDeleteImage} refresh={refreshData}/>
             }
 
             <a onClick={() => { router.push('/admin/products/new') }} className="flex items-center gap-x-2 cursor-pointer">
@@ -64,7 +72,7 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                                     <div className='w-full h-[2.5rem] flex items-center border-t-[1.5px] border-t-black justify-between'>
                                         <p className='ml-3 text-greenBg font-semibold font-'>0 Favorites</p>
                                         <div className='flex items-center gap-x-2 mr-3'>
-                                            <FaTrashAlt className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => {handleToDelete(items.name)}}/>
+                                            <FaTrashAlt className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => {handleToDelete(items.name, items.image)}}/>
                                             <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]'/>
                                         </div>
                                     </div>

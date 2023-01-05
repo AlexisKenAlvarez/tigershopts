@@ -1,7 +1,46 @@
 import { FaTrashAlt } from 'react-icons/fa'
 import { IoWarning } from 'react-icons/io5'
+import { useState, FunctionComponent } from 'react'
 
-const Delete = ({name, close}: {name: String, close: () => void}) => {
+interface myProp {
+    name: String,
+    image: String
+    close: () => void
+    refresh: () => void
+}
+
+const Delete: FunctionComponent<myProp> = (props) => {
+
+    const { name, image, close, refresh } = props
+
+    const [debounce, setDebounce] = useState(false)
+
+    const handleDelete = () => {
+        if (!debounce) {
+            setDebounce(true)
+            fetch("/api/delete", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    image: image
+                })
+
+            }).then((response) => {
+                return response.json()
+            }).then((response) => {
+                console.log(response)
+                close()
+                refresh()
+                setDebounce(false)
+
+            })
+        }
+
+    }
+
     return (
         <div className='w-[100%] lg:w-[85%] h-screen fixed top-0 right-0 z-10 flex justify-center items-center select-none'>
             <div className="w-[21rem] md:w-[23rem] md:px-2 h-fit bg-white z-20 shadow-xl rounded-xl font-poppins pb-8">
@@ -23,9 +62,9 @@ const Delete = ({name, close}: {name: String, close: () => void}) => {
 
                 <div className='text-sm flex w-fit mx-auto mt-6 gap-x-4'>
                     <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-cancel text-white flex justify-center items-center cursor-pointer hover:opacity-70' onClick={close}>Cancel</div>
-                    <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-maroonText text-white flex justify-center items-center cursor-pointer gap-x-2 hover:bg-redNew transition-all ease-in-out duration-[0.2s]'>
+                    <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-maroonText text-white flex justify-center items-center cursor-pointer gap-x-2 hover:bg-redNew transition-all ease-in-out duration-[0.2s]' onClick={handleDelete}>
                         <p>Delete</p>
-                        <FaTrashAlt/>
+                        <FaTrashAlt />
                     </div>
 
                 </div>
