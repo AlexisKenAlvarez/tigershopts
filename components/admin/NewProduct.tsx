@@ -55,7 +55,7 @@ const NewProduct = ({ username }: { username: string }) => {
 
     const [debounce, setDebounce] = useState(false)
 
-    const sendData = () => {
+    const sendData = async () => {
         if (!debounce) {
             setDebounce(true)
             const form = new FormData()
@@ -66,20 +66,22 @@ const NewProduct = ({ username }: { username: string }) => {
             form.append('org', username)
             form.append('image', imageInput || '')
 
-            fetch("/api/create/upload", {
-                method: 'POST',
-                body: form
+            const data = await fetch('https://api.cloudinary.com/v1_1/dnfsr6bms/image/upload')
 
-            }).then((response) => {
-                return response.json();
-            }).then((response) => {
-                console.log(response)
-                setDebounce(false)
-                // After adding new product, redirect back
-                router.push("/admin/products", undefined)
+            // fetch("/api/create/upload", {
+            //     method: 'POST',
+            //     body: form
+
+            // }).then((response) => {
+            //     return response.json();
+            // }).then((response) => {
+            //     console.log(response)
+            //     setDebounce(false)
+            //     // After adding new product, redirect back
+            //     router.push("/admin/products", undefined)
 
 
-            })
+            // })
         }
 
     }

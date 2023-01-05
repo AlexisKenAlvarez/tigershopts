@@ -2,6 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import multer from 'multer'
 import path from 'path';
 
+import { v2 as cloudinary } from "cloudinary";
+
 import nextConnect from 'next-connect';
 import { Prisma, PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
@@ -15,6 +17,13 @@ interface MulterRequest extends Request {
 export const config = {
     api: { bodyParser: false },
 };
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+    secure: true,
+});
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -67,7 +76,7 @@ const apiRoute = nextConnect<MulterRequest, NextApiResponse>({
                     stock: obj.stock
                 },
                 ...arr,
-        
+
             ] as Prisma.JsonArray
 
             const append = await prisma.products.updateMany({
