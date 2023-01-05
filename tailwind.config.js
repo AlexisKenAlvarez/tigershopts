@@ -56,11 +56,15 @@ module.exports = {
       },
       boxShadow: {
         customBorder: '10px 10px 0px 0px rgba(0,120,41,1)'
+      },
+      screens: {
+        '3xl': '1800px'
       }
     },
   },
   plugins: [
     require('tailwindcss-textshadow'),
     require('tailwindcss-text-fill-stroke')(), // no options to configure
+    require('@tailwindcss/line-clamp'),
   ],
 }

@@ -7,9 +7,12 @@ import { TiDelete } from 'react-icons/ti'
 import Link from 'next/link';
 import { useState, useEffect } from "react";
 import LongButton from "../LongButton";
+import { useRouter } from 'next/router';
 
 
 const NewProduct = ({ username }: { username: string }) => {
+
+    const router = useRouter()
 
     const [image, setImage] = useState()
     const [stock, setStock] = useState('')
@@ -35,6 +38,7 @@ const NewProduct = ({ username }: { username: string }) => {
 
     const handleStock = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStock(e.target.value)
+
     }
     const handleDesc = (e: any) => {
         setDesc(e.target.value);
@@ -49,24 +53,35 @@ const NewProduct = ({ username }: { username: string }) => {
         setName(e.target.value)
     }
 
+    const [debounce, setDebounce] = useState(false)
+
     const sendData = () => {
-        const form = new FormData()
+        if (!debounce) {
+            setDebounce(true)
+            const form = new FormData()
 
-        form.append('name', name)
-        form.append('desc', desc)
-        form.append('stock', stock)
-        form.append('org', username)
-        form.append('image', imageInput || '')
+            form.append('name', name)
+            form.append('desc', desc)
+            form.append('stock', stock)
+            form.append('org', username)
+            form.append('image', imageInput || '')
 
-        fetch("/api/create/upload", {
-            method: 'POST',
-            body: form
+            fetch("/api/create/upload", {
+                method: 'POST',
+                body: form
 
-        }).then((response) => {
-            return response.json();
-        }).then((response) => {
-            console.log(response)
-        })
+            }).then((response) => {
+                return response.json();
+            }).then((response) => {
+                console.log(response)
+                setDebounce(false)
+                // After adding new product, redirect back
+                router.push("/admin/products", undefined)
+
+
+            })
+        }
+
     }
 
     return (
@@ -113,7 +128,7 @@ const NewProduct = ({ username }: { username: string }) => {
 
                     <div className="w-full mt-10">
                         <h2>Stocks count</h2>
-                        <div className="flex w-full justify-between mt-6">
+                        <div className="flex w-full justify-between mt-4">
                             {stockRadio.map((val, i) => {
                                 return (
                                     <div key={i} className="flex items-center gap-x-1">
@@ -125,7 +140,7 @@ const NewProduct = ({ username }: { username: string }) => {
                             })}
                         </div>
 
-                        <LongButton name="Add product" onClick={sendData} />
+                        <LongButton name={debounce ? 'Processing...' : "Add product"} onClick={sendData} />
                     </div>
                 </div>
 

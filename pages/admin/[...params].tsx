@@ -154,7 +154,7 @@ const Admin: NextPage<myProp> = (props) => {
                         <GiHamburgerMenu className="text-3xl ml-10 lg:hidden" onClick={() => { setActive(curr => !curr) }} />
                         <h1 className="text-orangeText font-semibold lg:text-2xl lg:ml-auto mr-10 text-md">CSSO - Admin</h1>
                     </div>
-                    <div className="w-full h-full lg:p-10 p-3">
+                    <div className="w-full h-full lg:p-10 p-3 px-5">
                         {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/reservations' ? <Reservations/> : asPath === '/admin/products' ? <Products username={username} products={products}/> : null }
  
                     </div>
