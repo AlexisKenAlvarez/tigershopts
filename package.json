@@ -24,6 +24,7 @@
     "framer-motion": "^7.10.2",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
+    "mongodb": "^4.13.0",
     "multer": "^1.4.5-lts.1",
     "nanoid": "^4.0.0",
     "next": "13.0.7",

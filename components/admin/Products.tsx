@@ -6,7 +6,7 @@ import { IoMdAddCircle } from 'react-icons/io'
 import { FaTrashAlt } from 'react-icons/fa'
 import { MdEdit } from 'react-icons/md'
 import { RiArrowDownSFill } from 'react-icons/ri'
-import { isTemplateSpan } from 'typescript';
+import DeleteComponent from '../../components/admin/DeleteComponent'
 
 interface prod {
 
@@ -37,7 +37,9 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                 <h2 className="text-2xl font-bold text-greenSteps">Add product</h2>
             </a>
 
-            <div className="w-full sm:w-fit h-[70vh] mt-10 overflow-y-scroll grid sm:grid-cols-2 gap-y-6 sm:gap-y-8 sm:gap-x-10 pb-2 md:grid-cols-3 no-scrollbar xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 transition-all ease-in-out select-none" style={{gridAutoRows: "minmax(20rem, 1fr)"}}>
+            <DeleteComponent/>
+
+            <div className="w-full sm:w-fit h-[70vh] mt-10 overflow-y-scroll grid sm:grid-cols-2 gap-y-6 sm:gap-y-8 sm:gap-x-10 pb-2 md:grid-cols-3 no-scrollbar xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 transition-all ease-in-out select-none" style={{gridAutoRows: "minmax(20rem, 20rem)"}}>
                 {products.map((items) => {
                     return (
                         <>
