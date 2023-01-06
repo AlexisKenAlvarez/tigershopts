@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react'
 
 interface myProp {
     name: String,
-    onClick: () => void,
+    onClick?: () => void,
     className?: String
 }
 
