@@ -7,25 +7,27 @@ interface myProp {
     image: String
     close: () => void
     refresh: () => void
+    id: String
 }
 
 const Delete: FunctionComponent<myProp> = (props) => {
 
-    const { name, image, close, refresh } = props
+    const { name, image, close, refresh, id } = props
 
     const [debounce, setDebounce] = useState(false)
 
     const handleDelete = () => {
         if (!debounce) {
             setDebounce(true)
-            fetch("/api/delete", {
+            fetch("/api/admin/delete", {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json"
                 },
 
                 body: JSON.stringify({
-                    image: image
+                    image: image,
+                    public_id: id
                 })
 
             }).then((response) => {

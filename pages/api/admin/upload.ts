@@ -8,6 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     var json = [
         {
+            id: req.body.id,
             image: req.body.image,
             name: req.body.name,
             desc: req.body.desc,
@@ -31,6 +32,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             var json = [
                 {
+                    id: req.body.id,
                     image: req.body.image,
                     name: req.body.name,
                     desc: req.body.desc,

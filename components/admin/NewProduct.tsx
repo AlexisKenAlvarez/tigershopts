@@ -19,6 +19,20 @@ const NewProduct = ({ username }: { username: string }) => {
     const [imageInput, setImgInput] = useState<File>()
     const [name, setName] = useState('')
     const [desc, setDesc] = useState('')
+    const [active, setActive] = useState(false)
+
+    useEffect(() => {
+        const nameTrim = name.trim()
+        const descTrim = desc.trim()
+        
+        if (image !== undefined && nameTrim.length > 0 && descTrim.length > 0 && stock !== '') {
+            setActive(true)
+        } else{
+            setActive(false)
+
+        }
+    }, [image, stock, name, desc])
+    
 
     const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -63,27 +77,28 @@ const NewProduct = ({ username }: { username: string }) => {
             formImage.append('file', imageInput || '')
             formImage.append('upload_preset', 'my-uploads')
 
-            const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUD_NAME}/image/upload`, {
+            const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`, {
                 method: 'POST',
                 body: formImage
             }).then((response) => {
                 return response.json()
             }).then((r) => {
 
-                fetch("/api/create/upload", {
+                fetch("/api/admin/upload", {
                     method: 'POST',
                     headers: {
                         "Content-Type": "application/json"
                     },
-    
+
                     body: JSON.stringify({
+                        id: r.public_id,
                         name,
                         desc,
                         stock,
                         org: username,
                         image: r.secure_url
                     })
-    
+
                 }).then((response) => {
                     return response.json();
                 }).then((response) => {
@@ -91,8 +106,8 @@ const NewProduct = ({ username }: { username: string }) => {
                     setDebounce(false)
                     // After adding new product, redirect back
                     router.push("/admin/products", undefined)
-    
-    
+
+
                 })
             })
 
@@ -158,7 +173,11 @@ const NewProduct = ({ username }: { username: string }) => {
                             })}
                         </div>
 
-                        <LongButton name={debounce ? 'Processing...' : "Add product"} onClick={sendData} />
+                        <div style={active ? {pointerEvents: "auto"} : {pointerEvents: "none"}}>
+                            <LongButton name={debounce ? 'Processing...' : "Add product"} onClick={sendData} className={active ? "opacity-100" : "opacity-60"} />
+                        </div>
+
+
                     </div>
                 </div>
 

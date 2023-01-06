@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    CLOUD_NAME: process.env.CLOUD_NAME,
+    CLOUDINARY_NAME: process.env.CLOUDINARY_NAME,
   },
   images: {
     domains: ['res.cloudinary.com'],

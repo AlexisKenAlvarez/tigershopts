@@ -1,6 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
 import Image from 'next/image';
-import Link from "next/link";
 import { useRouter } from 'next/router';
 import NewProduct from "../../components/admin/NewProduct";
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -11,6 +10,7 @@ import jwt_decode from "jwt-decode";
 import Products from "../../components/admin/Products";
 import { PrismaClient } from '@prisma/client'
 import Reservations from "../../components/admin/Reservations";
+import Head from 'next/head';
 const prisma = new PrismaClient()
 
 interface prod {
@@ -18,6 +18,7 @@ interface prod {
     image: string,
     stock: string,
     desc: string,
+    id: string
 }
 
 interface myProp {
@@ -26,8 +27,6 @@ interface myProp {
     username: string
     products: prod[]
 }
-
-
 
 interface decode {
     exp: number,
@@ -147,6 +146,10 @@ const Admin: NextPage<myProp> = (props) => {
 
     return (
         <>
+            <Head>
+                <title>Admin</title>
+                <meta property="og:title" content="Admin" key="Admin" />
+            </Head>
             <div className="w-full h-screen flex overflow-hidden">
                 {sideNav}
                 <div className="w-full h-full flex flex-col">
@@ -155,8 +158,8 @@ const Admin: NextPage<myProp> = (props) => {
                         <h1 className="text-orangeText font-semibold lg:text-2xl lg:ml-auto mr-10 text-md">CSSO - Admin</h1>
                     </div>
                     <div className="w-full h-full lg:p-10 p-3 px-5">
-                        {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/reservations' ? <Reservations/> : asPath === '/admin/products' ? <Products username={username} products={products}/> : null }
- 
+                        {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/reservations' ? <Reservations /> : asPath === '/admin/products' ? <Products username={username} products={products} /> : null}
+
                     </div>
                 </div>
             </div>

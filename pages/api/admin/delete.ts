@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+const cloudinary = require( '../../../utils/cloudinary')
 
-import clientPromise from "../../lib/mongodb";
+import clientPromise from "../../../lib/mongodb";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -15,10 +16,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             {$pull: {products: {image: image } } }
         )
 
-        res.json({ post });
+        await cloudinary.uploader.destroy(req.body.public_id)
+
+        
+
+        res.status(200).json({message: "success"});
 
     } catch (e) {
         console.error(e);
+        res.status(400).json({message: e});
     }
 
 
