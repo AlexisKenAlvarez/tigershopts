@@ -40,6 +40,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const jwt = context.req.cookies['authToken'] || ''
     const url = context.req.url || ''
 
+    const admins = ['csso']
+
 
     if (url.includes('/admin')) {
 
@@ -50,21 +52,29 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             var decoded: decode = jwt_decode(token);
             var username = decoded.username
 
-            const products = await prisma.products.findMany({
-                where: {
-                    org: username
+            if (admins.includes(username)) {
+                const products = await prisma.products.findMany({
+                    where: {
+                        org: username
+                    }
+                })
+    
+                return {
+                    props: {
+                        status: true,
+                        url,
+                        username,
+                        products: products[0].products
+                    }
                 }
-            })
-
-            return {
-                props: {
-                    status: true,
-                    url,
-                    username,
-                    products: products[0].products
+            } else {
+                return {
+                    redirect: {
+                        destination: '/login',
+                        permanent: false
+                    }
                 }
             }
-
         } catch (error) {
             console.log(error)
             return {

@@ -6,25 +6,32 @@ import { FaTrashAlt } from 'react-icons/fa'
 import { MdEdit } from 'react-icons/md'
 import { RiArrowDownSFill } from 'react-icons/ri'
 import DeleteComponent from '../../components/admin/DeleteComponent'
+import EditMode from './EditMode';
 
 interface prod {
-
     name: string,
     image: string,
     stock: string,
     desc: string,
     id: string
-
 }
 
-const Products = ({ username, products }: { username: String, products: prod[] }) => {
+
+
+const Products = ({ username, products }: { username: string, products: prod[] }) => {
     const router = useRouter()
     const [span, setSpan] = useState<String>('')
     const [toDeleteName, setDelete] = useState<String>('')
     const [toDeleteImage, setDeleteImage] = useState<String>('')
     const [id, setId] = useState<String>('')
-    
 
+    const [edit, setEdit] = useState({
+        image: '',
+        name: '',
+        desc: '',
+        stock: '',
+        public_id: ''
+    })
 
     const handleExpand = (name: String) => {
         if (name === span) {
@@ -44,12 +51,23 @@ const Products = ({ username, products }: { username: String, products: prod[] }
         setDelete('')
         setDeleteImage('')
         setId('')
+    }
 
+    const closeEdit = () => {
+        setEdit({ image: '', name: '', desc: '', stock: '', public_id: '' })
     }
 
     const refreshData = () => {
         router.replace(router.asPath)
     }
+
+    const handleEdit = (image: string, name: string, desc: string, stock: string, public_id: string) => {
+        setEdit({ name, image, desc, stock, public_id })
+    }
+
+    useEffect(() => {
+        console.log(edit)
+    }, [edit])
 
     return (
 
@@ -58,7 +76,11 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                 toDeleteName === '' ? null : <DeleteComponent name={toDeleteName} close={closeDelete} image={toDeleteImage} refresh={refreshData} id={id} />
             }
 
-            <a onClick={() => { router.push('/admin/products/new') }} className="flex items-center gap-x-2 cursor-pointer">
+            {
+                edit.name === '' ? null : <EditMode edit={edit} close={closeEdit} org={username} />
+            }
+
+            <a onClick={() => { router.push('/admin/products/new') }} className="flex items-center gap-x-2 cursor-pointer w-fit">
                 <IoMdAddCircle className='text-greenSteps text-2xl mt-1' />
                 <h2 className="text-2xl font-bold text-greenSteps">Add product</h2>
             </a>
@@ -69,7 +91,7 @@ const Products = ({ username, products }: { username: String, products: prod[] }
 
                 {products.map((items) => {
                     return (
-                        <div className='flex flex-col border-[1.5px] h-full w-[13rem] border-black rounded-2xl pb-3' style={span === items.name ? { gridRowStart: "span 2" } : {}} key={items.id}> 
+                        <div className='flex flex-col border-[1.5px] h-full w-[13rem] border-black rounded-2xl pb-3' style={span === items.name ? { gridRowStart: "span 2" } : {}} key={items.id}>
                             <div className='h-[12rem] border-2 rounded-2xl'>
                                 <Image src={items.image} alt={`${items.name}`} width="200" height="200" className='w-full h-full rounded-t-2xl object-contain select-none'></Image>
                             </div>
@@ -79,7 +101,7 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                                     <p className='ml-3 text-greenBg font-semibold font-'>0 Favorites</p>
                                     <div className='flex items-center gap-x-2 mr-3'>
                                         <FaTrashAlt className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleToDelete(items.name, items.image, items.id) }} />
-                                        <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' />
+                                        <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleEdit(items.image, items.name, items.desc, items.stock, items.id) }} />
                                     </div>
                                 </div>
 
@@ -93,6 +115,14 @@ const Products = ({ username, products }: { username: String, products: prod[] }
                                             items.desc
                                         }
                                     </p>
+
+                                    {span === items.name ? <p className={`text-xs mt-2 select-none`}>
+                                        <span className='text-greenBg font-black text-sm font-raleway capitalize'>Stocks: </span>
+                                        {
+                                            items.stock
+                                        }
+                                    </p> : null}
+
 
                                 </div>
                             </div>

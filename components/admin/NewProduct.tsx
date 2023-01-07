@@ -15,8 +15,8 @@ const NewProduct = ({ username }: { username: string }) => {
     const router = useRouter()
 
     const [image, setImage] = useState()
-    const [stock, setStock] = useState('')
     const [imageInput, setImgInput] = useState<File>()
+    const [stock, setStock] = useState('')
     const [name, setName] = useState('')
     const [desc, setDesc] = useState('')
     const [active, setActive] = useState(false)
