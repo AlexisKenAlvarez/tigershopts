@@ -77,7 +77,7 @@ const Products = ({ username, products }: { username: string, products: prod[] }
             }
 
             {
-                edit.name === '' ? null : <EditMode edit={edit} close={closeEdit} org={username} />
+                edit.name === '' ? null : <EditMode edit={edit} close={closeEdit} org={username} refresh={refreshData} />
             }
 
             <a onClick={() => { router.push('/admin/products/new') }} className="flex items-center gap-x-2 cursor-pointer w-fit">

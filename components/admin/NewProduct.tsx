@@ -106,15 +106,9 @@ const NewProduct = ({ username }: { username: string }) => {
                     setDebounce(false)
                     // After adding new product, redirect back
                     router.push("/admin/products", undefined)
-
-
                 })
             })
-
-
-
         }
-
     }
 
     return (
@@ -174,7 +168,7 @@ const NewProduct = ({ username }: { username: string }) => {
                         </div>
 
                         <div style={active ? {pointerEvents: "auto"} : {pointerEvents: "none"}}>
-                            <LongButton name={debounce ? 'Processing...' : "Add product"} onClick={sendData} className={active ? "opacity-100" : "opacity-60"} />
+                            <LongButton name={debounce ? 'Please wait...' : "Add product"} onClick={sendData} className={active ? "opacity-100" : "opacity-60"} />
                         </div>
 
 

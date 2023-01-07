@@ -1,5 +1,8 @@
 import { FunctionComponent, useState, useEffect } from "react"
 import { AiFillFileImage } from 'react-icons/ai'
+import TextareaAutosize from 'react-textarea-autosize';
+import { stockRadio } from "../../utils/List";
+import { TfiSave } from 'react-icons/tfi'
 
 interface myProp {
     image: string,
@@ -12,18 +15,23 @@ interface myProp {
 interface myObj {
     edit: myProp
     close: () => void
-    org: string
+    org: string,
+    refresh: () => void
 }
 
 const EditMode: FunctionComponent<myObj> = (props) => {
-    const { org, edit, close } = props
+    const { org, refresh, edit, close } = props
 
-    const [image, setImage] = useState<string>()
+    const [image, setImage] = useState<string>(edit.image)
     const [imageInput, setImgInput] = useState<File>()
 
-    useEffect(() => {
-        setImage(edit.image)
-    }, [])
+    const [product, setProduct] = useState({
+        name: edit.name,
+        desc: edit.desc,
+        stock: edit.stock,
+        public_id: edit.public_id,
+    })
+
 
     const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
 
@@ -41,22 +49,154 @@ const EditMode: FunctionComponent<myObj> = (props) => {
         }
     }
 
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProduct(current => ({ ...current, "name": e.target.value }))
+    }
+
+    const handleDesc = (e: any) => {
+        setProduct(current => ({ ...current, "desc": e.target.value }))
+    }
+
+    const handleStock = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProduct(current => ({ ...current, "stock": e.target.value }))
+    }
+
+    const [debounce, setDebounce] = useState(false)
+    const sendData = async () => {
+        if (!debounce) {
+            setDebounce(true)
+
+            const formImage = new FormData()
+            formImage.append('file', imageInput || '')
+            formImage.append('upload_preset', 'my-uploads')
+
+            if (imageInput === undefined) {
+                fetch("/api/admin/update", {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        name: product.name,
+                        desc: product.desc,
+                        stock: product.stock,
+                        oldId: product.public_id,
+                        org,
+                        imageChanged: false
+                    })
+
+                }).then((response) => {
+                    return response.json();
+                }).then((response) => {
+                    console.log(response)
+                    refresh()
+                    close()
+                    setDebounce(false)
+                })
+            } else {
+                const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`, {
+                    method: 'POST',
+                    body: formImage
+                }).then((response) => {
+                    return response.json()
+                }).then((r) => {
+
+                    fetch("/api/admin/update", {
+                        method: 'POST',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: product.name,
+                            desc: product.desc,
+                            stock: product.stock,
+                            newId: r.public_id,
+                            oldId: product.public_id,
+                            newImage: r.secure_url,
+                            org,
+                            imageChanged: true
+                        })
+
+                    }).then((response) => {
+                        return response.json();
+                    }).then((response) => {
+                        console.log(response)
+                        refresh()
+                        close()
+                        setDebounce(false)
+                    })
+                })
+            }
+
+
+        }
+    }
+
+
 
     return (
         <div className='w-[100%] lg:w-[85%] h-screen fixed top-0 right-0 z-10 flex justify-center items-center select-none'>
-            <div className="w-[85vw] h-[85vh] max-w-[450px] max-h-[650px] bg-white z-10 font-poppins">
-                <p className="text-center font-bold mt-6">Edit Product</p>
+            <div className="w-[85vw] h-[85vh] max-w-[450px] max-h-[750px] bg-white z-10 font-poppins overflow-hidden pb-6 rounded-xl">
+                <div className="overflow-y-scroll h-[90%] w-full relative mt-5">
+                    <p className="text-center font-bold mt-6" onClick={() => { console.log(product) }}>Edit Product</p>
 
-                <div className="w-[13rem] h-[12rem] mx-auto border-2 mt-6 rounded-xl">
-                    {image === undefined ? null :
-                        <img src={image} alt="User upload" className="object-cover h-full w-full rounded-xl"></img>
-                    }
+                    <div className="w-[13rem] h-[12rem] mx-auto border-2 mt-6 rounded-xl">
+                        {image === undefined ? null :
+                            <img src={image} alt="User upload" className="object-cover h-full w-full rounded-xl"></img>
+                        }
+                    </div>
+                    <div className="w-[12rem] h-[3rem] bg-slate-200 mx-auto mt-3 flex justify-center items-center rounded-xl text-sm cursor-pointer text-greenBg relative">
+                        <p>Change Image</p>
+                        <AiFillFileImage className="ml-2" />
+                        <input type="file" onChange={handleImage} className="w-full h-full cursor-pointer opacity-0 top-0 absolute" />
+                    </div>
+
+                    <div className="w-[80%] mx-auto mt-0">
+                        <div className="flex flex-col w-full mt-6 text-sm">
+                            <label>Product Name</label>
+                            <input type="text" value={product.name} className="w-full mt-2 outline-none p-2 bg-slate-200" onChange={handleName}></input>
+                        </div>
+
+                        <div className="flex flex-col w-full mt-5 text-sm">
+                            <label>Product Description</label>
+                            <TextareaAutosize className="w-full mt-2 resize-none outline-none p-2 bg-slate-200" maxRows={7} minRows={5} onChange={handleDesc} value={product.desc} />
+                        </div>
+
+                        <div className="w-full mt-5 text-sm">
+                            <h2>Stocks count</h2>
+                            <div className="flex flex-col md:flex-row w-full justify-between mt-4">
+                                {stockRadio.map((val, i) => {
+                                    return (
+                                        <div key={i} className="flex items-center gap-x-1 mt-3 md:mt-0">
+                                            <input type="radio" name="stocks" value={val.value} className="focus:ring-orangeText w-4 h-4 cursor-pointer" onChange={handleStock} defaultChecked={edit.stock === val.value ? true : false}></input>
+                                            <label className="ml-1 md:ml-0">{val.value}</label>
+                                        </div>
+
+                                    )
+                                })}
+                            </div>
+                        </div>
+
+                        <div className='text-sm flex w-fit mx-auto mt-10 gap-x-7'>
+                            <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-cancel text-white flex justify-center items-center cursor-pointer hover:opacity-70' onClick={close}>Cancel</div>
+                            <div className='w-[8rem] h-fit py-[0.50rem] rounded-3xl bg-greenButton text-white flex justify-center items-center cursor-pointer gap-x-2 hover:bg-greenHover transition-all ease-in-out duration-[0.2s]' onClick={sendData}>
+                                {debounce ? "Saving..." :
+                                    <>
+                                        <p>Save</p>
+                                        <TfiSave />
+                                    </>}
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
                 </div>
-                <div className="w-[12rem] h-[3rem] bg-slate-200 mx-auto mt-3 flex justify-center items-center rounded-xl text-sm cursor-pointer text-greenBg relative">
-                    <p>Change Image</p>
-                    <AiFillFileImage className="ml-2"/>
-                    <input type="file" onChange={handleImage} className="w-full h-full cursor-pointer opacity-0 top-0 absolute" />
-                </div>
+
+
             </div>
 
 
