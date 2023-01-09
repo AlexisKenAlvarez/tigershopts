@@ -9,6 +9,10 @@ import { PrismaClient } from '@prisma/client'
 import Nav from "../components/Nav/Nav";
 
 import Head from 'next/head';
+import ShortButton from "../components/ShortButton";
+
+import Image from 'next/image';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 
 
 
@@ -86,12 +90,34 @@ export const Home: NextPage<Status> = (props) => {
 			</Head>
 			<Nav />
 			<section className="w-full h-auto flex justify-center">
-				<div className="w-full max-w-[1600px] mx-[5rem] border-2 ">
-					<div className="font-raleway">
-						<h1 className="text-greenSteps w-[18rem] border-2 text-6xl font-[900]">Welcome<span className="text-heroOrange font-raleway"> Tigers</span></h1>
-					</div>
-					<div className="">
+				<div className="w-full max-w-[1400px] md:mx-[8rem] mx-[2rem] h-[85vh] flex flex-col md: md:flex-row">
+					<div className="flex items-center h-full w-full justify-center">
+						<div className="">
 
+							<h1 className="text-greenSteps w-full xl:text-6xl font-[800] uppercase font-raleway md:text-5xl md:w-[20rem] text-center md:text-left text-4xl mt-10 md:mt-0">Welcome<span className="text-heroOrange font-raleway"> Tigers</span></h1>
+							<p className="max-w-[23rem] font-poppins text-greenBg mt-8 md:ml-2 ml-0 text-sm lg:text-md md:text-left text-center">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+
+							<div className={`md:flex md:ml-2 mt-8 rounded-lg hidden items-center justify-center p-[1px] bg-greenButton hover:bg-white transition-all ease-in-out duration-300 w-40 mx-auto`}>
+								<div className="font-inter bg-greenButton text-white p-3 rounded-lg text-sm font-medium text-center hover:bg-greenHover cursor-pointer select-none w-full">
+									<p className="tracking-wider">
+										View products
+									</p>
+								</div>
+							</div >
+
+						</div>
+					</div>
+
+					<div className="md:items-center justify-center w-full h-full flex">
+						<div className="xl:w-[33rem] lg:w-[27rem]  md:w-[20rem] w-[15rem] mt-3 md:mt-0">
+							<Image src="/hero/phonetiger.webp" alt="Phone" height="400" width="400" className="w-full h-auto" />
+
+							<div className="items-center mt-8 justify-center flex md:hidden">
+								<p className="text-center text-greenSteps font-bold">View products</p>
+								<MdOutlineKeyboardArrowDown className="ml-2 text-2xl"/>
+							</div>
+
+						</div>
 					</div>
 				</div>
 			</section>

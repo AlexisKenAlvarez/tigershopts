@@ -20,8 +20,8 @@ const MobileNavItems = () => {
     }
 
     return (
-        <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} exit={{ y: "-100%" }} className="w-full h-14 border-b-2 md:hidden flex justify-center overflow-hidden z-20 relative">
-            <ul className="flex text-greenSteps items-center h-full gap-x-14 font-poppins font-medium select-none">
+        <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} exit={{ y: "-100%" }} className="w-full h-14 border-b-2 md:hidden flex justify-center overflow-hidden z-20 absolute">
+            <ul className="flex text-greenSteps items-center h-full gap-x-8 font-poppins font-medium select-none text-sm">
                 {navList.map((items, i) => {
                     return (
 
