@@ -98,7 +98,7 @@ export const Home: NextPage<Status> = (props) => {
 						<div className="">
 
 							<motion.h1 initial={{x: -300, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7}} className="text-greenSteps w-full xl:text-6xl font-[800] uppercase font-raleway md:text-5xl md:w-[20rem] text-center md:text-left text-4xl mt-10 md:mt-0">Welcome<span className="text-heroOrange font-raleway"> Tigers</span></motion.h1>
-							<motion.p  initial={{x: -300, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.1}} className="max-w-[23rem] font-poppins text-greenBg mt-8 md:ml-2 ml-0 text-sm lg:text-md md:text-left text-center">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</motion.p>
+							<motion.p  initial={{x: -300, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.1}} className="max-w-[23rem] font-poppins text-greenBg mt-8 md:ml-2 ml-0 text-sm lg:text-md md:text-left text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</motion.p>
 
 							<motion.div initial={{x: -300, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.2}}  className={`md:flex md:ml-2 mt-8 rounded-lg hidden items-center justify-center p-[1px] bg-greenButton hover:bg-white w-40 mx-auto`}>
 								<div className="font-inter bg-greenButton text-white p-3 rounded-lg text-sm font-medium text-center hover:bg-greenHover cursor-pointer select-none w-full">
