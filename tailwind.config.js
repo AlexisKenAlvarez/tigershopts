@@ -56,7 +56,8 @@ module.exports = {
         redLight: '#FCE3E4',
         redNew: '#E12D3C',
         maroonText: '#850008',
-        cancel: '#627D98'
+        cancel: '#627D98',
+        heroOrange: '#EA9801'
       },
       boxShadow: {
         customBorder: '10px 10px 0px 0px rgba(0,120,41,1)'

@@ -78,8 +78,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export const Home: NextPage<Status> = (props) => {
 	const router = useRouter()
 
-	
-
 	return (
 		<>
 			<Head>
@@ -87,10 +85,16 @@ export const Home: NextPage<Status> = (props) => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
 			</Head>
 			<Nav />
-			<section>
+			<section className="w-full h-auto flex justify-center">
+				<div className="w-full max-w-[1600px] mx-[5rem] border-2 ">
+					<div className="font-raleway">
+						<h1 className="text-greenSteps w-[18rem] border-2 text-6xl font-[900]">Welcome<span className="text-heroOrange font-raleway"> Tigers</span></h1>
+					</div>
+					<div className="">
 
+					</div>
+				</div>
 			</section>
-
 		</>
 
 	)
