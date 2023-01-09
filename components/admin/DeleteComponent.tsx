@@ -45,7 +45,7 @@ const Delete: FunctionComponent<myProp> = (props) => {
 
     return (
         <div className='w-[100%] lg:w-[85%] h-screen fixed top-0 right-0 z-10 flex justify-center items-center select-none'>
-            <div className="w-[21rem] md:w-[23rem] md:px-2 h-fit bg-white z-20 shadow-xl rounded-xl font-poppins pb-8">
+            <div className="w-[21rem] md:w-[23rem] md:px-4 h-fit bg-white z-20 shadow-xl rounded-xl font-poppins pb-8">
                 <p className="text-center font-bold mt-6">Delete Product</p>
                 <p className="text-center mt-1">Are you sure you want to delete <span className='font-semibold'>
                     “{name}”?

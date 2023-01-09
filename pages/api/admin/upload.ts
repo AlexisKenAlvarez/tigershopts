@@ -12,7 +12,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             image: req.body.image,
             name: req.body.name,
             desc: req.body.desc,
-            stock: req.body.stock
+            stock: req.body.stock,
+            likes: []
         },
 
     ] as Prisma.JsonArray
@@ -25,8 +26,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             }
         })
 
-
-
         if (exist.length > 0) {
             const arr = exist[0].products as Prisma.JsonArray
 
@@ -36,7 +35,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     image: req.body.image,
                     name: req.body.name,
                     desc: req.body.desc,
-                    stock: req.body.stock
+                    stock: req.body.stock,
+                    likes: []
                 },
                 ...arr,
 

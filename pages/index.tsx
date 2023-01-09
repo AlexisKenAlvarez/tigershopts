@@ -4,70 +4,96 @@ import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { Status } from "../types";
 
+import jwt_decode from "jwt-decode";
+import { PrismaClient } from '@prisma/client'
+import Nav from "../components/Nav/Nav";
+
+import Head from 'next/head';
+
+
+
+interface decode {
+	exp: number,
+	username: string,
+	iat: number
+}
+
+const prisma = new PrismaClient()
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const secret = process.env.NEXT_PUBLIC_SECRET || ''
-  const jwt = context.req.cookies['authToken'] || ''
+	const secret = process.env.NEXT_PUBLIC_SECRET || ''
+	const jwt = context.req.cookies['authToken'] || ''
 
-  const url = context.req.url || ''
+	const url = context.req.url || ''
+	const admins = ['csso']
 
-  if (url.includes('/')) {
-    try {
-      verify(jwt, secret);
-      return {
-        props: {
-          status: true
-        }
-      }
+	if (url.includes('/')) {
+		try {
+			verify(jwt, secret);
 
-    } catch (error) {
-      console.log(error)
-      return {
-        props: {
-          status: false
-        }
-      }
-    }
-  } else {
-    return {
-      props: {
-        status: false
-      }
-    }
-  }
+			var token = jwt;
+			var decoded: decode = jwt_decode(token);
+			var username = decoded.username
+
+			if (admins.includes(username)) {
+				const products = await prisma.products.findMany({
+					where: {
+						org: username
+					}
+				})
+
+				return {
+					redirect: {
+						destination: '/admin',
+						permanent: false
+					}
+				}
+
+			} else {
+
+				return {
+					props: {
+						status: true
+					}
+				}
+			}
+
+		} catch (error) {
+			console.log(error)
+			return {
+				props: {
+					status: false
+				}
+			}
+		}
+	} else {
+		return {
+			props: {
+				status: false
+			}
+		}
+	}
 }
 
 export const Home: NextPage<Status> = (props) => {
-  const router = useRouter()
+	const router = useRouter()
 
-  const handleLogout = async () => {
-    fetch("/api/logout", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({})
-    }).then((response) => {
-      router.push("/login")
-    })
+	
 
-  }
-  return (
-    <>
-      <h1 className="font-inter">Home</h1>
+	return (
+		<>
+			<Head>
+				<title>Tigershop</title>
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
+			</Head>
+			<Nav />
+			<section>
 
-      <p>{props.status ? "You are logged in, you can now access our features" : "You cannot access features because you are not logged in yet"}</p>
-      {props.status ?
-        <p onClick={handleLogout}>Logout</p> :
-        <>
-          <Link href="/login">Click here to login</Link>
-          <Link href="/signup">Click here to register</Link>
-        </>
-      }
+			</section>
 
-    </>
+		</>
 
-  )
+	)
 }
 
 export default Home

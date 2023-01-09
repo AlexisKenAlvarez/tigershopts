@@ -10,3 +10,5 @@ export const stockRadio = [
     },
     
 ]
+
+export const navList = ["Home", "Products", "Profile"]

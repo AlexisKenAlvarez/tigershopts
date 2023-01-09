@@ -9,7 +9,6 @@ import { useState, useEffect } from "react";
 import LongButton from "../LongButton";
 import { useRouter } from 'next/router';
 
-
 const NewProduct = ({ username }: { username: string }) => {
 
     const router = useRouter()
@@ -133,7 +132,7 @@ const NewProduct = ({ username }: { username: string }) => {
                     </div>
 
 
-                    <div className="w-[13rem] h-[10rem] mt-10 mx-auto border-2">
+                    <div className="w-[14rem] h-[12rem] mt-10 mx-auto border-2">
                         {image === undefined ? null :
                             <img src={image} alt="User upload" className="object-cover h-full w-full"></img>
                         }
@@ -170,11 +169,8 @@ const NewProduct = ({ username }: { username: string }) => {
                         <div style={active ? {pointerEvents: "auto"} : {pointerEvents: "none"}}>
                             <LongButton name={debounce ? 'Please wait...' : "Add product"} onClick={sendData} className={active ? "opacity-100" : "opacity-60"} />
                         </div>
-
-
                     </div>
                 </div>
-
             </div>
         </div>
     );
