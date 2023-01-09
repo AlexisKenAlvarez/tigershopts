@@ -1,13 +1,17 @@
 import Image from 'next/image';
 import { GiHamburgerMenu } from 'react-icons/gi'
 import NavItems from './NavItems';
-import { useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import MobileNavItems from './MobileNavItems';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const Nav = () => {
+interface myProp {
+    status: boolean
+}
+
+const Nav:FunctionComponent<myProp> = (props) => {
+    const { status } = props
     const [nav, setNav] = useState(false)
-    
 
     const toggleNav = () => {
         setNav((current) => !current)
@@ -23,15 +27,15 @@ const Nav = () => {
                     </div>
 
                     <div className="md:block hidden mr-14">
-                        <NavItems />
+                        <NavItems status={status}/>
                     </div>
 
                     <GiHamburgerMenu className="text-4xl text-greenSteps md:hidden block mr-8" onClick={toggleNav} />
-                    
+
                 </div>
             </div>
             <AnimatePresence>
-                {nav ? <MobileNavItems /> : null}
+                {nav ? <MobileNavItems status={status} /> : null}
             </AnimatePresence>
 
         </motion.nav>

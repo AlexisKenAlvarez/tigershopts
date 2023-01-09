@@ -1,5 +1,4 @@
 import Image from "next/image"
-import FormInput from "../components/FormInput"
 import React, { useState, useEffect } from "react"
 import LongButton from "../components/LongButton"
 import { useRouter } from "next/router"

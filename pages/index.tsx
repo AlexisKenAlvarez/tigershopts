@@ -3,19 +3,15 @@ import { verify } from "jsonwebtoken";
 import { GetServerSideProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { Status } from "../types";
-
 import jwt_decode from "jwt-decode";
 import { PrismaClient } from '@prisma/client'
 import Nav from "../components/Nav/Nav";
-
 import Head from 'next/head';
 import ShortButton from "../components/ShortButton";
-
 import Image from 'next/image';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
-
 import { motion } from "framer-motion";
-
+import { useEffect } from "react";
 
 interface decode {
 	exp: number,
@@ -81,7 +77,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export const Home: NextPage<Status> = (props) => {
+	const { status } = props
 	const router = useRouter()
+
+	useEffect(() => {
+		console.log(status);
+	}, [])
+	
 
 	return (
 		<>
@@ -89,7 +91,7 @@ export const Home: NextPage<Status> = (props) => {
 				<title>Tigershop</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
 			</Head>
-			<Nav />
+			<Nav status={status}/>
 			<section className="w-full h-auto flex justify-center">
 				<div className="w-full max-w-[1400px] md:mx-[8rem] mx-[2rem] h-[85vh] flex flex-col md: md:flex-row">
 					<div className="flex items-center h-full w-full justify-center">

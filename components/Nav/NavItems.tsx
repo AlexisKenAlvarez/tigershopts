@@ -1,7 +1,14 @@
 import { useRouter } from 'next/router';
+import { FunctionComponent } from 'react';
 import { navList } from '../../utils/List';
+import Link from 'next/link';
 
-const NavItems = () => {
+interface myProp {
+    status: boolean
+}
+
+const NavItems: FunctionComponent<myProp> = (props) => {
+    const { status } = props
     const router = useRouter()
     const handleLogout = async () => {
         fetch("/api/logout", {
@@ -15,6 +22,20 @@ const NavItems = () => {
         })
     }
 
+    const logout = (
+        <li className="group cursor-pointer select-none relative" onClick={handleLogout}>Logout
+            <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
+        </li>
+    )
+
+    const login = (
+        <Link href="/login">
+            <li className="group cursor-pointer select-none relative">Login
+                <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
+            </li>
+        </Link>
+
+    )
 
     return (
         <ul className="flex text-greenSteps items-center h-full gap-x-14 font-poppins font-medium select-none">
@@ -26,9 +47,9 @@ const NavItems = () => {
                     </li>
                 )
             })}
-            <li className="group cursor-pointer select-none relative" onClick={handleLogout}>Logout
-                <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
-            </li>
+
+            {status ? logout : login}
+
         </ul>
     );
 }
