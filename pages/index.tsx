@@ -111,9 +111,25 @@ export const Home: NextPage<Status> = (props) => {
 					<div className="absolute right-0 top-0 cursor-pointer">
 						<div className="md:w-[12rem] w-[9rem] h-[3.5rem] bg-[#003C14] border-b-4 border-b-[#40C96D] flex justify-around items-center text-white">
 							<p className="font-bold">CSSO</p>
-							<IoMdArrowDropup className="text-3xl rotate-180"/>
+							<IoMdArrowDropup className="text-3xl rotate-180" />
 						</div>
 					</div>
+
+					<div className="w-full h-fit overflow-hidden">
+						<div className="md:ml-40 mt-40">
+							<div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg">
+								<img src="https://res.cloudinary.com/dnfsr6bms/image/upload/v1673364245/csso/bspyknsrxlezbr4ay9bh.webp" alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0"></img>
+								<div className="shadow-customInset z-10 absolute w-full h-full"></div>
+								<div className="absolute flex justify-between w-[90%] items-center mx-auto left-0 right-0 bottom-3 z-10">
+									<h1 className="text-white font-bold font-poppins text-xl">ORG SHIRT</h1>
+									<h3 className="text-[#BDBDBD] font-bold font-poppins text-sm" >Stocks: Many</h3>
+								</div>
+							</div>
+
+
+						</div>
+					</div>
+
 				</div>
 
 

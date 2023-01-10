@@ -61,7 +61,8 @@ module.exports = {
         lightg: '#40C96D'
       },
       boxShadow: {
-        customBorder: '10px 10px 0px 0px rgba(0,120,41,1)'
+        customBorder: '10px 10px 0px 0px rgba(0,120,41,1)',
+        customInset: '0px -120px 101px 0px rgba(0,0,0,0.75) inset'
       },
 
       backgroundImage: {
