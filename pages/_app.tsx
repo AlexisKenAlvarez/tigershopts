@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <>
-      <div className='w-full h-auto bg-greenSteps'>
+      <div className='w-full h-auto bg-greenBg'>
 
         <AnimatePresence mode="wait" >
 
