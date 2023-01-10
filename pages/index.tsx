@@ -10,6 +10,8 @@ import Head from 'next/head';
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Hero from "../components/Hero/Hero";
+import Image from 'next/image';
+import overlay from '../public/overlay.jpg'
 
 interface decode {
 	exp: number,
@@ -111,6 +113,19 @@ export const Home: NextPage<Status> = (props) => {
 						<Hero key="HERO" />
 					</> : null}
 			</AnimatePresence>
+			<section className="h-[80vh] w-full bg-greenSteps relative bg-blend-overlay overflow-hidden" style={{backgroundImage: `url(${overlay.src})`}}>
+				<div className="h-fit w-[85%] max-w-[1600px] mx-auto">
+					<div className="relative font-poppins mx-auto w-fit text-center mt-20 h-fit">
+						<p className="text-orangeBg font-medium">Be ready</p>
+						<h1 className="text-white text-4xl font-bold mt-2 z-10 relative">Coming this week</h1>
+						<Image src="/triangle.svg" alt="triangle" height="100" width="100" className="absolute bottom-[-2rem] left-[-2rem]"></Image>
+					</div>
+
+					<div className=" w-[80%] h-[10rem]">
+						<div className="bg-white w-full h-full rounded-xl"></div>
+					</div>
+				</div>
+			</section>
 
 		</>
 	)

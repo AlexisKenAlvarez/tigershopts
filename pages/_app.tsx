@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react'
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const [active, setActive] = useState(true)
+  const [scroll, setScroll] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
@@ -15,19 +16,28 @@ export default function App({ Component, pageProps }: AppProps) {
     }, 3000);
   }, [])
 
+  useEffect(() => {
+    activeScroll()
+    console.log(scroll);
+  }, [scroll])
+
+  const activeScroll = () => {
+    setTimeout(() => {
+      setScroll(true)
+    }, 3000);
+  }
+
   return (
     <>
-      <div className='w-full h-auto bg-greenBg'>
+      <div className={`${scroll ? 'overflow-auto w-full h-auto bg-greenBg' : 'overflow-hidden h-screen bg-greenBg'}`}>
 
         <AnimatePresence mode="wait" >
 
           <motion.div className="overflow-x-hidden w-full h-auto bg-topog dark:bg-black min-h-[100vh]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} key={router.route}>
             <AnimatePresence>
-              {active ? <Loader key="LOADER" /> : null}
+              {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component"/>}
             </AnimatePresence>
-            <div>
-              <Component {...pageProps} />
-            </div>
+
           </motion.div>
         </AnimatePresence>
       </div>
