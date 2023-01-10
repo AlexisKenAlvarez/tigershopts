@@ -160,7 +160,7 @@ const Admin: NextPage<myProp> = (props) => {
                 <title>Admin</title>
                 <meta property="og:title" content="Admin" key="Admin" />
             </Head>
-            <div className="w-full h-screen flex overflow-hidden">
+            <div className="w-full h-screen flex overflow-hidden bg-white">
                 {sideNav}
                 <div className="w-full h-full flex flex-col">
                     <div className="h-28 w-full border-b-2 border-orangeBg flex items-center justify-between min-h-28 py-8">
