@@ -31,12 +31,12 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <div className={`${scroll ? 'overflow-auto w-full h-auto bg-greenBg' : 'overflow-hidden h-screen bg-greenBg'}`}>
 
-        <AnimatePresence mode="wait" >
+        <AnimatePresence mode="wait">
 
           <motion.div className="overflow-x-hidden w-full h-auto bg-topog dark:bg-black min-h-[100vh]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} key={router.route}>
-            <AnimatePresence>
-              {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component"/>}
-            </AnimatePresence>
+
+            {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component" />}
+
 
           </motion.div>
         </AnimatePresence>

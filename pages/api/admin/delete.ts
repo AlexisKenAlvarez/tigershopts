@@ -18,7 +18,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
         await cloudinary.uploader.destroy(req.body.public_id)
 
-        
 
         res.status(200).json({message: "success"});
 
