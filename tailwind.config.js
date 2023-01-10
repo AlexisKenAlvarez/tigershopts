@@ -62,6 +62,10 @@ module.exports = {
       boxShadow: {
         customBorder: '10px 10px 0px 0px rgba(0,120,41,1)'
       },
+
+      backgroundImage: {
+        "gradientGreen": "url('https://ik.imagekit.io/efpqj5mis/GradientBg_EEtP0iRJK.webp?ik-sdk-version=javascript-1.4.3&updatedAt=1673331587114')"
+      },
       screens: {
         '3xl': '1800px'
       }

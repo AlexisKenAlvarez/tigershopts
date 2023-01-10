@@ -11,4 +11,4 @@ export const stockRadio = [
     
 ]
 
-export const navList = ["Home", "Products", "Profile"]
+export const navList = ["Home", "Products"]

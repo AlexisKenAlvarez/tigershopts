@@ -38,12 +38,12 @@ const NavItems: FunctionComponent<myProp> = (props) => {
     )
 
     return (
-        <ul className="flex text-greenSteps items-center h-full gap-x-14 font-poppins font-medium select-none">
+        <ul className="flex text-white items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative">
             {navList.map((items, i) => {
                 return (
 
                     <li className="group cursor-pointer select-none relative" key={i}>{items}
-                        <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
+                        <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-white absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
                     </li>
                 )
             })}
