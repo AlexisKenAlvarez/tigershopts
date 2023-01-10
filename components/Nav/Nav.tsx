@@ -18,7 +18,7 @@ const Nav:FunctionComponent<myProp> = (props) => {
     }
 
     return (
-        <motion.nav initial={{ opacity: 0, y: -50 }} animate={{opacity: 100, y: [-50, 0]}} transition={{duration: 0.7}}>
+        <motion.nav initial={{ opacity: 0, y: -50 }} animate={{opacity: 100, y: 0}} transition={{duration: 0.7}}>
             <div className="w-full h-[6rem] border-b-[1px] shadow-md flex items-center relative z-40 bg-white">
                 <div className=" w-full max-w-[1600px] mx-auto flex justify-between items-center">
                     <div className="flex items-center cursor-pointer md:ml-14 ml-8">
