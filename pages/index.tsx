@@ -1,3 +1,5 @@
+// @refresh reset
+
 import Link from "next/link";
 import { verify } from "jsonwebtoken";
 import { GetServerSideProps, NextPage } from "next";
@@ -92,6 +94,7 @@ export const Home: NextPage<Status> = (props) => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
 			</Head>
 			<Nav status={status}/>
+			
 			<section className="w-full h-auto flex justify-center">
 				<div className="w-full max-w-[1400px] md:mx-[8rem] mx-[2rem] h-[85vh] flex flex-col md: md:flex-row">
 					<div className="flex items-center h-full w-full justify-center">
@@ -130,3 +133,4 @@ export const Home: NextPage<Status> = (props) => {
 }
 
 export default Home
+
