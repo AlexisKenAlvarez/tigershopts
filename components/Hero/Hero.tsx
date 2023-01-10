@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { MdOutlineKeyboardArrowDown } from 'react-icons/md'
 import { motion, AnimatePresence } from "framer-motion";
+import Loader from './Loader';
 
 const Hero = () => {
     const styles = {

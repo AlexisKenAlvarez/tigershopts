@@ -84,12 +84,12 @@ export const Home: NextPage<Status> = (props) => {
 			setHero(true)
 		}, 700);
 	}, [])
-	
+
 
 	useEffect(() => {
 		console.log(status);
 	}, [])
-	
+
 
 	return (
 		<>
@@ -97,11 +97,21 @@ export const Home: NextPage<Status> = (props) => {
 				<title>Tigershop</title>
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
 			</Head>
-			<Nav status={status}/>
+
 			<AnimatePresence>
-				{showHero ? <Hero key="HERO" /> : null}
+				{showHero ?
+					<>
+						<Nav status={status} key="NAV"/>
+					</> : null}
 			</AnimatePresence>
-			
+
+			<AnimatePresence>
+				{showHero ?
+					<>
+						<Hero key="HERO" />
+					</> : null}
+			</AnimatePresence>
+
 		</>
 	)
 }
