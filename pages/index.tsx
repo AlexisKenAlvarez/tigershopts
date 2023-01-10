@@ -10,8 +10,9 @@ import Head from 'next/head';
 import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Hero from "../components/Hero/Hero";
-import Image from 'next/image';
-import overlay from '../public/overlay.jpg'
+import Coming from "../components/Coming/Coming";
+import { IoMdArrowDropup } from 'react-icons/io'
+
 
 interface decode {
 	exp: number,
@@ -93,51 +94,29 @@ export const Home: NextPage<Status> = (props) => {
 				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
 			</Head>
 
-
-
-
 			<AnimatePresence>
 				<Nav status={status} key="NAV" />
 				<Hero key="HERO" />
-
+				<Coming key="COMING" />
 			</AnimatePresence>
-			<section className="h-fit pb-40 w-full bg-greenSteps relative bg-blend-overlay overflow-hidden" >
-				<div className="absolute w-full h-full bg-greenSteps bg-blend-overlay" style={{ backgroundImage: `url(${overlay.src})` }}></div>
 
-				<div className="h-fit w-[85%] max-w-[1600px] mx-auto">
-					<div className="relative font-poppins mx-auto w-fit text-center mt-20 h-fit">
-						<p className="text-orangeBg font-medium">Be ready</p>
-						<h1 className="text-white text-4xl font-bold mt-2 z-10 relative">Coming this week</h1>
-						<Image src="/triangle.svg" alt="triangle" height="100" width="100" className="hidden sm:block absolute bottom-[-2rem] left-[-2rem]"></Image>
+			<section className="h-fit pb-40 w-full bg-[#1D5B33] relative bg-blend-overlay" >
+				<div className="h-fit w-[85%] max-w-[1600px] mx-auto relative">
+					<div className="absolute md:mt-[-2.5rem] mt-[-4.5rem] md:text-7xl text-4xl mx-auto left-0 right-0 w-fit md:mx-0">
+						<h1 className="font-raleway font-[900] tracking-wide uppercase text-[#40C96D] z-10 absolute md:bottom-[-5px] mmd:left-[-5px] bottom-[-3px] left-[-3px]">Products</h1>
+
+						<h1 className="font-raleway font-[900] tracking-wide uppercase text-white relative z-10">Products</h1>
 					</div>
 
-					<div className="w-[90%] max-w-[750px] md:h-[20rem] md:p-0 h-fit mx-auto mt-20 relative flex flex-col font-poppins gap-y-14 py-10 justify-center md:flex-row gap-x-20">
-
-						<div className="z-10 justify-center h-fit flex flex-col items-center md:h-full">
-							<div className="w-fit h-fit relative">
-								<Image src="/coming/lanyard.webp" alt="Lanyard" width="200" height="200" className="w-[15rem] z-10 relative peer"></Image>
-								<div className="bg-orangeBg w-[95%] h-[95%] absolute top-0 m-auto bottom-0 left-0 right-0 peer-hover:translate-x-[1rem] peer-hover:translate-y-[-1rem] transition-all ease-in-out duration-300"></div>
-								<div className="bg-greenBg w-[95%] h-[95%] absolute top-0 m-auto bottom-0 left-0 right-0 peer-hover:translate-x-[-1rem] peer-hover:translate-y-[1rem] transition-all ease-in-out duration-300"></div>
-
-							</div>
-
-							<div className="bg-orangeBg text-greenBg text-center p-3 w-[15rem] mt-5 rounded-lg md:absolute md:bottom-[-1.5rem]">Lanyards</div>
+					<div className="absolute right-0 top-0 cursor-pointer">
+						<div className="md:w-[12rem] w-[9rem] h-[3.5rem] bg-[#003C14] border-b-4 border-b-[#40C96D] flex justify-around items-center text-white">
+							<p className="font-bold">CSSO</p>
+							<IoMdArrowDropup className="text-3xl rotate-180"/>
 						</div>
-
-						<div className="z-10 justify-center h-fit flex flex-col items-center md:h-full">
-							<div className="w-fit h-fit relative">
-								<Image src="/coming/OrgShirt.webp" alt="Lanyard" width="200" height="200" className="peer w-[15rem] z-10 relative"></Image>
-								<div className="bg-orangeBg w-[95%] h-[95%] absolute top-0 m-auto bottom-0 left-0 right-0 peer-hover:translate-x-[1rem] peer-hover:translate-y-[-1rem] transition-all ease-in-out duration-300"></div>
-								<div className="bg-greenBg w-[95%] h-[95%] absolute top-0 m-auto bottom-0 left-0 right-0 peer-hover:translate-x-[-1rem] peer-hover:translate-y-[1rem] transition-all ease-in-out duration-300"></div>
-							</div>
-
-							<div className="bg-orangeBg text-greenBg text-center p-3 w-[15rem] mt-5 rounded-lg md:absolute md:bottom-[-1.5rem]">Lanyards</div>
-							<Image src="/triangle.svg" alt="triangle" height="100" width="100" className="sm:block hidden absolute bottom-[-3rem] right-[-3rem]"></Image>
-						</div>
-
-						<div className="bg-white w-full h-full rounded-xl opacity-30 mx-auto absolute"></div>
 					</div>
 				</div>
+
+
 			</section>
 
 		</>
