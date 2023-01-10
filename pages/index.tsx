@@ -7,7 +7,7 @@ import jwt_decode from "jwt-decode";
 import { PrismaClient } from '@prisma/client'
 import Nav from "../components/Nav/Nav";
 import Head from 'next/head';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import Hero from "../components/Hero/Hero";
 
@@ -77,6 +77,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 export const Home: NextPage<Status> = (props) => {
 	const { status } = props
 	const router = useRouter()
+	const [showHero, setHero] = useState(false)
+
+	useEffect(() => {
+		setTimeout(() => {
+			setHero(true)
+		}, 700);
+	}, [])
+	
 
 	useEffect(() => {
 		console.log(status);
@@ -91,7 +99,7 @@ export const Home: NextPage<Status> = (props) => {
 			</Head>
 			<Nav status={status}/>
 			<AnimatePresence>
-				<Hero key="HERO" />
+				{showHero ? <Hero key="HERO" /> : null}
 			</AnimatePresence>
 			
 		</>
