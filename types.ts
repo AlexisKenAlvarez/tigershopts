@@ -1,7 +1,28 @@
 import { StringMappingType } from "typescript";
 
+export interface productProp {
+    id: string,
+    image: string,
+    name: string,
+    desc: string,
+    stock: string,
+    likes: string[]
+}
+
+export interface dataProp {
+    id: string,
+    org: string,
+    products: productProp[]
+}
+
+export interface Prod {
+    data: dataProp[]
+    key: string
+}
+
 export interface Status {
     status: boolean,
+    data: dataProp[]
 }
 
 export interface Inputs {

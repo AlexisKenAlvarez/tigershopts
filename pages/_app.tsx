@@ -18,7 +18,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     activeScroll()
-    console.log(scroll);
   }, [scroll])
 
   const activeScroll = () => {
