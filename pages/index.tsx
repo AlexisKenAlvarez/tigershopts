@@ -72,7 +72,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			console.log(error)
 			return {
 				props: {
-					status: false
+					status: false,
+					data: JSON.parse(JSON.stringify(data))
 				}
 			}
 		}

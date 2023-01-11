@@ -41,7 +41,7 @@ const MobileNavItems: FunctionComponent<myProp> = (props) => {
     )
 
     return (
-        <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} exit={{ y: "-100%" }} className="w-full h-20 border-b-2 md:hidden flex justify-center overflow-hidden z-20 absolute bg-greenButton">
+        <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} exit={{ y: "-100%" }} className="w-full h-20 border-b-2 md:hidden flex justify-center overflow-hidden z-[100] absolute bg-greenButton right-0 top-0">
 
 
             <ul className="flex text-white items-center h-full gap-x-8 font-poppins font-medium select-none text-sm">

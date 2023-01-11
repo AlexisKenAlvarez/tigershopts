@@ -24,14 +24,14 @@ const NavItems: FunctionComponent<myProp> = (props) => {
 
     const logout = (
         <li className="group cursor-pointer select-none relative" onClick={handleLogout}>Logout
-            <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
+            <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-white absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
         </li>
     )
 
     const login = (
         <Link href="/login">
             <li className="group cursor-pointer select-none relative">Login
-                <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
+                <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-white absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
             </li>
         </Link>
 
@@ -42,7 +42,7 @@ const NavItems: FunctionComponent<myProp> = (props) => {
             {navList.map((items, i) => {
                 return (
 
-                    <li className="group cursor-pointer select-none relative" key={i}>{items}
+                    <li className="group cursor-pointer select-none relative z-50" key={i}>{items}
                         <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-white absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
                     </li>
                 )

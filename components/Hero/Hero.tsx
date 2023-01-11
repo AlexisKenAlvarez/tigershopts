@@ -32,7 +32,7 @@ const Hero = () => {
 
                 <motion.div initial={{ x: 300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} exit={{x: 300, opacity: 0}} transition={{ duration: 0.7 }} className="md:items-center justify-center w-full md:h-fit flex z-0 md:self-center self-start h-full mt-7 md:mt-0">
                     <div className="xl:w-[35rem] lg:w-[27rem]  md:w-[20rem] w-[13rem] md:mt-0 2xl:w-[40rem]">
-                        <Image src="/hero/HeroTransparent.webp" alt="Phone" height="400" width="400" className="w-full h-auto" />
+                        <Image src="/hero/HeroTransparent.webp" alt="Phone" height="400" width="400" className="w-full h-auto relative z-10" />
 
                         <div className="items-center mt-8 justify-center flex md:hidden text-white">
                             <p className="text-center font-bold">View products</p>

@@ -9,8 +9,11 @@ const Products: FunctionComponent<Prod> = (props) => {
     const { data } = props
 
     useEffect(() => {
+        console.log(data)
         const result = data.find(o => o.org === "csso")
         setProducts(result!.products);
+
+
     }, [selected])
 
 
@@ -32,9 +35,9 @@ const Products: FunctionComponent<Prod> = (props) => {
 
                 <div className="w-full h-fit overflow-hidden">
                     <div className="mt-40 lg:w-fit mx-auto w-fit gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
-                        {products?.map((items) => {
+                        {products?.map((items, i) => {
                             return (
-                                <div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg cursor-pointer">
+                                <div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg cursor-pointer" key={i}>
                                     <img src={items.image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer"></img>
                                     <div className="shadow-customInset z-10 absolute w-full h-full pointer-events-none"></div>
                                     <div className="absolute flex justify-between w-[90%] items-center mx-auto left-0 right-0 bottom-3 z-10 pointer-events-none peer-hover:translate-y-[-5rem] transition-all ease-in-out duration-300">
