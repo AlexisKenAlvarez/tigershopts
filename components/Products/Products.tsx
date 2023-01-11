@@ -35,12 +35,18 @@ const Products: FunctionComponent<Prod> = (props) => {
                         {products?.map((items) => {
                             return (
                                 <div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg cursor-pointer">
-                                    <img src={items.image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0"></img>
-                                    <div className="shadow-customInset z-10 absolute w-full h-full"></div>
-                                    <div className="absolute flex justify-between w-[90%] items-center mx-auto left-0 right-0 bottom-3 z-10">
+                                    <img src={items.image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer"></img>
+                                    <div className="shadow-customInset z-10 absolute w-full h-full pointer-events-none"></div>
+                                    <div className="absolute flex justify-between w-[90%] items-center mx-auto left-0 right-0 bottom-3 z-10 pointer-events-none peer-hover:translate-y-[-5rem] transition-all ease-in-out duration-300">
                                         <h1 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] overflow-hidden">{items.name}</h1>
                                         <h3 className="text-[#BDBDBD] font-bold font-poppins text-xs self-end" >Stocks: {items.stock}</h3>
+                                        <div className='absolute line-clamp-3 text-white z-10 bottom-[-4.8rem] h-[4.3rem]'>
+                                            <p>
+                                                {items.desc}
+                                            </p>
+                                        </div>
                                     </div>
+
                                 </div>
                             )
                         })}
