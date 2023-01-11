@@ -6,6 +6,7 @@ export interface productProp {
     name: string,
     desc: string,
     stock: string,
+    price: string,
     likes: string[]
 }
 

@@ -38,8 +38,12 @@ const Products: FunctionComponent<Prod> = (props) => {
                         {products?.map((items, i) => {
                             return (
                                 <div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg cursor-pointer" key={i}>
+
                                     <img src={items.image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer"></img>
+
                                     <div className="shadow-customInset z-10 absolute w-full h-full pointer-events-none"></div>
+                                    <h2 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 right-4">₱ {items.price}</h2>
+                                    <h2 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 left-4 translate-x-[-120%] peer-hover:translate-x-[0] transition-all ease-in-out duration-300">Click to order</h2>
                                     <div className="absolute flex justify-between w-[90%] items-center mx-auto left-0 right-0 bottom-3 z-10 pointer-events-none peer-hover:translate-y-[-5rem] transition-all ease-in-out duration-300">
                                         <h1 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] overflow-hidden">{items.name}</h1>
                                         <h3 className="text-[#BDBDBD] font-bold font-poppins text-xs self-end" >Stocks: {items.stock}</h3>
