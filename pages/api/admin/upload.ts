@@ -11,6 +11,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             id: req.body.id,
             image: req.body.image,
             name: req.body.name,
+            price: req.body.price,
             desc: req.body.desc,
             stock: req.body.stock,
             likes: []
@@ -34,6 +35,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     id: req.body.id,
                     image: req.body.image,
                     name: req.body.name,
+                    price: req.body.price,
                     desc: req.body.desc,
                     stock: req.body.stock,
                     likes: []

@@ -9,7 +9,8 @@ interface myProp {
     name: string,
     desc: string,
     stock: string,
-    public_id: string
+    public_id: string,
+    price: string,
 }
 
 interface myObj {
@@ -30,6 +31,7 @@ const EditMode: FunctionComponent<myObj> = (props) => {
         desc: edit.desc,
         stock: edit.stock,
         public_id: edit.public_id,
+        price: edit.price
     })
 
 
@@ -59,6 +61,10 @@ const EditMode: FunctionComponent<myObj> = (props) => {
 
     const handleStock = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProduct(current => ({ ...current, "stock": e.target.value }))
+    }
+
+    const handlePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProduct(current => ({ ...current, "price": e.target.value }))
     }
 
     const [debounce, setDebounce] = useState(false)
@@ -162,6 +168,12 @@ const EditMode: FunctionComponent<myObj> = (props) => {
                         <div className="flex flex-col w-full mt-5 text-sm">
                             <label>Product Description</label>
                             <TextareaAutosize className="w-full mt-2 resize-none outline-none p-2 bg-slate-200" maxRows={7} minRows={5} onChange={handleDesc} value={product.desc} />
+                        </div>
+
+                        <div className="flex flex-col w-full mt-5 text-sm relative">
+                            <label>Price</label>
+                            <p className="absolute bottom-2 left-3 font-bold font-poppins">₱</p>
+                            <input type="number" value={product.price} className="w-full mt-2 outline-none p-2 bg-slate-200 pl-7" onChange={handlePrice}></input>
                         </div>
 
                         <div className="w-full mt-5 text-sm">

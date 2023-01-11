@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const jwt = context.req.cookies['authToken'] || ''
 
 	const url = context.req.url || ''
-	const admins = ['csso']
+	const admins = ['csso', 'piie']
 
 	const client = await clientPromise;
 	const db = client.db("?retryWrites=true&w=majority");
@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			}
 
 		} catch (error) {
-			console.log(error)
+			console.log("Invalid JWT");
 			return {
 				props: {
 					status: false,

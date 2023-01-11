@@ -9,13 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const oldId = req.body.oldId
 
     // Product new values
-    const name = req.body.name
-    const desc = req.body.desc
-    const stock = req.body.stock
-    const newId = req.body?.newId
-    const newImage = req.body?.newImage
-    const imageChanged = req.body.imageChanged
-
+    const { name, desc, stock, newId, newImage, imageChanged, price } = req.body
 
     try {
         await cloudinary.uploader.destroy(oldId)
@@ -33,7 +27,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     "products.$.desc": desc,
                     "products.$.stock": stock,
                     "products.$.id": newId,
-                    "products.$.image": newImage
+                    "products.$.image": newImage,
+                    "products.$.price": price
                 }
             })
         } else {
@@ -45,6 +40,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     "products.$.name": name,
                     "products.$.desc": desc,
                     "products.$.stock": stock,
+                    "products.$.price": price
+
                 }
             })
         }

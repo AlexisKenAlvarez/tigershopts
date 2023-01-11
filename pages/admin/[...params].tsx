@@ -18,7 +18,8 @@ interface prod {
     image: string,
     stock: string,
     desc: string,
-    id: string
+    id: string,
+    price: string,
 }
 
 interface myProp {
@@ -40,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const jwt = context.req.cookies['authToken'] || ''
     const url = context.req.url || ''
 
-    const admins = ['csso']
+    const admins = ['csso', 'piie']
 
 
     if (url.includes('/admin')) {
@@ -51,6 +52,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             var token = jwt;
             var decoded: decode = jwt_decode(token);
             var username = decoded.username
+
+            console.log(admins.includes(username))
 
             if (admins.includes(username)) {
                 const products = await prisma.products.findMany({
@@ -64,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                         status: true,
                         url,
                         username,
-                        products: products[0].products
+                        products: products.length > 0 ? products[0].products : []
                     }
                 }
             } else {

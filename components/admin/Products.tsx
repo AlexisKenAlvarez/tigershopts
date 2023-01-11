@@ -13,7 +13,8 @@ interface prod {
     image: string,
     stock: string,
     desc: string,
-    id: string
+    id: string,
+    price: string
 }
 
 
@@ -30,7 +31,8 @@ const Products = ({ username, products }: { username: string, products: prod[] }
         name: '',
         desc: '',
         stock: '',
-        public_id: ''
+        public_id: '',
+        price: ''
     })
 
     const handleExpand = (name: String) => {
@@ -54,15 +56,15 @@ const Products = ({ username, products }: { username: string, products: prod[] }
     }
 
     const closeEdit = () => {
-        setEdit({ image: '', name: '', desc: '', stock: '', public_id: '' })
+        setEdit({ image: '', name: '', desc: '', stock: '', public_id: '', price: '' })
     }
 
     const refreshData = () => {
         router.replace(router.asPath)
     }
 
-    const handleEdit = (image: string, name: string, desc: string, stock: string, public_id: string) => {
-        setEdit({ name, image, desc, stock, public_id })
+    const handleEdit = (image: string, name: string, desc: string, stock: string, public_id: string, price: string) => {
+        setEdit({ name, image, desc, stock, public_id, price })
     }
 
     useEffect(() => {
@@ -101,7 +103,7 @@ const Products = ({ username, products }: { username: string, products: prod[] }
                                     <p className='ml-3 text-greenBg font-semibold font-'>0 Favorites</p>
                                     <div className='flex items-center gap-x-2 mr-3'>
                                         <FaTrashAlt className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleToDelete(items.name, items.image, items.id) }} />
-                                        <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleEdit(items.image, items.name, items.desc, items.stock, items.id) }} />
+                                        <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleEdit(items.image, items.name, items.desc, items.stock, items.id, items.price) }} />
                                     </div>
                                 </div>
 
@@ -116,12 +118,21 @@ const Products = ({ username, products }: { username: string, products: prod[] }
                                         }
                                     </p>
 
-                                    {span === items.name ? <p className={`text-xs mt-2 select-none`}>
-                                        <span className='text-greenBg font-black text-sm font-raleway capitalize'>Stocks: </span>
-                                        {
-                                            items.stock
-                                        }
-                                    </p> : null}
+                                    {span === items.name ?
+                                        <>
+                                            <p className={`text-xs mt-2 select-none`}>
+                                                <span className='text-greenBg font-black text-sm font-raleway capitalize'>Stocks: </span>
+                                                {
+                                                    items.stock
+                                                }
+                                            </p>
+                                            <p className={`text-xs mt-2 select-none`}>
+                                                <span className='text-greenBg font-black text-sm font-raleway capitalize'>Price: </span>
+                                                ₱ {items.price}
+                                            </p>
+                                        </>
+
+                                        : null}
 
 
                                 </div>

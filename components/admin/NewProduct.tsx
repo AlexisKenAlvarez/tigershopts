@@ -12,25 +12,29 @@ import { useRouter } from 'next/router';
 const NewProduct = ({ username }: { username: string }) => {
 
     const router = useRouter()
+    const [product, setProduct] = useState({
+        name: '',
+        stock: '',
+        desc: '',
+        price: ''
+        
+    })
 
     const [image, setImage] = useState()
     const [imageInput, setImgInput] = useState<File>()
-    const [stock, setStock] = useState('')
-    const [name, setName] = useState('')
-    const [desc, setDesc] = useState('')
     const [active, setActive] = useState(false)
 
     useEffect(() => {
-        const nameTrim = name.trim()
-        const descTrim = desc.trim()
+        const nameTrim = product.name.trim()
+        const descTrim = product.desc.trim()
         
-        if (image !== undefined && nameTrim.length > 0 && descTrim.length > 0 && stock !== '') {
+        if (image !== undefined && nameTrim.length > 0 && descTrim.length > 0 && product.stock !== '' && product.price !== '') {
             setActive(true)
         } else{
             setActive(false)
 
         }
-    }, [image, stock, name, desc])
+    }, [image, product.stock, product.name, product.desc, product.price])
     
 
     const handleImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,21 +53,14 @@ const NewProduct = ({ username }: { username: string }) => {
         }
     }
 
-    const handleStock = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStock(e.target.value)
-
-    }
     const handleDesc = (e: any) => {
-        setDesc(e.target.value);
+        setProduct((items) => ({...items, [e.target.id]: e.target.value}))
+
     }
 
     const handleClose = () => {
         setImage(undefined)
         setImgInput(undefined)
-    }
-
-    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value)
     }
 
     const [debounce, setDebounce] = useState(false)
@@ -91,11 +88,12 @@ const NewProduct = ({ username }: { username: string }) => {
 
                     body: JSON.stringify({
                         id: r.public_id,
-                        name,
-                        desc,
-                        stock,
+                        name: product.name,
+                        desc: product.desc,
+                        stock: product.stock,
                         org: username,
-                        image: r.secure_url
+                        image: r.secure_url,
+                        price: product.price
                     })
 
                 }).then((response) => {
@@ -108,6 +106,10 @@ const NewProduct = ({ username }: { username: string }) => {
                 })
             })
         }
+    }
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setProduct((items) => ({...items, [e.target.id]: e.target.value}))
     }
 
     return (
@@ -144,12 +146,18 @@ const NewProduct = ({ username }: { username: string }) => {
 
                     <div className="flex flex-col w-full mt-10">
                         <label>Product Name</label>
-                        <input type="text" className="w-full mt-2 outline-none p-2" onChange={handleName}></input>
+                        <input type="text" className="w-full mt-2 outline-none p-2" value={product.name} onChange={handleChange} id="name"></input>
                     </div>
 
-                    <div className="flex flex-col w-full mt-10">
+                    <div className="flex flex-col w-full mt-5">
                         <label>Product Description</label>
-                        <TextareaAutosize className="w-full mt-2 resize-none outline-none p-2" maxRows={7} minRows={5} onChange={handleDesc} />
+                        <TextareaAutosize className="w-full mt-2 resize-none outline-none p-2" value={product.desc} maxRows={7} minRows={5} onChange={handleDesc} id="desc"/>
+                    </div>
+
+                    <div className="flex flex-col w-full mt-5 relative">
+                        <label>Price: </label>
+                        <p className="absolute bottom-2 left-3 font-bold font-poppins">₱</p>
+                        <input type="number" className="w-full mt-2 outline-none p-2 pl-7 font-poppins" value={product.price} onChange={handleChange} id="price"></input>
                     </div>
 
                     <div className="w-full mt-10">
@@ -158,7 +166,7 @@ const NewProduct = ({ username }: { username: string }) => {
                             {stockRadio.map((val, i) => {
                                 return (
                                     <div key={i} className="flex items-center gap-x-1">
-                                        <input type="radio" name="stocks" value={val.value} className="focus:ring-orangeText w-4 h-4 cursor-pointer" onChange={handleStock}></input>
+                                        <input type="radio" name="stocks" value={val.value} className="focus:ring-orangeText w-4 h-4 cursor-pointer" onChange={handleChange} id="stock"></input>
                                         <label>{val.value}</label>
                                     </div>
 
