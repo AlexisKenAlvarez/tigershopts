@@ -22,7 +22,6 @@ model Users {
   yearsection String
   password    String
   verified    Boolean @default(false)
-  createdAt  DateTime   @default(now())
 }
 
 model Pass {

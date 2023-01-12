@@ -12,8 +12,6 @@ const OrderDone: FunctionComponent<myProp> = (props) => {
     let date = new Date()
     const [currentDate, setDate] = useState('')
 
-
-
     useEffect(() => {
         var dobArr = date.toDateString().split(' ');
         var dobFormat = dobArr[1] + ' ' + dobArr[2] + ', ' + dobArr[3];

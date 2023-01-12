@@ -43,17 +43,16 @@ const MobileNavItems: FunctionComponent<myProp> = (props) => {
     return (
         <motion.div initial={{ y: "-100%" }} animate={{ y: "0%" }} exit={{ y: "-100%" }} className="w-full h-20 border-b-2 md:hidden flex justify-center overflow-hidden z-[100] absolute bg-greenButton right-0 top-0">
 
-
             <ul className="flex text-white items-center h-full gap-x-8 font-poppins font-medium select-none text-sm">
                 {navList.map((items, i) => {
                     return (
-
-                        <motion.li initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.7, delay: i * 0.04, type: "spring", stiffness: 100 }} className="group cursor-pointer select-none relative" key={i}>{items}
-                            <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-greenHover absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
-                        </motion.li>
+                        <Link href={items.link} key={i}>
+                            <motion.li initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.7, delay: i * 0.04, type: "spring", stiffness: 100 }} className="cursor-pointer select-none relative">{items.label}</motion.li>
+                        </Link>
 
                     )
                 })}
+
                 {status ? logout : login}
                 <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.012, type: "spring", stiffness: 100 }}>
                     <VscTriangleUp className="text-white cursor-pointer ml-10" onClick={toggleNav} />
