@@ -36,7 +36,8 @@ export default async function(req: NextApiRequest, res: NextApiResponse) {
                         const token = sign(
                             {
                                 exp: Math.floor(Date.now() / 1000) * 60 * 60 * 24 * 30,
-                                username: user[0].username
+                                username: user[0].username,
+                                email: email
                             },
                             secret
                         )

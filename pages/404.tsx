@@ -7,8 +7,8 @@ import LongButton from "../components/LongButton";
 const Custom404: NextPage = () => {
     return (
         <>
-            <div className="w-full flex justify-center items-center font-inter">
-                <div className="h-auto w-fit flex flex-col justify-center items-center px-7 mt-28">
+            <div className="w-full flex justify-center items-center font-inter bg-white h-screen overflow-hidden">
+                <div className="h-[80%] w-fit flex flex-col justify-center items-center px-7">
                     <Image src="/404.webp" alt="Logo" width='260' height='50' className="w-[15rem] ml-11 mx-auto mt-16" unoptimized={true} />
 
                     <div className="flex mx-auto">

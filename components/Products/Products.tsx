@@ -1,21 +1,32 @@
 import { IoMdArrowDropup } from 'react-icons/io'
 import { Prod, productProp } from '../../types';
 import { FunctionComponent, useState, useEffect } from 'react'
+import { orderType } from '../../types';
+import { useRouter } from 'next/router';
 
 
 const Products: FunctionComponent<Prod> = (props) => {
+    const { data, email } = props
+
+    const router = useRouter()
     const [selected, setSelect] = useState("csso")
     const [products, setProducts] = useState<productProp[]>()
-    const { data } = props
+
+    const [order, setOrder] = useState<orderType>({
+        email: email,
+        org: selected,
+    })
+
+    const handleOrder = (inp: string) => {
+        router.push({pathname: `order/${order.email}/${inp}`}, undefined, {scroll: false})
+    }
 
     useEffect(() => {
-        console.log(data)
         const result = data.find(o => o.org === "csso")
         setProducts(result!.products);
-
+        console.log(email)
 
     }, [selected])
-
 
     return (
         <section className="h-fit pb-40 w-full bg-[#1D5B33] relative bg-blend-overlay" >
@@ -37,7 +48,7 @@ const Products: FunctionComponent<Prod> = (props) => {
                     <div className="mt-40 lg:w-fit mx-auto w-fit gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
                         {products?.map((items, i) => {
                             return (
-                                <div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg cursor-pointer" key={i}>
+                                <div className="w-[20rem] h-[15rem] relative overflow-hidden border-b-4 border-b-lightg cursor-pointer" key={i} onClick={() => {handleOrder(items.id)}}>
 
                                     <img src={items.image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer"></img>
 

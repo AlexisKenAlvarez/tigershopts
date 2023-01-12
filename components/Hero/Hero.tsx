@@ -16,10 +16,10 @@ const Hero = () => {
                 <div className="flex items-center h-full w-full justify-center">
                     <div className="mt-8 md:mt-0">
 
-                        <motion.h1 initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} exit={{x: -300, opacity: 0}} transition={{ duration: 0.7 }} className={styles.welcome}>Welcome<span className="text-heroOrange font-raleway"> Tigers</span></motion.h1>
-                        <motion.p initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} exit={{x: -300, opacity: 0}} transition={{ duration: 0.7, delay: 0.1 }} className={styles.subheader} >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</motion.p>
+                        <motion.h1 initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7 }} className={styles.welcome}>Welcome<span className="text-heroOrange font-raleway"> Tigers</span></motion.h1>
+                        <motion.p initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.1 }} className={styles.subheader} >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</motion.p>
 
-                        <motion.div initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} exit={{x: -300, opacity: 0}} transition={{ duration: 0.7, delay: 0.2 }} className={styles.heroButton}>
+                        <motion.div initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.2 }} className={styles.heroButton}>
                             <div className="font-inter bg-[#D19713] text-white p-3 rounded-lg text-sm font-medium text-center hover:bg-heroOrange cursor-pointer select-none w-full">
                                 <p className="tracking-wider">
                                     View products
@@ -30,7 +30,7 @@ const Hero = () => {
                     </div>
                 </div>
 
-                <motion.div initial={{ x: 300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} exit={{x: 300, opacity: 0}} transition={{ duration: 0.7 }} className="md:items-center justify-center w-full md:h-fit flex z-0 md:self-center self-start h-full mt-7 md:mt-0">
+                <motion.div initial={{ x: 300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7 }} className="md:items-center justify-center w-full md:h-fit flex z-0 md:self-center self-start h-full mt-7 md:mt-0">
                     <div className="xl:w-[35rem] lg:w-[27rem]  md:w-[20rem] w-[13rem] md:mt-0 2xl:w-[40rem]">
                         <Image src="/hero/HeroTransparent.webp" alt="Phone" height="400" width="400" className="w-full h-auto relative z-10" />
 

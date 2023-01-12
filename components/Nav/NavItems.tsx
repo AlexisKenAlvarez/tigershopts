@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { FunctionComponent } from 'react';
 import { navList } from '../../utils/List';
+import { motion } from 'framer-motion'
 import Link from 'next/link';
 
 interface myProp {
@@ -38,7 +39,7 @@ const NavItems: FunctionComponent<myProp> = (props) => {
     )
 
     return (
-        <ul className="flex text-white items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative">
+        <motion.ul initial={{ opacity: 0, y: -50 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 0.7 }}  className="flex text-white items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative">
             {navList.map((items, i) => {
                 return (
 
@@ -50,7 +51,7 @@ const NavItems: FunctionComponent<myProp> = (props) => {
 
             {status ? logout : login}
 
-        </ul>
+        </motion.ul>
     );
 }
 

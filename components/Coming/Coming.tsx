@@ -34,7 +34,7 @@ const Coming = () => {
                         </div>
 
                         <div className="bg-orangeBg text-greenBg text-center p-3 w-[15rem] mt-5 rounded-lg md:absolute md:bottom-[-1.5rem]">Org Shirt</div>
-                        <Image src="/triangle.svg" alt="triangle" height="100" width="100" className="sm:block hidden absolute bottom-[-3rem] right-[-3rem]"></Image>
+                        <Image src="/Triangle.svg" alt="triangle" height="100" width="100" className="sm:block hidden absolute bottom-[-3rem] right-[-3rem]"></Image>
                     </div>
 
                     <div className="bg-white w-full h-full rounded-xl opacity-30 mx-auto absolute"></div>

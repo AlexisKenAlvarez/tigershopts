@@ -18,6 +18,7 @@ interface decode {
 	exp: number,
 	username: string,
 	iat: number,
+	email: string
 }
 
 const prisma = new PrismaClient()
@@ -40,14 +41,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 		try {
 			verify(jwt, secret);
 
-			var token = jwt;
-			var decoded: decode = jwt_decode(token);
-			var username = decoded.username
+			let token = jwt;
+			let decoded: decode = jwt_decode(token);
+			const username = decoded.username
+			const email = decoded.email
 
 			if (admins.includes(username)) {
 				const products = await prisma.products.findMany({
 					where: {
-						org: username
+						org: username,
 					}
 				})
 
@@ -63,7 +65,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 				return {
 					props: {
 						status: true,
-						data: JSON.parse(JSON.stringify(data))
+						data: JSON.parse(JSON.stringify(data)),
+						email: email
 					}
 				}
 			}
@@ -87,7 +90,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export const Home: NextPage<Status> = (props) => {
-	const { status, data } = props
+	const { status, data, email } = props
 	const router = useRouter()
 	const [showHero, setHero] = useState(false)
 
@@ -106,7 +109,7 @@ export const Home: NextPage<Status> = (props) => {
 				<Nav status={status} key="NAV" />
 				<Hero key="HERO" />
 				<Coming key="COMING" />
-				<Products key="PRODUCTS" data={data}/>
+				<Products  data={data} email={email} key="PRODUCTS"/>
 			</AnimatePresence>
 
 

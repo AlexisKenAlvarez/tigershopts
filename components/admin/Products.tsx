@@ -7,6 +7,7 @@ import { MdEdit } from 'react-icons/md'
 import { RiArrowDownSFill } from 'react-icons/ri'
 import DeleteComponent from '../../components/admin/DeleteComponent'
 import EditMode from './EditMode';
+import { orderType } from '../../types';
 
 interface prod {
     name: string,
@@ -16,7 +17,6 @@ interface prod {
     id: string,
     price: string
 }
-
 
 
 const Products = ({ username, products }: { username: string, products: prod[] }) => {
@@ -66,6 +66,7 @@ const Products = ({ username, products }: { username: string, products: prod[] }
     const handleEdit = (image: string, name: string, desc: string, stock: string, public_id: string, price: string) => {
         setEdit({ name, image, desc, stock, public_id, price })
     }
+
 
     useEffect(() => {
         console.log(edit)

@@ -1,5 +1,12 @@
 import { StringMappingType } from "typescript";
 
+export interface orderType {
+    email: string,
+    org: string,
+}
+
+
+
 export interface productProp {
     id: string,
     image: string,
@@ -18,12 +25,14 @@ export interface dataProp {
 
 export interface Prod {
     data: dataProp[]
-    key: string
+    key: string,
+    email: string
 }
 
 export interface Status {
     status: boolean,
-    data: dataProp[]
+    data: dataProp[],
+    email: string
 }
 
 export interface Inputs {
@@ -97,4 +106,10 @@ export interface Users {
 
 export interface VerifyQuery {
     verified: boolean
+}
+
+export interface Orders {
+    user: Users,
+    result: productProp,
+    id: string
 }
