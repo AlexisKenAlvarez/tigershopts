@@ -91,12 +91,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 export const Home: NextPage<Status> = (props) => {
 	const { status, data, email } = props
-	const router = useRouter()
-	const [showHero, setHero] = useState(false)
-
-	// useEffect(() => {
-	// 	console.log(data.find(o => o.org === "csso"));
-	// }, [])
 
 	return (
 		<>
@@ -111,8 +105,6 @@ export const Home: NextPage<Status> = (props) => {
 				<Coming key="COMING" />
 				<Products  data={data} email={email} key="PRODUCTS"/>
 			</AnimatePresence>
-
-
 
 		</>
 	)

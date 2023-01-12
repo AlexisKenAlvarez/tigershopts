@@ -3,6 +3,7 @@ import { Prod, productProp } from '../../types';
 import { FunctionComponent, useState, useEffect } from 'react'
 import { orderType } from '../../types';
 import { useRouter } from 'next/router';
+import Aerial from '../../public/cvsuaerial.webp'
 
 
 const Products: FunctionComponent<Prod> = (props) => {
@@ -29,7 +30,7 @@ const Products: FunctionComponent<Prod> = (props) => {
     }, [selected])
 
     return (
-        <section className="h-fit pb-40 w-full bg-[#1D5B33] relative bg-blend-overlay" >
+        <section className="h-fit pb-40 w-full relative bg-blend-overlay" style={{backgroundImage: `url(${Aerial.src})`}}>
             <div className="h-fit w-[85%] max-w-[1600px] mx-auto relative">
                 <div className="absolute md:mt-[-2.5rem] mt-[-4.5rem] md:text-7xl text-4xl mx-auto left-0 right-0 w-fit md:mx-0">
                     <h1 className="font-raleway font-[900] tracking-wide uppercase text-[#40C96D] z-10 absolute md:bottom-[-5px] mmd:left-[-5px] bottom-[-3px] left-[-3px]">Products</h1>
