@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const jwt = context.req.cookies['authToken'] || ''
     const url = context.req.url || ''
 
-    const admins = ['csso', 'piie']
+    const admins = ["csso", "ceit", "elits", "pasoa", "psabe", "uapsa", "coess", "etso", "iecep", "iiee", "pice", "piie", "sites", "jpcs", "class"]
 
 
     if (url.includes('/admin')) {
