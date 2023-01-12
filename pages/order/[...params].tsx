@@ -7,10 +7,9 @@ import { Orders, productProp } from "../../types";
 import React, { useEffect, useState } from "react";
 import Image from 'next/image';
 import { BsPlus } from 'react-icons/bs'
-import { HiMinusSm } from 'react-icons/Hi'
+import { HiMinusSm } from 'react-icons/hi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { TbBrandMessenger } from 'react-icons/tb'
-import { isTemplateSpan } from "typescript";
 import { AnimatePresence } from "framer-motion";
 import Nav from "../../components/Nav/Nav";
 import OrderDone from "../../components/Products/OrderDone";
