@@ -11,6 +11,9 @@ import { HiMinusSm } from 'react-icons/Hi'
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import { TbBrandMessenger } from 'react-icons/tb'
 import { isTemplateSpan } from "typescript";
+import { AnimatePresence } from "framer-motion";
+import Nav from "../../components/Nav/Nav";
+import OrderDone from "../../components/Products/OrderDone";
 
 interface paramType {
     params: string[]
@@ -37,7 +40,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                 props: {
                     user: JSON.parse(JSON.stringify(user)),
                     result: JSON.parse(JSON.stringify(result)),
-                    id: public_id
+                    org: params[1],
+                    id: public_id,
+                    status: true
                 }
             }
         } else {
@@ -63,11 +68,42 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const Order: NextPage<Orders> = (props) => {
-    const { user, result, id } = props
+    const { user, result, id, status, org } = props
     const [products, setProducts] = useState()
     const [quantity, setQuantity] = useState(1)
     const [facebook, setFacebook] = useState('')
     const [valid, setValid] = useState(false)
+    const [debounce, setDebounce] = useState(false)
+    const [done, setDone] = useState(false)
+
+    const handleSubmit = () => {
+        if (!debounce) {
+            setDebounce(true)
+            fetch("/api/admin/order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    org: org,
+                    productName: result.name,
+                    fullname: user.fullname,
+                    contact: user.phone,
+                    studentno: user.studentno,
+                    quantity: quantity,
+                    amount: quantity * +result.price,
+                    facebook: facebook
+                })
+            }).then((response) => {
+                return response.json()
+            }).then((response) => {
+                console.log(response);
+                setDebounce(false)
+                setFacebook('')
+                setDone(true)
+            })
+        }
+    }
 
     const handleQuantity = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         const id = e.currentTarget.id
@@ -84,20 +120,20 @@ const Order: NextPage<Orders> = (props) => {
     }
 
     useEffect(() => {
-        if(checkFacebook(facebook)) {
+        if (checkFacebook(facebook)) {
             setValid(true)
         } else {
             setValid(false)
         }
     }, [facebook])
-    
+
     function checkFacebook(str: string) {
         return /(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?/.test(str)
     }
 
-    return (
-        <div className="w-full h-auto min-h-[100vh] bg-white flex">
-            <div className="w-[90%] max-w-[700px] min-h-[100%] border-2 h-fit mx-auto flex flex-col items-center overflow-y-scroll no-scrollbar self-end">
+    const checkoutContent = (
+        <div className="mt-20 md:mt-[8rem] w-[90%] max-w-[780px] h-fit mx-auto flex flex-col items-center overflow-y-scroll no-scrollbar self-end md:self-start md:flex-row md:h-[80%] md:items-start md:gap-x-20 md:justify-center">
+            <div className="flex flex-col justify-center items-center">
                 <h1 className="mt-7 font-bold font-raleway text-xl text-center break-words inline-block max-w-[19rem] text-greenBg">Place order: <span className=" font-medium">{result.name}</span></h1>
                 <div className='h-[12rem] rounded-2xl w-[13rem]'>
                     <Image src={result.image} alt={`${result.name}`} width="200" height="200" className='w-full h-full rounded-t-2xl object-contain select-none border-10'></Image>
@@ -115,44 +151,54 @@ const Order: NextPage<Orders> = (props) => {
                         <BsPlus className="text-2xl" />
                     </div>
                 </div>
+            </div>
 
-                <div className="mt-8 flex items-center gap-x-3 text-greenSteps">
+            <div className="flex flex-col justify-center items-center md:w-[24.8rem]">
+                <div className="mt-8 flex items-center gap-x-3 text-greenSteps md:mr-auto">
                     <AiOutlineShoppingCart className="text-2xl mt-[-5px]" />
                     <p className="font-bold font-raleway text-left">Order Information</p>
                 </div>
-                <div className="text-greenBg mt-5 flex flex-col gap-y-2">
-                    <p className="font-semibold">Email: <span className="font-normal text-greenSteps">{user.email}</span></p>
+                <div className="text-greenBg mt-5 flex flex-col gap-y-2 md:w-[20rem]">
+                    <p className="font-semibold">Email: <span className="font-normal text-greenSteps break-words w-[20rem]">{user.email}</span></p>
                     <p className="font-semibold">Name: <span className="font-normal text-greenSteps">{user.fullname}</span></p>
                     <p className="font-semibold">Student No: <span className="font-normal text-greenSteps">{user.studentno}</span></p>
                     <p className="font-semibold">Contact: <span className="font-normal text-greenSteps">{user.phone}</span></p>
                 </div>
 
-                <div className="mt-8 flex items-center gap-x-3 text-greenSteps flex-col w-[20rem]">
-                    <div className="flex items-center gap-x-2">
+                <div className="mt-8 flex items-center gap-x-3 text-greenSteps flex-col md:w-[24rem] w-full">
+                    <div className="flex items-center gap-x-2 md:mr-auto">
                         <TbBrandMessenger className="text-2xl mt-[-5px]" />
                         <p className="font-semibold font-raleway ">Facebook Link &#40;Required&#41;</p>
                     </div>
 
-                    <input type="text" className="bg-inputBg w-full h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" value={facebook} onChange={handleFb}></input>
+                    <input type="text" className="bg-inputBg w-full md:w-[20rem] h-12 mx-auto block mt-2 outline-0 p-2 px-4 text-sm text-slate-700 rounded-md" autoComplete="off" value={facebook} onChange={handleFb}></input>
                 </div>
+            </div>
 
-                <div className="h-[5rem] w-full border-greenBg border-b-0 border-[1px] mt-10 flex justify-center items-center">
-                    <div className="w-[90%] mx-auto flex justify-between items-center">
-                        <p className="font-poppins font-bold">Total: <span className="font-medium">₱{+result.price * quantity}</span></p>
+            <div className="h-[5rem] w-[90%] max-w-[700px] border-greenBg border-b-0 border-[1px] mt-10 flex justify-center items-center absolute bottom-0 ">
+                <p className="absolute top-[-4rem] md:top-[-3rem] min-w-[280px] text-center">The admins will reach you out through your facebook messenger to confirm your order.</p>
+                <div className="w-[90%] mx-auto flex justify-between items-center">
+                    <p className="font-poppins font-bold">Total: <span className="font-medium">₱{+result.price * quantity}</span></p>
 
-                        <div className='flex rounded-lg items-center justify-center p-[1px] w-32' style={valid ? {pointerEvents: "auto", opacity: "100%"} : {pointerEvents: "none", opacity: "50%"}}>
-                            <div className="font-inter bg-[#D19713] text-white p-3 rounded-lg text-sm font-medium text-center hover:bg-heroOrange cursor-pointer select-none w-full">
-                                <p className="tracking-wider">
-                                    Confirm
-                                </p>
-                            </div>
+                    <div className='flex rounded-lg items-center justify-center p-[1px] w-32' style={valid ? { pointerEvents: "auto", opacity: "100%" } : { pointerEvents: "none", opacity: "50%" }} onClick={handleSubmit}>
+                        <div className="font-inter bg-[#D19713] text-white p-3 rounded-lg text-sm font-medium text-center hover:bg-heroOrange cursor-pointer select-none w-full">
+                            <p className="tracking-wider">
+                                {debounce ? "Processing..." : "Confirm"}
+                            </p>
                         </div>
                     </div>
-
                 </div>
-
-
             </div>
+        </div>
+    )
+
+    return (
+        <div className="w-full h-auto min-h-[100vh] bg-white flex md:h-screen relative md:pb-0" style={done ? {paddingBottom: "0"} : {paddingBottom: "12rem"}}>
+            <AnimatePresence>
+                {done ? null : <Nav status={status} key="NAV" />}
+            </AnimatePresence>
+
+            {done ? <OrderDone username={user.fullname} product={result.name}/> : checkoutContent}
         </div>
     );
 }

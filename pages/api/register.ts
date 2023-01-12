@@ -44,7 +44,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                         course: valuesData.course,
                         yearsection: valuesData.yearsection,
                         password: hashed,
-                        verified: false
+                        verified: false,
                     }
                 })
 

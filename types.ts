@@ -111,5 +111,7 @@ export interface VerifyQuery {
 export interface Orders {
     user: Users,
     result: productProp,
-    id: string
+    id: string,
+    status: boolean,
+    org: string
 }
