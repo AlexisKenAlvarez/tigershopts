@@ -126,7 +126,6 @@ export const Login: NextPage<Inputs> = (props) => {
                     setError(current => ({ ...current, password: '' }))
                     router.push("/")
                     console.log("logged in")
-                    setDebounce(false)
                 }
             })
         }

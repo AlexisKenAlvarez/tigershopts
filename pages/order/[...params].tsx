@@ -97,7 +97,6 @@ const Order: NextPage<Orders> = (props) => {
                 return response.json()
             }).then((response) => {
                 console.log(response);
-                setDebounce(false)
                 setFacebook('')
                 setDone(true)
             })
