@@ -26,13 +26,15 @@ export interface dataProp {
 export interface Prod {
     data: dataProp[]
     key: string,
-    email: string
+    email: string,
 }
 
 export interface Status {
     status: boolean,
     data: dataProp[],
-    email: string
+    email: string,
+    user: Users
+
 }
 
 export interface Inputs {
@@ -101,7 +103,8 @@ export interface Users {
     course: string,
     yearsection: string,
     password: string,
-    verified: boolean
+    verified: boolean,
+    likes: string[]
 }
 
 export interface VerifyQuery {

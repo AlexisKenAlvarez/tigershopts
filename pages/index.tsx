@@ -35,6 +35,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 	const products = await db.collection("Products").find({}).toArray()
 
+
 	const data = products
 
 	if (url.includes('/')) {
@@ -45,6 +46,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			let decoded: decode = jwt_decode(token);
 			const username = decoded.username
 			const email = decoded.email
+
+			const user = await db.collection("Users").findOne({ email: email })
 
 			if (admins.includes(username)) {
 				const products = await prisma.products.findMany({
@@ -66,6 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 					props: {
 						status: true,
 						data: JSON.parse(JSON.stringify(data)),
+						user: JSON.parse(JSON.stringify(user)),
 						email: email
 					}
 				}
@@ -90,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export const Home: NextPage<Status> = (props) => {
-	const { status, data, email } = props
+	const { status, data, email, user } = props
 
 	return (
 		<>
@@ -103,7 +107,7 @@ export const Home: NextPage<Status> = (props) => {
 				<Nav status={status} key="NAV" />
 				<Hero key="HERO" />
 				<Coming key="COMING" />
-				<Products  data={data} email={email} key="PRODUCTS"/>
+				<Products data={data} email={email} key="PRODUCTS"/>
 			</AnimatePresence>
 
 		</>
