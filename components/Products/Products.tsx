@@ -91,7 +91,7 @@ const Products: FunctionComponent<Prod> = (props) => {
                     </div>
                 </div>
 
-                <div className="w-full h-fit overflow-hidden">
+                <div className="w-full h-fit overflow-hidden" id="products">
                     <div className="mt-40 lg:w-fit mx-auto w-fit gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
                         {products?.map((items, i) => {
                             return (

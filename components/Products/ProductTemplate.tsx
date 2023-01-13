@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { BsStar, BsStarFill } from 'react-icons/bs'
 import { Users } from "../../types";
 import { useEffect, useState, useRef } from 'react'
+import { useRouter } from 'next/router';
 
 interface productProp {
     id: string,
@@ -22,11 +23,13 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
     const { id, image, price, name, stock, desc, handleOrder, likes, email, org } = props
     const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 })
     const [doesLike, setLike] = useState<boolean>()
+    const router = useRouter()
 
     useEffect(() => {
         setLike(likes.includes(email))
+        console.log(email);
     }, [likes])
-    
+
 
     const variants = {
         initial: {
@@ -43,7 +46,10 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
     }
 
     const handleLike = () => {
-        setLike(current => !current)
+        if (email === undefined) {
+            router.push("/login", undefined, { scroll: false})
+        } else {
+            setLike(current => !current)
 
         fetch("/api/like", {
             method: "POST",
@@ -58,6 +64,8 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
 
         },
         )
+        }
+        
     }
 
     return (

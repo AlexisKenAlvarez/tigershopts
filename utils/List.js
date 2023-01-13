@@ -19,6 +19,6 @@ export const navList = [
     , 
     {
         label: "Products",
-        link: "/products"
+        link: "/#products"
     }   
 ]
