@@ -10,7 +10,7 @@ import ProductTemplate from './ProductTemplate';
 
 
 const Products: FunctionComponent<Prod> = (props) => {
-    const { data, email } = props
+    const { email } = props
 
     const router = useRouter()
     const [selected, setSelect] = useState("csso")
@@ -34,14 +34,19 @@ const Products: FunctionComponent<Prod> = (props) => {
     }
 
     useEffect(() => {
-        const result = data.find(o => o.org === selected)
-        if (result !== undefined) {
-            setProducts(result!.products);
-
-        } else {
-            setProducts(undefined);
-        }
-
+        fetch("/api/admin/getProducts", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                org: selected
+            })
+        }).then((response) => {
+            return response.json()
+        }).then((response) => {
+            setProducts(response.data.products)
+        })
     }, [selected])
 
     const variants = {
