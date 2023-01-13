@@ -8,16 +8,16 @@ import FormInputLogin from "../components/FormInputLogin"
 import { verify } from "jsonwebtoken"
 import { GetServerSideProps, NextPage } from "next"
 import { Inputs, InputVal, LoginValues } from "../types"
-import { AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import LoginRetry from '../components/register/LoginRetry'
 import Link from "next/link"
 import Head from 'next/head';
+import { useInView } from "react-intersection-observer"
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
 
     const secret = process.env.NEXT_PUBLIC_SECRET || ''
     const jwt = context.req.cookies['authToken'] || ''
-
     const url = context.req.url || ''
 
     const inputs = [
@@ -65,6 +65,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export const Login: NextPage<Inputs> = (props) => {
+    const [inputRef, inView] = useInView({ triggerOnce: true })
+
     const [values, setValues] = useState<LoginValues>({
         email: '',
         password: ''
@@ -174,18 +176,23 @@ export const Login: NextPage<Inputs> = (props) => {
 
 
                         <div className="w-[80%] mx-auto max-w-[350px] font-inter mt-6">
-                            <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</h1>
-                            {props.inputs.map((value: InputVal) => {
+                            <motion.h1 initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5 }} className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</motion.h1>
+                            {props.inputs.map((value: InputVal, i) => {
                                 return (
-                                    <FormInputLogin key={value.id} {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} onFocus={handleFocus} onBlur={handleBlur} />
+                                    <motion.div key={value.id} initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5, delay: (i + 1) * 0.1 }}>
+                                        <FormInputLogin {...value} value={values[value.name as keyof LoginValues]} onChange={onChange} error={valuesError} onFocus={handleFocus} onBlur={handleBlur} />
+                                    </motion.div>
+
                                 )
                             })}
 
-                            <Link href="/forgotpassword">
-                                <p className="mt-4 ml-1 cursor-pointer mb-10">Forgot your password?</p>
+                            <Link  href="/forgotpassword">
+                                <motion.p initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5, delay: 3 * 0.1 }} className="mt-4 ml-1 cursor-pointer mb-10">Forgot your password?</motion.p>
                             </Link>
+                            <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5, delay: 4 * 0.1 }}>
+                                <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin} />
 
-                            <LongButton name={debounce ? "Processing..." : "Login"} onClick={handleLogin}/>
+                            </motion.div>
 
                         </div>
                     </div>
