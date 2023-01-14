@@ -6,8 +6,8 @@ const Page2 = (props) => {
         <>
             {inputs.map((val, i) => {
                 return (
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 100 }} transition={{ duration: 0.5, delay: i * 0.1 }} >
-                        <FormInput key={val.id} {...val} value={value[val.name]} onChange={onChange} error={error} />
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 100 }} transition={{ duration: 0.5, delay: i * 0.1 }} key={val.id} >
+                        <FormInput {...val} value={value[val.name]} onChange={onChange} error={error} />
 
                     </motion.div>
                 )
