@@ -121,13 +121,10 @@ export const Login: NextPage<Inputs> = (props) => {
                         setError(current => ({ ...current, [response.name]: response.status }))
                         setDebounce(false)
                     }
-                    console.log(response);
                     setDebounce(false)
-                    console.log("Not loggedin");
                 } else {
                     setError(current => ({ ...current, password: '' }))
                     router.push("/")
-                    console.log("logged in")
                 }
             })
         }

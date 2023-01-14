@@ -388,7 +388,6 @@ const Signup: NextPage<Inputs> = (props) => {
             })
 
             const data = await response.json()
-            console.log(data);
             if (data.status === 'This email is already registered') {
                 setError(current => ({ ...current, email: 'Email already registered' }))
                 setFirst(current => ({ ...current, check3: false }))

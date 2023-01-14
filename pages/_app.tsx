@@ -31,12 +31,10 @@ export default function App({ Component, pageProps }: AppProps) {
   NProgress.configure({ showSpinner: false });
 
   Router.events.on("routeChangeStart", (url) => {
-    console.log("Route is changing")
     NProgress.start()
   })
 
   Router.events.on("routeChangeComplete", (url) => {
-    console.log("Route is done changing")
     NProgress.done()
 
   })

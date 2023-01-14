@@ -27,7 +27,6 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
 
     useEffect(() => {
         setLike(likes.includes(email))
-        console.log(email);
     }, [likes])
 
 
