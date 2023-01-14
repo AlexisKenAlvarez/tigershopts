@@ -16,6 +16,10 @@ body {
 }
 
 
+#nprogress .bar {
+  background: #fbba24 !important;
+  }
+
 /* Chrome, Edge, and Safari */
 *::-webkit-scrollbar {
   width: 10px;
