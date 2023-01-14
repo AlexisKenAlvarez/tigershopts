@@ -33,11 +33,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 	const client = await clientPromise;
 	const db = client.db("?retryWrites=true&w=majority");
 
-	const products = await db.collection("Products").find({}).toArray()
-
-
-	const data = products
-
 	if (url.includes('/')) {
 		try {
 			verify(jwt, secret);
@@ -68,7 +63,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 				return {
 					props: {
 						status: true,
-						data: JSON.parse(JSON.stringify(data)),
 						user: JSON.parse(JSON.stringify(user)),
 						email: email
 					}
@@ -80,7 +74,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			return {
 				props: {
 					status: false,
-					data: JSON.parse(JSON.stringify(data))
 				}
 			}
 		}

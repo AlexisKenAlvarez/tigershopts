@@ -26,6 +26,7 @@ const Products: FunctionComponent<Prod> = (props) => {
     })
 
     const handleOrder = (inp: string) => {
+        console.log(("I AM CLICKED HANDLE ORDER"));
         router.push({ pathname: `order/${order.email}/${inp}` }, undefined, { scroll: false })
     }
 

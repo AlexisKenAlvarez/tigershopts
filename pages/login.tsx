@@ -164,7 +164,7 @@ export const Login: NextPage<Inputs> = (props) => {
                     <AuthNavMobile text="signup" onClick={navigateSignup} />
 
                     <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} closed={closed} />
-
+                    
                     <AnimatePresence>
                         {awaiting ? <LoginRetry email={values.email} /> : null}
                     </AnimatePresence>
@@ -172,7 +172,7 @@ export const Login: NextPage<Inputs> = (props) => {
                     <div className="w-full">
 
 
-                        <div className="w-[80%] mx-auto max-w-[350px] font-inter mt-6">
+                        <div className="w-[80%] mx-auto max-w-[350px] font-inter mt-6 z-10 relative">
                             <motion.h1 initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5 }} className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-16 text-greenBg text-shadow-md mb-10 lg:text-left lg:mx-0 ">Welcome back, Tigers!</motion.h1>
                             {props.inputs.map((value: InputVal, i) => {
                                 return (

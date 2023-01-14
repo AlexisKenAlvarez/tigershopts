@@ -17,7 +17,9 @@ body {
 
 
 #nprogress .bar {
-  background: #fbba24 !important;
+  background: #FFFFFF !important;
+  background-color: white;
+  height: 4px;
   }
 
 /* Chrome, Edge, and Safari */

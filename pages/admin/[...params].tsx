@@ -12,6 +12,7 @@ import { PrismaClient } from '@prisma/client'
 import Reservations from "../../components/admin/Reservations";
 import Head from 'next/head';
 const prisma = new PrismaClient()
+import clientPromise from "../../lib/mongodb";
 
 interface prod {
     name: string,
@@ -42,6 +43,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     const url = context.req.url || ''
 
     const admins = ["csso", "ceit", "elits", "pasoa", "psabe", "uapsa", "coess", "etso", "iecep", "iiee", "pice", "piie", "sites", "jpcs", "class"]
+    const client = await clientPromise;
+    const db = client.db("?retryWrites=true&w=majority");
+
+
 
 
     if (url.includes('/admin')) {
@@ -54,6 +59,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
             var username = decoded.username
 
             console.log(admins.includes(username))
+            const orders = await db.collection("Orders").findOne({ org: username })
+            
 
             if (admins.includes(username)) {
                 const products = await prisma.products.findMany({
@@ -61,7 +68,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                         org: username
                     }
                 })
-    
+
                 return {
                     props: {
                         status: true,
