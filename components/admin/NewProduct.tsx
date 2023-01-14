@@ -10,6 +10,7 @@ import LongButton from "../LongButton";
 import { useRouter } from 'next/router';
 
 const NewProduct = ({ username }: { username: string }) => {
+    console.log(username)
 
     const router = useRouter()
     const [product, setProduct] = useState({
@@ -71,9 +72,10 @@ const NewProduct = ({ username }: { username: string }) => {
             const formImage = new FormData()
 
             formImage.append('file', imageInput || '')
+            formImage.append('org', username)
             formImage.append('upload_preset', 'my-uploads')
 
-            const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`, {
+            const data = await fetch("/api/admin/uploadImage", {
                 method: 'POST',
                 body: formImage
             }).then((response) => {

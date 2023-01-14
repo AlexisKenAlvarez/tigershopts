@@ -76,7 +76,7 @@ const Products = ({ username, products }: { username: string, products: prod[] }
 
         <>
             {
-                toDeleteName === '' ? null : <DeleteComponent name={toDeleteName} close={closeDelete} image={toDeleteImage} refresh={refreshData} id={id} />
+                toDeleteName === '' ? null : <DeleteComponent name={toDeleteName} close={closeDelete} image={toDeleteImage} refresh={refreshData} id={id} org={username}/>
             }
 
             {

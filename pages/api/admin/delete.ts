@@ -1,29 +1,33 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-const cloudinary = require( '../../../utils/cloudinary')
+const cloudinary = require('../../../utils/cloudinary')
 
 import clientPromise from "../../../lib/mongodb";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 
-    const image = req.body.image
+    const { image, org } = req.body
+
 
     try {
         const client = await clientPromise;
         const db = client.db("?retryWrites=true&w=majority");
 
         const post = db.collection("Products").updateOne(
-            {org: "csso"},
-            {$pull: {products: {image: image } } }
+            { org: org },
+            { $pull: { products: { image: image } } }
         )
 
-        await cloudinary.uploader.destroy(req.body.public_id)
+        const deleter = await cloudinary.uploader.destroy(req.body.public_id)
+
+        console.log(post);
+        console.log(deleter);
 
 
-        res.status(200).json({message: "success"});
+        res.status(200).json({ message: "success" });
 
     } catch (e) {
         console.error(e);
-        res.status(400).json({message: e});
+        res.status(400).json({ message: e });
     }
 
 

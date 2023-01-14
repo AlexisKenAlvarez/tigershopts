@@ -1,20 +1,22 @@
 import { FaTrashAlt } from 'react-icons/fa'
 import { IoWarning } from 'react-icons/io5'
-import { useState, FunctionComponent } from 'react'
+import { useState, FunctionComponent, useEffect } from 'react'
 
 interface myProp {
     name: String,
     image: String
     close: () => void
     refresh: () => void
-    id: String
+    id: String,
+    org: String
 }
 
 const Delete: FunctionComponent<myProp> = (props) => {
 
-    const { name, image, close, refresh, id } = props
+    const { name, image, close, refresh, id, org } = props
 
     const [debounce, setDebounce] = useState(false)
+    console.log(id);
 
     const handleDelete = () => {
         if (!debounce) {
@@ -27,7 +29,8 @@ const Delete: FunctionComponent<myProp> = (props) => {
 
                 body: JSON.stringify({
                     image: image,
-                    public_id: id
+                    public_id: id,
+                    org
                 })
 
             }).then((response) => {
