@@ -94,7 +94,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 export const Home: NextPage<Status> = (props) => {
-	const { status, data, email, user } = props
+	const { status, email, user } = props
 
 	return (
 		<>
@@ -107,7 +107,7 @@ export const Home: NextPage<Status> = (props) => {
 				<Nav status={status} key="NAV" />
 				<Hero key="HERO" />
 				<Coming key="COMING" />
-				<Products data={data} email={email} key="PRODUCTS"/>
+				<Products email={email} key="PRODUCTS"/>
 			</AnimatePresence>
 
 		</>

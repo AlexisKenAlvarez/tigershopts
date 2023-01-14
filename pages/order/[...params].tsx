@@ -85,6 +85,7 @@ const Order: NextPage<Orders> = (props) => {
                 },
                 body: JSON.stringify({
                     org: org,
+                    email: user.email,
                     productName: result.name,
                     fullname: user.fullname,
                     contact: user.phone,

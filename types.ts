@@ -24,7 +24,6 @@ export interface dataProp {
 }
 
 export interface Prod {
-    data: dataProp[]
     key: string,
     email: string,
 }

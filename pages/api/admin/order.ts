@@ -9,10 +9,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const client = await clientPromise;
         const db = client.db("?retryWrites=true&w=majority");
 
-        const { org, productName, fullname, contact, studentno, quantity, amount, facebook } = req.body
+        const { org, productName, fullname, contact, studentno, quantity, amount, facebook, email } = req.body
 
         db.collection("Orders").insertOne({
             org,
+            email,
             productName,
             fullname,
             contact,

@@ -111,8 +111,8 @@ const Admin: NextPage<myProp> = (props) => {
             label: "products"
         },
         {
-            link: ["/admin/reservations"],
-            label: "reservation"
+            link: ["/admin/orders"],
+            label: "orders"
         },
         {
             link: ["/api/logout"],
@@ -171,7 +171,7 @@ const Admin: NextPage<myProp> = (props) => {
                         <h1 className="text-orangeText font-semibold lg:text-2xl lg:ml-auto mr-10 text-md">CSSO - Admin</h1>
                     </div>
                     <div className="w-full h-full lg:p-10 p-3 px-5">
-                        {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/reservations' ? <Reservations /> : asPath === '/admin/products' ? <Products username={username} products={products} /> : null}
+                        {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/orders' ? <Reservations /> : asPath === '/admin/products' ? <Products username={username} products={products} /> : null}
 
                     </div>
                 </div>
