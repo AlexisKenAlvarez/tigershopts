@@ -75,7 +75,7 @@ const Products: FunctionComponent<Prod> = (props) => {
 
                 <div className="absolute right-0 top-0 cursor-pointer">
                     <div className="md:w-[12rem] w-[9rem] h-[3.5rem] bg-[#003C14] border-b-4 border-b-[#40C96D] flex justify-around items-center text-white select-none" onClick={() => {setDrop(current => !current)}}>
-                        <p className="font-bold">CSSO</p>
+                        <p className="font-bold uppercase">{selected}</p>
                         <IoMdArrowDropup className="text-3xl rotate-180" />
                     </div>
 

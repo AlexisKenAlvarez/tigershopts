@@ -74,6 +74,7 @@ const EditMode: FunctionComponent<myObj> = (props) => {
 
             const formImage = new FormData()
             formImage.append('file', imageInput || '')
+            formImage.append('org', org)
             formImage.append('upload_preset', 'my-uploads')
 
             if (imageInput === undefined) {
@@ -101,7 +102,7 @@ const EditMode: FunctionComponent<myObj> = (props) => {
                     setDebounce(false)
                 })
             } else {
-                const data = await fetch(`https://api.cloudinary.com/v1_1/${process.env.CLOUDINARY_NAME}/image/upload`, {
+                const data = await fetch("/api/admin/uploadImage", {
                     method: 'POST',
                     body: formImage
                 }).then((response) => {
