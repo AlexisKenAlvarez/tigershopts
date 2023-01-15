@@ -6,6 +6,7 @@ import LongButton from "../../components/LongButton";
 import FormInputForgot from '../../components/FormInputForgot'
 import { useState, useEffect } from 'react'
 import Router from 'next/router';
+import Head from 'next/head';
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -158,6 +159,10 @@ const Reset: NextPage<myProp> = ({ valid, email }) => {
 
   return (
     <>
+      <Head>
+        <title>Tigershop | Reset</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="main-bg font-inter h-screen flex justify-center items-center">
         <div className="bg-orangeBg h-screen w-full fixed top-0 z-[-2]">
           <Image src="/cvsu.png" alt="CvSU" fill></Image>

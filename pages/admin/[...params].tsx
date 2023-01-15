@@ -160,8 +160,8 @@ const Admin: NextPage<myProp> = (props) => {
     return (
         <>
             <Head>
-                <title>Admin</title>
-                <meta property="og:title" content="Admin" key="Admin" />
+                <title>Tigershop | Admin</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <div className="w-full h-screen flex overflow-hidden bg-white">
                 {sideNav}

@@ -14,6 +14,7 @@ import { GetServerSideProps, NextPage } from "next"
 import { Inputs, Values } from "../types"
 import { AnimatePresence, motion } from "framer-motion"
 import Completed from "../components/register/Completed"
+import Head from "next/head"
 
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -399,7 +400,7 @@ const Signup: NextPage<Inputs> = (props) => {
                 setDone(true)
                 setTimeout(() => {
                     setDebounce(false)
-                    
+
                 }, 1000);
 
             }
@@ -488,6 +489,10 @@ const Signup: NextPage<Inputs> = (props) => {
 
     return (
         <>
+            <Head>
+                <title>Tigershop | Signup</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <div className="main-bg font-inter h-screen flex justify-center items-center">
                 <div className="bg-orangeBg h-screen w-full fixed top-0 z-[-2]">
                     <Image src="/cvsu.png" alt="CvSU" fill></Image>
@@ -500,7 +505,7 @@ const Signup: NextPage<Inputs> = (props) => {
 
 
                     <div className="w-full">
-                        <div className="w-[80%] mx-auto max-w-[350px] font-inter pb-10" style={done ? {marginTop: "0"} : {marginTop: "1.5rem"}}>
+                        <div className="w-[80%] mx-auto max-w-[350px] font-inter pb-10" style={done ? { marginTop: "0" } : { marginTop: "1.5rem" }}>
 
 
                             <h1 className="uppercase text-2xl font-bold italic w-52 text-center mx-auto mt-6 text-greenBg text-shadow-md lg:mt-14">Hello, Tiger!</h1>
@@ -542,7 +547,7 @@ const Signup: NextPage<Inputs> = (props) => {
                         </div>
                     </div>
 
-                    <AuthSide head1="Create your account to start shopping with us!" head2={<>Already have an account? Click <b>login</b> below.</>}buttonText="login" onClick={navigateLogin} closed={closed}/>
+                    <AuthSide head1="Create your account to start shopping with us!" head2={<>Already have an account? Click <b>login</b> below.</>} buttonText="login" onClick={navigateLogin} closed={closed} />
 
 
                     <AnimatePresence>

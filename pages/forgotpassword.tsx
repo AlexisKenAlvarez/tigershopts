@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import LongButton from '../components/LongButton';
 import Link from 'next/link';
+import Head from 'next/head';
 
 const Forgotpassword = () => {
     const [email, setEmail] = useState('')
@@ -67,13 +68,13 @@ const Forgotpassword = () => {
 
     useEffect(() => {
         let data = sessionStorage.getItem("password");
-        
+
         if (data) {
             console.log("There is data");
             setSent(true)
         }
     }, [])
-    
+
 
     const backButton = (
         <div className='w-fit mx-auto'>
@@ -111,6 +112,10 @@ const Forgotpassword = () => {
 
     return (
         <>
+            <Head>
+                <title>Tigershop | Forgot Password</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <div className="main-bg font-inter h-screen flex justify-center items-center">
                 <div className="bg-orangeBg h-screen w-full fixed top-0 z-[-2]">
                     <Image src="/cvsu.png" alt="CvSU" fill></Image>

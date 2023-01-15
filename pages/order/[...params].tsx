@@ -13,6 +13,7 @@ import { TbBrandMessenger } from 'react-icons/tb'
 import { AnimatePresence } from "framer-motion";
 import Nav from "../../components/Nav/Nav";
 import OrderDone from "../../components/Products/OrderDone";
+import Head from "next/head";
 
 interface paramType {
     params: string[]
@@ -192,13 +193,20 @@ const Order: NextPage<Orders> = (props) => {
     )
 
     return (
-        <div className="w-full h-auto min-h-[100vh] bg-white flex md:h-screen relative md:pb-0" style={done ? {paddingBottom: "0"} : {paddingBottom: "12rem"}}>
-            <AnimatePresence>
-                {done ? null : <Nav status={status} key="NAV" />}
-            </AnimatePresence>
+        <>
+            <Head>
+                <title>Tigershop | Order</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <div className="w-full h-auto min-h-[100vh] bg-white flex md:h-screen relative md:pb-0" style={done ? { paddingBottom: "0" } : { paddingBottom: "12rem" }}>
+                <AnimatePresence>
+                    {done ? null : <Nav status={status} key="NAV" />}
+                </AnimatePresence>
 
-            {done ? <OrderDone username={user.fullname} product={result.name}/> : checkoutContent}
-        </div>
+                {done ? <OrderDone username={user.fullname} product={result.name} /> : checkoutContent}
+            </div>
+        </>
+
     );
 }
 

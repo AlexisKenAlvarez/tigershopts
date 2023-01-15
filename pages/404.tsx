@@ -2,11 +2,16 @@ import { NextPage } from "next"
 import Image from "next/image"
 import Link from "next/link";
 import LongButton from "../components/LongButton";
+import Head from 'next/head';
 
 
 const Custom404: NextPage = () => {
     return (
         <>
+            <Head>
+                <title>Tigershop | 404</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <div className="w-full flex justify-center items-center font-inter bg-white h-screen overflow-hidden">
                 <div className="h-[80%] w-fit flex flex-col justify-center items-center px-7">
                     <Image src="/404.webp" alt="Logo" width='260' height='50' className="w-[15rem] ml-11 mx-auto mt-16" unoptimized={true} />

@@ -150,7 +150,7 @@ export const Login: NextPage<Inputs> = (props) => {
 
             <Head>
                 <title>Tigershop | Login</title>
-                <meta property="og:title" content="My page title" key="title" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
 
             <div className="main-bg font-inter h-screen flex justify-center items-center">
@@ -164,7 +164,7 @@ export const Login: NextPage<Inputs> = (props) => {
                     <AuthNavMobile text="signup" onClick={navigateSignup} />
 
                     <AuthSide head1="Log in your account to start shopping with us!" head2={<>No account yet? Click <b>sign up</b> below.</>} buttonText="sign up" onClick={navigateSignup} closed={closed} />
-                    
+
                     <AnimatePresence>
                         {awaiting ? <LoginRetry email={values.email} /> : null}
                     </AnimatePresence>
@@ -183,7 +183,7 @@ export const Login: NextPage<Inputs> = (props) => {
                                 )
                             })}
 
-                            <Link  href="/forgotpassword">
+                            <Link href="/forgotpassword">
                                 <motion.p initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5, delay: 3 * 0.1 }} className="mt-4 ml-1 cursor-pointer mb-10">Forgot your password?</motion.p>
                             </Link>
                             <motion.div initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 100 }} transition={{ duration: 0.5, delay: 4 * 0.1 }}>
