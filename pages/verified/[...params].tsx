@@ -77,7 +77,7 @@ const Verified: NextPage<VerifyQuery> = (props) => {
         <title>Tigershop | Verified</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <div className="w-full flex justify-center items-center font-inter">
+      <div className="w-full flex justify-center items-center font-inter h-screen bg-white">
         <div className="h-auto w-fit flex flex-col justify-center items-center px-7 mt-28">
           <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto mt-16" unoptimized={true} />
 
