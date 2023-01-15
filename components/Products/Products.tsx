@@ -65,7 +65,7 @@ const Products: FunctionComponent<Prod> = (props) => {
     }
 
     return (
-        <section className="min-h-[70vh] pb-40 w-full relative bg-blend-overlay" style={{ backgroundImage: `url(${Aerial.src})` }}>
+        <section className="min-h-[70vh] pb-40 w-full relative bg-blend-overlay border-t-8 border-t-[#003C14]" style={{ backgroundImage: `url(${Aerial.src})` }}>
             <div className="min-h-[70vh] w-[85%] max-w-[1600px] mx-auto relative">
                 <div className="absolute mt-24 md:mt-10 md:text-7xl text-4xl mx-auto left-0 right-0 w-fit md:mx-0 md:ml-[8rem]">
                     <motion.h1 initial={{ x: 0, y: 0 }} animate={prodView ? { left: "-5px", bottom: "-5px" } : {}} transition={{ duration: 0.6 }} ref={prodRef} className="font-raleway font-[900] tracking-wide uppercase text-[#40C96D] z-10 absolute md:block hidden">Products</motion.h1>

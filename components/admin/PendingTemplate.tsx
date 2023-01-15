@@ -38,7 +38,6 @@ const PendingTemplate: FunctionComponent<pending> = (props) => {
                 return response.json()
             }).then((response) => {
 
-                setDebounce(false)
                 refresh()
             })
         }
@@ -59,7 +58,6 @@ const PendingTemplate: FunctionComponent<pending> = (props) => {
             }).then((response) => {
                 return response.json()
             }).then((response) => {
-                setDebounce(false)
                 refresh()
             })
         }

@@ -5,11 +5,12 @@ import { motion } from 'framer-motion'
 import Link from 'next/link';
 
 interface myProp {
-    status: boolean
+    status: boolean,
+    scrollPosition: number
 }
 
 const NavItems: FunctionComponent<myProp> = (props) => {
-    const { status } = props
+    const { status, scrollPosition } = props
     const router = useRouter()
     const handleLogout = async () => {
         fetch("/api/logout", {
@@ -39,7 +40,7 @@ const NavItems: FunctionComponent<myProp> = (props) => {
     )
 
     return (
-        <motion.ul initial={{ opacity: 0, y: -50 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 0.7 }} className="flex text-white items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative">
+        <motion.ul initial={{ opacity: 0, y: -50 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 0.7 }} className="flex text-[#464646] items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative" style={scrollPosition >= 100 ? {color: "white"} : {}}>
             {navList.map((items, i) => {
                 return (
                     <Link href={items.link} key={i} scroll={false}>
