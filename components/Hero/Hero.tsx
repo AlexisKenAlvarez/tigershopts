@@ -21,16 +21,12 @@ const Hero = () => {
                             <motion.div
                                 animate={{ x: [0, 32, 0] }}
                                 transition={{ repeat: Infinity, duration: 2 }}
-                                drag
-                                whileDrag={{}}
                                 className='h-6 w-6 bg-heroOrange rounded-full z-20'>
                             </motion.div>
 
                             <motion.div
                                 animate={{ x: [0, -32, 0] }}
                                 transition={{ repeat: Infinity, duration: 2 }}
-                                drag
-                                whileDrag={{}}
                                 className='h-6 w-6 bg-greenButton rounded-full z-20'>
                             </motion.div>
                         </div>
