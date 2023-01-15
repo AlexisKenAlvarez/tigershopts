@@ -1,10 +1,12 @@
 import { FunctionComponent } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 interface pending {
     amount: number
     contact: string
     facebook: string
-    fullname: string
+    fullName: string
     productName: string
     quantity: number
     email: string
@@ -12,13 +14,15 @@ interface pending {
 }
 
 const CompletedTemplate: FunctionComponent<pending> = (props) => {
-    const { amount, facebook, fullname, productName, quantity, email, _id, contact } = props
+    const { amount, facebook, fullName, productName, quantity, email, contact } = props
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 })
+
 
     return (
-        <div className=' bg-slate-300 flex flex-col sm:flex-row sm:justify-between' key={_id}>
+        <motion.div  initial={{ opacity: 0, scale: 0 }} animate={ inView ? { scale: 1, opacity: 100 } : {}} transition={{ duration: 0.3, delay: 0.1}}  className=' bg-emerald-50 flex flex-col sm:flex-row sm:justify-between' ref={ref}>
             <div className='flex flex-col gap-y-1 p-4 text-[15px]'>
                 <p className='font-semibold'>Email: <span className='font-normal break-words'>{email}</span></p>
-                <p className='font-semibold'>Fullname: <span className='font-normal'>{fullname}</span></p>
+                <p className='font-semibold'>Fullname: <span className='font-normal'>{fullName}</span></p>
                 <p className='font-semibold'>Product: <span className='font-normal'>{productName}</span></p>
                 <p className='font-semibold'>Contact: <span className='font-normal'>{contact}</span></p>
 
@@ -38,7 +42,7 @@ const CompletedTemplate: FunctionComponent<pending> = (props) => {
                 </a>
 
             </div>
-        </div>
+        </motion.div>
     );
 }
 
