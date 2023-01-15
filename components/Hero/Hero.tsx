@@ -15,7 +15,25 @@ const Hero = () => {
         <section className="w-full h-auto flex justify-center z-10 bg-cover bg-white">
             <div className="w-full max-w-[1700px] md:mx-[8rem] mx-[2rem] h-[100vh] flex flex-col md: md:flex-row">
                 <div className="flex items-center h-full w-full justify-center">
+
                     <div className="mt-8 md:mt-0" >
+                        <div className='flex flex-row gap-x-2 absolute mt-[-9rem] xl:mt-[-8rem] 2xl:mt-[-5rem]'>
+                            <motion.div
+                                animate={{ x: [0, 32, 0] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                drag
+                                whileDrag={{}}
+                                className='h-6 w-6 bg-heroOrange rounded-full z-20'>
+                            </motion.div>
+
+                            <motion.div
+                                animate={{ x: [0, -32, 0] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                drag
+                                whileDrag={{}}
+                                className='h-6 w-6 bg-greenButton rounded-full z-20'>
+                            </motion.div>
+                        </div>
 
                         <motion.h1 initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7 }} className={styles.welcome}>Welcome<span className="text-heroOrange font-raleway"> Tigers</span></motion.h1>
                         <motion.p initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.1 }} className={styles.subheader} >An Organized and Systemic Platform for Merchandise of Students Organizations under College of Engineering and Information Technology in Cavite State University.</motion.p>
