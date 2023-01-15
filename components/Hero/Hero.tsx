@@ -17,7 +17,7 @@ const Hero = () => {
                 <div className="flex items-center h-full w-full justify-center">
 
                     <div className="mt-8 md:mt-0" >
-                        <div className='flex flex-row gap-x-2 absolute mt-[-9rem] xl:mt-[-8rem] 2xl:mt-[-5rem]'>
+                        <div className='flex flex-row gap-x-2 mb-10'>
                             <motion.div
                                 animate={{ x: [0, 32, 0] }}
                                 transition={{ repeat: Infinity, duration: 2 }}
