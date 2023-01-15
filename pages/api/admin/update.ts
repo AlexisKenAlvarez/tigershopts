@@ -44,6 +44,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
                 }
             })
+            console.log(price);
         }
 
         res.status(200).json({ message: "success" });

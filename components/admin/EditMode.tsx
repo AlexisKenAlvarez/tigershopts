@@ -69,6 +69,7 @@ const EditMode: FunctionComponent<myObj> = (props) => {
 
     const [debounce, setDebounce] = useState(false)
     const sendData = async () => {
+        console.log(product.price)
         if (!debounce) {
             setDebounce(true)
 

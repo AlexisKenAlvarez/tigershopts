@@ -46,25 +46,25 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
 
     const handleLike = () => {
         if (email === undefined) {
-            router.push("/login", undefined, { scroll: false})
+            router.push("/login", undefined, { scroll: false })
         } else {
             setLike(current => !current)
 
-        fetch("/api/like", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email,
-                id,
-                org
-            })
+            fetch("/api/like", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    id,
+                    org
+                })
 
-        },
-        )
+            },
+            )
         }
-        
+
     }
 
     return (
@@ -73,10 +73,14 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
             <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 100 } : {}} transition={{ delay: 0.9 }} className="relative w-full h-full">
                 <img src={image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer" onClick={() => { handleOrder(id) }}></img>
                 <div className="shadow-customInset z-10 absolute w-full h-full pointer-events-none border-b-4 border-b-lightg"></div>
-                <h2 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 right-4">₱ {price}</h2>
+                <div className="w-[4.5rem] pointer-events-none absolute top-4 z-10 right-0 bg-orange-500 h-[2rem] flex items-center justify-center">
+                    <h2 className="text-white font-bold font-poppins text-xl uppercase ">₱ {price}</h2>
+                </div>
+
+
                 <h2 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 left-4 translate-x-[-120%] peer-hover:translate-x-[0] transition-all ease-in-out duration-300">Click to order</h2>
                 <div className="p-4 absolute peer-hover:opacity-0 z-30 transition-all ease-in-out duration-300" onClick={handleLike}>
-                    {doesLike ? <BsStarFill className="text-2xl absolute top-0 left-0 text-white m-3" /> : <BsStar className="text-2xl absolute top-0 left-0 text-white m-3" />}
+                    {doesLike ? <BsStarFill className="text-2xl absolute top-0 left-0 text-heroOrange m-3" /> : <BsStar className="text-2xl absolute top-0 left-0 text-orange-300 m-3" />}
 
                 </div>
 
