@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useState, useEffect } from "react";
 import LongButton from "../LongButton";
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const NewProduct = ({ username }: { username: string }) => {
     console.log(username)
@@ -138,7 +139,7 @@ const NewProduct = ({ username }: { username: string }) => {
 
                     <div className="w-[14rem] h-[12rem] mt-10 mx-auto border-2">
                         {image === undefined ? null :
-                            <img src={image} alt="User upload" className="object-cover h-full w-full"></img>
+                            <Image src={image} alt="User upload" className="object-cover h-full w-full" width="200" height="200"></Image>
                         }
                     </div>
                 </div>

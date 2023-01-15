@@ -34,7 +34,7 @@ const CompletedTemplate: FunctionComponent<pending> = (props) => {
                         {quantity}
                     </span></p>
 
-                <a target="_blank" href={facebook} className='font-semibold break-words'>
+                <a target="_blank" href={facebook} rel="noreferrer" className='font-semibold break-words'>
                     Facebook:&nbsp;
                     <span className='font-normal'>
                         {facebook}
