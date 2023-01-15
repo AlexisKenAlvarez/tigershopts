@@ -89,6 +89,7 @@ const EditMode: FunctionComponent<myObj> = (props) => {
                         desc: product.desc,
                         stock: product.stock,
                         oldId: product.public_id,
+                        price: product.price,
                         org,
                         imageChanged: false
                     })

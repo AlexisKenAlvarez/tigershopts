@@ -99,7 +99,7 @@ export const Home: NextPage<Status> = (props) => {
 			<AnimatePresence>
 				<Nav status={status} key="NAV" />
 				<Hero key="HERO" />
-				<Coming key="COMING" />
+				{/* <Coming key="COMING" /> */}
 				<Products email={email} key="PRODUCTS"/>
 			</AnimatePresence>
 

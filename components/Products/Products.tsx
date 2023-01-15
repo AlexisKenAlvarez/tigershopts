@@ -62,13 +62,12 @@ const Products: FunctionComponent<Prod> = (props) => {
                 delay: 0.3
             }
         },
-
     }
 
     return (
         <section className="min-h-[70vh] pb-40 w-full relative bg-blend-overlay" style={{ backgroundImage: `url(${Aerial.src})` }}>
             <div className="min-h-[70vh] w-[85%] max-w-[1600px] mx-auto relative">
-                <div className="absolute md:mt-[-2.5rem] mt-[-4.5rem] md:text-7xl text-4xl mx-auto left-0 right-0 w-fit md:mx-0">
+                <div className="absolute mt-24 md:mt-10 md:text-7xl text-4xl mx-auto left-0 right-0 w-fit md:mx-0">
                     <motion.h1 initial={{ x: 0, y: 0 }} animate={prodView ? { left: "-5px", bottom: "-5px" } : {}} transition={{ duration: 0.6 }} ref={prodRef} className="font-raleway font-[900] tracking-wide uppercase text-[#40C96D] z-10 absolute md:block hidden">Products</motion.h1>
                     <h1 className="font-raleway font-[900] tracking-wide uppercase text-white relative z-10">Products</h1>
                 </div>
@@ -93,7 +92,7 @@ const Products: FunctionComponent<Prod> = (props) => {
                 </div>
 
                 <div className="w-full h-fit overflow-hidden" id="products">
-                    <div className="mt-40 lg:w-fit mx-auto w-fit gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
+                    <div className="mt-[12rem] lg:w-fit mx-auto w-fit gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
                         {products?.map((items, i) => {
                             return (
                                 <ProductTemplate id={items.id} image={items.image} price={items.price} name={items.name} stock={items.stock} desc={items.desc} handleOrder={handleOrder} likes={items.likes} key={i} email={email} org={selected}/>
