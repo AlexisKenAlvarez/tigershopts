@@ -178,7 +178,7 @@ const Admin: NextPage<myProp> = (props) => {
                         <h1 className="text-orangeText font-semibold lg:text-2xl lg:ml-auto mr-10 text-md"><span className="uppercase">{username}</span> - Admin</h1>
                     </div>
                     <div className="w-full h-full lg:p-10 p-3 px-5">
-                        {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/orders' ? <Reservations /> : asPath === '/admin/products' ? <Products username={username} products={products} /> : null}
+                        {asPath === '/admin/products/new' ? <NewProduct username={username} /> : asPath === '/admin/orders' ? <Reservations username={username}/> : asPath === '/admin/products' ? <Products username={username} products={products} /> : null}
 
                     </div>
                 </div>

@@ -21,7 +21,7 @@ interface productProp {
 
 const ProductTemplate: FunctionComponent<productProp> = (props) => {
     const { id, image, price, name, stock, desc, handleOrder, likes, email, org } = props
-    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.5 })
+    const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 })
     const [doesLike, setLike] = useState<boolean>()
     const router = useRouter()
 
