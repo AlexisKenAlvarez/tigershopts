@@ -55,7 +55,7 @@ const Nav: FunctionComponent<myProp> = (props) => {
                     <GiHamburgerMenu className="text-4xl text-[#464646] md:hidden block mr-8" onClick={toggleNav} style={scrollPosition >= 100 ? {color: "white"} : {}}/>
 
                 </motion.div>
-                <div className='w-full h-full bg-black absolute z-[-1] drop-shadow-xl transition-all ease-in-out duration-300' style={asPath.includes("/order") ? { opacity: "70%" } : scrollPosition >= 100 ? { opacity: "70%" } : { opacity: "0" }}></div>
+                <div className='w-full h-full bg-[#023112] absolute z-[-1] drop-shadow-xl transition-all ease-in-out duration-300' style={asPath.includes("/order") ? { opacity: "70%" } : scrollPosition >= 100 ? { opacity: "90%" } : { opacity: "0" }}></div>
                 <AnimatePresence>
                     {nav ? <MobileNavItems status={status} toggleNav={toggleNav} /> : null}
                 </AnimatePresence>
