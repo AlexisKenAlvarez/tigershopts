@@ -7,16 +7,7 @@ import { MdEdit } from 'react-icons/md'
 import { RiArrowDownSFill } from 'react-icons/ri'
 import DeleteComponent from '../../components/admin/DeleteComponent'
 import EditMode from './EditMode';
-import { orderType } from '../../types';
-
-interface prod {
-    name: string,
-    image: string,
-    stock: string,
-    desc: string,
-    id: string,
-    price: string
-}
+import { prod } from '../../types';
 
 
 const Products = ({ username, products }: { username: string, products: prod[] }) => {
@@ -101,7 +92,7 @@ const Products = ({ username, products }: { username: string, products: prod[] }
 
                             <div className=' h-[7rem] text-clip'>
                                 <div className='w-full h-[2.5rem] flex items-center border-t-[1.5px] border-t-black justify-between'>
-                                    <p className='ml-3 text-greenBg font-semibold font-'>0 Favorites</p>
+                                    <p className='ml-3 text-greenBg font-semibold font-'>{items.likes.length} Favorites</p>
                                     <div className='flex items-center gap-x-2 mr-3'>
                                         <FaTrashAlt className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleToDelete(items.name, items.image, items.id) }} />
                                         <MdEdit className='cursor-pointer hover:text-greenBg transition-all ease-in-out duration-[0.2s]' onClick={() => { handleEdit(items.image, items.name, items.desc, items.stock, items.id, items.price) }} />

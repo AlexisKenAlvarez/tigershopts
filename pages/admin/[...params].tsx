@@ -13,15 +13,8 @@ import Reservations from "../../components/admin/Reservations";
 import Head from 'next/head';
 const prisma = new PrismaClient()
 import clientPromise from "../../lib/mongodb";
+import { prod } from "../../types";
 
-interface prod {
-    name: string,
-    image: string,
-    stock: string,
-    desc: string,
-    id: string,
-    price: string,
-}
 
 interface myProp {
     url: string

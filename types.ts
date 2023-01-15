@@ -117,3 +117,13 @@ export interface Orders {
     status: boolean,
     org: string
 }
+
+export interface prod {
+    name: string,
+    image: string,
+    stock: string,
+    desc: string,
+    id: string,
+    price: string,
+    likes: string[]
+}
