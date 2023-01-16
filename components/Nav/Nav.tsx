@@ -15,6 +15,8 @@ const Nav: FunctionComponent<myProp> = (props) => {
     const { status } = props
     const [nav, setNav] = useState(false)
     const { asPath } = useRouter()
+    const validPath = ['/', '/#products', '/order']
+
 
     const toggleNav = () => {
         console.log("hi");
@@ -44,7 +46,7 @@ const Nav: FunctionComponent<myProp> = (props) => {
                     <Link href="/">
                         <div className="flex items-center cursor-pointer md:ml-14 lg:ml-10 ml-8">
                             <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-10 mx-auto" unoptimized={true}></Image>
-                            <h1 className="ml-2 text-[#464646] uppercase font-bold font-poppins text-lg"  style={scrollPosition >= 100 ? {color: "white"} : {}}>Tigershop</h1>
+                            <h1 className="ml-2 text-white md:text-[#464646] uppercase font-bold font-poppins text-lg"  style={validPath.includes(asPath) ? scrollPosition >= 100 ? { color: "white" } : {} : {color: "white"}}>Tigershop</h1>
                         </div>
                     </Link>
 
@@ -52,7 +54,7 @@ const Nav: FunctionComponent<myProp> = (props) => {
                         <NavItems status={status} scrollPosition={scrollPosition}/>
                     </div>
 
-                    <GiHamburgerMenu className="text-4xl text-[#464646] md:hidden block mr-8" onClick={toggleNav} style={scrollPosition >= 100 ? {color: "white"} : {}}/>
+                    <GiHamburgerMenu className="text-4xl text-[#464646] md:hidden block mr-8" onClick={toggleNav} style={validPath.includes(asPath) ? {color: "white"} : scrollPosition >= 100 ? { color: "white" } : {}}/>
 
                 </motion.div>
                 <div className='w-full h-full bg-[#1b5a31] absolute z-[-1] drop-shadow-xl transition-all ease-in-out duration-300' style={asPath.includes("/order") ? { opacity: "70%" } : scrollPosition >= 100 ? { opacity: "90%" } : { opacity: "0" }}></div>
