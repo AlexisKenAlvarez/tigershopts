@@ -16,8 +16,8 @@ const Hero = () => {
             <div className="w-full max-w-[1700px] md:mx-[8rem] mx-[2rem] h-[100vh] flex flex-col md: md:flex-row">
                 <div className="flex items-center h-full w-full justify-center">
 
-                    <div className="mt-8 md:mt-0" >
-                        <div className='flex flex-row gap-x-2 mb-10'>
+                    <motion.div initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7 }} className="mt-8 md:mt-0" >
+                        <div className='hidden flex-row gap-x-2 mb-10 md:flex'>
                             <motion.div
                                 animate={{ x: [0, 32, 0] }}
                                 transition={{ repeat: Infinity, duration: 2 }}
@@ -44,7 +44,7 @@ const Hero = () => {
                             </motion.div >
                         </Link>
 
-                    </div>
+                    </motion.div>
                 </div>
 
 
