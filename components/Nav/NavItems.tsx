@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { navList } from '../../utils/List';
 import { motion } from 'framer-motion'
 import Link from 'next/link';
@@ -12,6 +12,7 @@ interface myProp {
 const NavItems: FunctionComponent<myProp> = (props) => {
     const { status, scrollPosition } = props
     const router = useRouter()
+    const { asPath } = useRouter()
     const handleLogout = async () => {
         fetch("/api/logout", {
             method: "post",
@@ -23,7 +24,7 @@ const NavItems: FunctionComponent<myProp> = (props) => {
             router.push("/login")
         })
     }
-
+    
     const logout = (
         <li className="group cursor-pointer select-none relative" onClick={handleLogout}>Logout
             <div className="transition-all ease-in-out w-0 group-hover:w-5 h-[4px] bg-white absolute mx-auto left-0 right-0 rounded-full bottom-[-6px]"></div>
@@ -40,7 +41,7 @@ const NavItems: FunctionComponent<myProp> = (props) => {
     )
 
     return (
-        <motion.ul initial={{ opacity: 0, y: -50 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 0.7 }} className="flex text-[#464646] items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative" style={scrollPosition >= 100 ? {color: "white"} : {}}>
+        <motion.ul initial={{ opacity: 0, y: -50 }} animate={{ opacity: 100, y: 0 }} transition={{ duration: 0.7 }} className="flex text-[#464646] items-center h-full gap-x-14 font-poppins font-medium select-none z-50 relative" style={asPath === '/' ? {color: "white"} : scrollPosition >= 100 ? { color: "white" } : {}}>
             {navList.map((items, i) => {
                 return (
                     <Link href={items.link} key={i} scroll={false}>
