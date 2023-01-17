@@ -92,7 +92,7 @@ const Products: FunctionComponent<Prod> = (props) => {
                 </div>
 
                 <div className="w-full h-fit overflow-hidden" id="products">
-                    <div className="mt-[12rem] lg:w-fit mx-auto w-fit gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
+                    <div className="mt-[12rem] lg:w-fit mx-auto md:w-fit  gap-y-10 grid lg:grid-cols-2 justify-center items-center gap-x-10 2xl:grid-cols-3">
                         {products?.map((items, i) => {
                             return (
                                 <ProductTemplate id={items.id} image={items.image} price={items.price} name={items.name} stock={items.stock} desc={items.desc} handleOrder={handleOrder} likes={items.likes} key={i} email={email} org={selected}/>

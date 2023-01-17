@@ -68,17 +68,17 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
     }
 
     return (
-        <div className="w-[20rem] h-[15rem] relative overflow-hidden cursor-pointer box-border" ref={ref}>
+        <div className="w-[17rem] md:w-[20rem] h-[15rem] relative overflow-hidden cursor-pointer box-border" ref={ref}>
 
             <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 100 } : {}} transition={{ delay: 0.9 }} className="relative w-full h-full">
                 <img src={image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer" onClick={() => { handleOrder(id) }}></img>
                 <div className="shadow-customInset z-10 absolute w-full h-full pointer-events-none border-b-4 border-b-lightg"></div>
-                <div className="w-[4.5rem] pointer-events-none absolute top-4 z-10 right-0 bg-orange-500 h-[2rem] flex items-center justify-center">
+                <div className="w-[4.5rem] pointer-events-none absolute top-4 z-10 right-0 bg-orange-500 h-[2rem] flex items-center justify-center left-0 md:left-auto mx-auto">
                     <h2 className="text-white font-bold font-poppins text-xl uppercase ">₱ {price}</h2>
                 </div>
 
 
-                <h2 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 left-4 translate-x-[-120%] peer-hover:translate-x-[0] transition-all ease-in-out duration-300">Click to order</h2>
+                <h2 className="text-white font-bold font-poppins md:text-xl text-md uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 left-4 translate-x-[-120%] peer-hover:translate-x-[0] transition-all ease-in-out duration-300">Click to order</h2>
                 <div className="p-4 absolute peer-hover:opacity-0 z-30 transition-all ease-in-out duration-300" onClick={handleLike}>
                     {doesLike ? <BsStarFill className="text-2xl absolute top-0 left-0 text-heroOrange m-3" /> : <BsStar className="text-2xl absolute top-0 left-0 text-orange-300 m-3" />}
 
@@ -86,7 +86,7 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
 
 
                 <div className="absolute flex justify-between w-[90%] items-center mx-auto left-0 right-0 bottom-3 z-10 pointer-events-none peer-hover:translate-y-[-5rem] transition-all ease-in-out duration-300">
-                    <h1 className="text-white font-bold font-poppins text-xl uppercase max-w-[12rem] overflow-hidden">{name}</h1>
+                    <h1 className="text-white font-bold font-poppins md:text-xl uppercase max-w-[12rem] overflow-hidden text-md">{name}</h1>
                     <h3 className="text-[#BDBDBD] font-bold font-poppins text-xs self-end" >Stocks: {stock}</h3>
                     <div className='absolute line-clamp-3 text-white z-10 bottom-[-4.8rem] h-[4.3rem]'>
                         <p>
