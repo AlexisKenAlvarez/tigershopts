@@ -12,12 +12,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { name, desc, stock, newId, newImage, imageChanged, price } = req.body
 
     try {
-        await cloudinary.uploader.destroy(oldId)
 
         const client = await clientPromise;
         const db = client.db("?retryWrites=true&w=majority");
 
         if (imageChanged) {
+            await cloudinary.uploader.destroy(oldId)
+
             db.collection("Products").updateOne({
                 org: org,
                 "products.id": oldId
