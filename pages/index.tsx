@@ -94,12 +94,12 @@ export const Home: NextPage<Status> = (props) => {
 		<>
 			<Head>
 				<title>Tigershop</title>
-				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
+				{/* <meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" /> */}
 			</Head>
 
 			<AnimatePresence>
 				<Nav status={status} key="NAV" />
-				{/* <Hero key="HERO" /> */}
+				<Hero key="HERO" />
 				{/* <Coming key="COMING" /> */}
 				<Products email={email} key="PRODUCTS"/>
 				<Footer/>
