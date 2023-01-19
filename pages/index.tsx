@@ -92,18 +92,17 @@ export const Home: NextPage<Status> = (props) => {
 
 	return (
 		<>
-			<Head>
+			{/* <Head>
 				<title>Tigershop</title>
-				{/* <meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" /> */}
+				<meta name="viewport" content="initial-scale=1.0, width=device-width" key="hero" />
 			</Head>
 
 			<AnimatePresence>
 				<Nav status={status} key="NAV" />
 				<Hero key="HERO" />
-				{/* <Coming key="COMING" /> */}
-				<Products email={email} key="PRODUCTS"/>
-				<Footer/>
-			</AnimatePresence>
+				<Products email={email} key="PRODUCTS" />
+				<Footer />
+			</AnimatePresence> */}
 
 		</>
 	)
@@ -111,3 +110,4 @@ export const Home: NextPage<Status> = (props) => {
 
 export default Home
 
+{/* <Coming key="COMING" /> */ }
