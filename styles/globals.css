@@ -13,6 +13,7 @@
 html,
 body {
   scroll-behavior: smooth;
+  position: fixed;
 }
 
 
