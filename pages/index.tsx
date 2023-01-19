@@ -99,10 +99,10 @@ export const Home: NextPage<Status> = (props) => {
 
 			<AnimatePresence>
 				<Nav status={status} key="NAV" />
-				<Hero key="HERO" />
+				{/* <Hero key="HERO" /> */}
 				{/* <Coming key="COMING" /> */}
 				<Products email={email} key="PRODUCTS"/>
-				{/* <Footer/> */}
+				<Footer/>
 			</AnimatePresence>
 
 		</>
