@@ -10,7 +10,7 @@ import NProgress from "nprogress"
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const [active, setActive] = useState(true)
-  const [scroll, setScroll] = useState(false)
+  const [scroll, setScroll] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,15 +44,15 @@ export default function App({ Component, pageProps }: AppProps) {
       <Head>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" integrity="sha512-42kB9yDlYiCEfx2xVwq0q7hT4uf26FUgSIZBK8uiaEnTdShXjwr8Ip1V4xGJMg3mHkUt9nNuTDxunHF0/EgxLQ==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </Head>
-      <div className={`${scroll ? 'overflow-auto w-full bg-greenBg' : 'overflow-hidden bg-greenBg'}`} >
+      <div className={`${scroll ? 'overflow-auto  w-full h-auto bg-greenBg' : 'overflow-hidden h-screen bg-greenBg'}`} >
 
         <AnimatePresence mode="wait">
 
-          <motion.div className="overflow-x-hidden bg-topog dark:bg-black h-[100vh]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} key={router.route}>
+          <motion.div className="overflow-x-hidden w-full h-auto bg-topog dark:bg-black min-h-[100vh]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} key={router.route}>
 
-            {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component" />}
+            {/* {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component" />} */}
 
-            {/* <Component {...pageProps} key="component" /> */}
+            <Component {...pageProps} key="component" />
           </motion.div>
         </AnimatePresence>
       </div>
