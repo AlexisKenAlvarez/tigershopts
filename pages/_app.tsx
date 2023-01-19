@@ -10,7 +10,7 @@ import NProgress from "nprogress"
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   const [active, setActive] = useState(true)
-  const [scroll, setScroll] = useState(false)
+  const [scroll, setScroll] = useState(true)
 
   useEffect(() => {
     setTimeout(() => {
@@ -50,9 +50,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
           <motion.div className="overflow-x-hidden w-full h-auto bg-topog dark:bg-black min-h-[100vh]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.5 }} key={router.route}>
 
-            {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component" />}
+            {/* {active ? <Loader key="LOADER" /> : <Component {...pageProps} key="component" />} */}
 
-
+            <Component {...pageProps} key="component" />
           </motion.div>
         </AnimatePresence>
       </div>

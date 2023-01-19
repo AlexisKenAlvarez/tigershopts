@@ -63,7 +63,7 @@ module.exports = {
       boxShadow: {
         customBorder: '10px 10px 0px 0px rgba(0,120,41,1)',
         customInset: '0px -120px 101px 0px rgba(0,0,0,0.75) inset',
-        imageInset: '0px 61px 204px -11px rgba(0,0,0,0.75) inset'
+        imageInset: '0px 61px 204 px -11px rgba(0,0,0,0.75) inset'
       },
 
       backgroundImage: {

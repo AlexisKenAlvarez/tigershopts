@@ -13,6 +13,7 @@ import Hero from "../components/Hero/Hero";
 import Coming from "../components/Coming/Coming";
 import Products from "../components/Products/Products";
 import clientPromise from "../lib/mongodb";
+import Footer from "../components/Footer/Footer";
 
 interface decode {
 	exp: number,
@@ -101,6 +102,7 @@ export const Home: NextPage<Status> = (props) => {
 				<Hero key="HERO" />
 				{/* <Coming key="COMING" /> */}
 				<Products email={email} key="PRODUCTS"/>
+				<Footer/>
 			</AnimatePresence>
 
 		</>
