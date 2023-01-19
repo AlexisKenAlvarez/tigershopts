@@ -4,17 +4,24 @@ import Image from 'next/image';
 import { orgs } from '../../utils/List';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
 
 const Footer = () => {
 
-    const [ ref, view ] = useInView({ triggerOnce: true })
+    const [ref, view] = useInView({ triggerOnce: true })
+    const isBrowser = () => typeof window !== 'undefined'; //The approach recommended by Next.js
+
+    function scrollToTop() {
+        if (!isBrowser()) return;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     return (
         <section>
             <div className="w-full h-auto bg-white relative flex flex-col">
                 <div className="w-full h-[21.5rem] md:h-[25rem] border-2 flex flex-col text-center items-center font-poppins px-7 text-[#3F3F3F]">
-                    <motion.p initial={{opacity: 0, y: 20}} whileInView={{opacity: 100, y:0}} transition={{duration: 0.6}}  className="mt-14">Organizations under</motion.p>
-                    <motion.h1  initial={{opacity: 0, y: 20}} whileInView={{opacity: 100, y:0}} transition={{duration: 0.6, delay: 0.3}} className="text-[1.5rem] md:text-[2rem] mt-3 font-semibold  max-w-[40rem] md:mt-0 min-w-[20rem]">College of Engineering and Information Technology</motion.h1>
+                    <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 100, y: 0 }} transition={{ duration: 0.6 }} className="mt-14">Organizations under</motion.p>
+                    <motion.h1 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 100, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-[1.5rem] md:text-[2rem] mt-3 font-semibold  max-w-[40rem] md:mt-0 min-w-[20rem]">College of Engineering and Information Technology</motion.h1>
                 </div>
                 <div className="w-full h-[19rem] bg-[#1B783A]" ref={ref}>
                     <div className='w-[90%] h-[14rem] translate-y-[-40%] justify-start flex items-center mx-auto'>
@@ -54,7 +61,7 @@ const Footer = () => {
                                 return (
                                     <SwiperSlide key={items.label}>
                                         <a target="_blank" href={items.link} rel="noreferrer">
-                                            <motion.div className='w-[10rem] sm:w-[11rem] h-[14.5rem] bg-greenButton rounded-lg overflow-hidden select-none cursor-pointer' initial={{opacity: 0, scale: 0}} animate={ view ? {opacity: 100, scale: 1} : {}} transition={{duration: 0.7, delay: i * 0.05}}>
+                                            <motion.div className='w-[10rem] sm:w-[11rem] h-[14.5rem] bg-greenButton rounded-lg overflow-hidden select-none cursor-pointer' initial={{ opacity: 0, scale: 0 }} animate={view ? { opacity: 100, scale: 1 } : {}} transition={{ duration: 0.7, delay: i * 0.05 }}>
                                                 <div className='w-[60%] mx-auto h-[110px] mt-5'>
                                                     <Image alt={items.label} src={`/footer/${items.label}.webp`} width="150" height="150"></Image>
                                                 </div>
@@ -72,11 +79,13 @@ const Footer = () => {
 
                         </Swiper>
                     </div>
-                    
+
                     <ul className='w-fit text-white mx-auto flex gap-x-9 font-raleway font-semibold mt-[-2rem]'>
                         <li className='cursor-pointer'>About</li>
-                        <li className='cursor-pointer'>Products</li>
-                        <li className='cursor-pointer'>Top</li>
+                        <Link href="/#products"  scroll={false}>
+                            <li className='cursor-pointer'>Products</li>
+                        </Link>
+                        <li className='cursor-pointer' onClick={scrollToTop}>Top</li>
                     </ul>
                     <div className='w-full h-[2px] bg-white opacity-30 mt-3'></div>
 

@@ -88,8 +88,8 @@ const Products: FunctionComponent<Prod> = (props) => {
     }
 
     return (
-        <section className="min-h-[70vh] pb-40 w-full relative bg-blend-overlay117031 bg-no-repeat bg-cover border-t-8 border-t-[#0f7a33]" style={{ backgroundImage: `url(${Aerial.src})` }}>
-            <div className='w-full h-[20rem] lg:h-[23rem] bg-[#117031] flex items-center justify-center relative border-b-8 border-b-[#0f7a33]'>
+        <section className="min-h-[70vh] pb-40 w-full relative bg-blend-overlay117031 bg-no-repeat bg-cover border-t-8 border-t-[#0f7a33] overflow-hidden" style={{ backgroundImage: `url(${Aerial.src})` }}>
+            <div className='w-full h-[20rem] lg:h-[23rem] bg-[#117031] flex items-center justify-center relative border-b-8 border-b-[#0f7a33] overflow-hidden'>
                 <motion.h2 variants={variants} initial="initial1" animate={prodView1 ? "animate1" : ""} className='absolute left-[-8.5rem] top-4 text-6xl font-raleway font-black text-white opacity-20 md:text-8xl 2xl:text-[120px]'>PRODUCTS</motion.h2>
                 <motion.h2 variants={variants} initial="initial2" animate={prodView1 ? "animate2" : ""} className='absolute right-[-8.5rem] bottom-4 text-6xl font-raleway font-black text-white opacity-20 md:text-8xl  2xl:text-[120px]'>PRODUCTS</motion.h2>
                 <div className='w-fit h-fit text-center font-raleway relative'>
