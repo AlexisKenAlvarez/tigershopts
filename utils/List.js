@@ -8,6 +8,9 @@ export const stockRadio = [
     {
         value: "No stock"
     },
+    {
+        value: "Pre-order"
+    }
     
 ]
 

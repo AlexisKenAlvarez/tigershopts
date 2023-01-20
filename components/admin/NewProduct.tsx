@@ -165,7 +165,7 @@ const NewProduct = ({ username }: { username: string }) => {
 
                     <div className="w-full mt-10">
                         <h2>Stocks count</h2>
-                        <div className="flex w-full justify-between mt-4">
+                        <div className="flex w-full justify-between mt-4 flex-col gap-y-2">
                             {stockRadio.map((val, i) => {
                                 return (
                                     <div key={i} className="flex items-center gap-x-1">
