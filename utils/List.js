@@ -16,8 +16,8 @@ export const stockRadio = [
 
 export const navList = [
     {
-        label: "Home",
-        link: "/"
+        label: "About",
+        link: "/about"
     }   
     , 
     {

@@ -1,14 +1,23 @@
 import Image from "next/image"
+import Link from 'next/link';
+import {useRouter} from 'next/router';
 
 const AuthSide = (props) => {
-
+    const router = useRouter()
     const { closed, head1, head2, buttonText, onClick } = props
+    const handleHome = () => {
+
+        router.push("/")
+    }
     return (
         <div className="bg-greenBg h-full w-[65%] hidden lg:block rounded-3xl relative z-1">
+
             <Image src="/bgtiger.png" fill alt="BackgroundImage " sizes="(min-width: 20em) 33vw,(min-width: 44em) 100vw" priority={true} className="pointer-events-none" />
 
-            {closed ? <Image src="/closed.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto mt-16" unoptimized={true}/> : <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto mt-16" unoptimized={true}/>}
-            
+
+                <div className="w-fit h-fit mt-16 mx-auto cursor-pointer" onClick={handleHome}>
+                    {closed ? <Image src="/closed.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto" unoptimized={true} /> : <Image src="/logo.webp" alt="Logo" width='200' height='20' className="w-24 mx-auto" unoptimized={true} />}
+                </div>
 
             <h1 className="text-center text-orangeText font-bold text-2xl mt-8 text-shadow-xl">TIGER&apos;S SHOP</h1>
             <h2 className="text-center w-[70%] mx-auto text-xs mt-1 text-white font-bold tracking-wider">

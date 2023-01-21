@@ -59,7 +59,7 @@ const Hero = () => {
                             </motion.div>
                         </div>
 
-                        <motion.h1 initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1 }} className="text-white md:text-[#464646] w-full xl:text-6xl font-[800] uppercase font-raleway md:text-5xl md:w-[20rem] text-center md:text-left 2xl:text-8xl leading-20 mt-28 md:mt-0 text-5xl">Welcome<span className="text-heroOrange font-raleway"> Tigers</span></motion.h1>
+                        <motion.h1 initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1 }} className="text-white md:text-[#073F1A] w-full xl:text-6xl font-[800] uppercase font-raleway md:text-5xl md:w-[20rem] text-center md:text-left 2xl:text-8xl leading-20 mt-28 md:mt-0 text-5xl">Welcome<span className="text-heroOrange font-raleway"> Tigers</span></motion.h1>
                         <motion.p initial={{ x: -300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1, delay: 0.1 }} className="max-w-[23rem] font-poppins text-white md:text-[#464646] mt-7 md:ml-2 text-sm lg:text-md md:text-left text-center 2xl:text-lg 2xl:max-w-[28rem] mx-auto" >An Organized and Systemic Platform for Merchandise of Students Organizations under College of Engineering and Information Technology in Cavite State University.</motion.p>
 
                         <Link href="#products" scroll={false}>

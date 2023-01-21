@@ -81,8 +81,10 @@ const Footer = () => {
                     </div>
 
                     <ul className='w-fit text-white mx-auto flex gap-x-9 font-raleway font-semibold mt-[-2rem]'>
-                        <li className='cursor-pointer'>About</li>
-                        <Link href="/#products"  scroll={false}>
+                        <Link href="/about" scroll={false}>
+                            <li className='cursor-pointer'>About</li>
+                        </Link>
+                        <Link href="/#products" scroll={false}>
                             <li className='cursor-pointer'>Products</li>
                         </Link>
                         <li className='cursor-pointer' onClick={scrollToTop}>Top</li>
