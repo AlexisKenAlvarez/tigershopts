@@ -126,14 +126,14 @@ const About: NextPage<myProp> = (props) => {
             <div className="w-full max-w-[1700px] xl:mx-0 md:mx-[0rem] h-[100vh] flex md:flex-row border-2 flex-col">
 
                 <div className="h-full w-full z-10 px-10 relative">
-                    <div className="w-fit h-fit mx-auto relative">
+                    <motion.div initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7}} className="w-fit h-fit mx-auto relative">
                         <h1 className="mt-[10rem] text-center text-[#023815] text-4xl font-black font-raleway md:mt-[8rem] lg:text-5xl xl:text-7xl">About us</h1>
                         <Image alt="underline" src="/about/underline.svg" width="200" height="200" className="w-[9rem] mx-auto lg:w-[10rem] xl:w-[15rem]"></Image>
-                    </div>
+                    </motion.div>
                     <div className="max-w-[28rem] mx-auto text-center text-[#272727] text-sm md:text-md lg:text-lg lg:max-w-[33rem] xl:max-w-[36rem] xl:text-xl">
-                        <p className="mt-7 lg:mt-12"><span className="text-[#F6AB00] font-semibold">Tiger's Shop</span> aims to act as a connector between student organizations and those looking to buy their goods. </p>
-                        <p className="mt-10 lg:mt-14"><span className="text-[#F6AB00] font-semibold">Tiger's Shop’s</span> objective is to create an online selling platform for student organizations affiliated with the College of Engineering and Information Technology (CEIT). </p>
-                        <p className="mt-10 lg:mt-14">All currently available merchandise will be compiled per organization, along with their descriptions.</p>
+                        <motion.p initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.1}} className="mt-7 lg:mt-12"><span className="text-[#F6AB00] font-semibold">Tiger's Shop</span> aims to act as a connector between student organizations and those looking to buy their goods. </motion.p>
+                        <motion.p initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.2}} className="mt-10 lg:mt-14"><span className="text-[#F6AB00] font-semibold">Tiger's Shop’s</span> objective is to create an online selling platform for student organizations affiliated with the College of Engineering and Information Technology (CEIT). </motion.p>
+                        <motion.p initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.3}} className="mt-10 lg:mt-14">All currently available merchandise will be compiled per organization, along with their descriptions.</motion.p>
                     </div>
 
                     <motion.div initial={{ y: 0 }} animate={{ y: [5, -5, 5] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-fit mx-auto flex items-center justify-center absolute left-0 right-0 bottom-12">
