@@ -17,9 +17,7 @@ const Nav: FunctionComponent<myProp> = (props) => {
     const { asPath } = useRouter()
     const validPath = ['/', '/#products', '/order', '/about']
 
-
     const toggleNav = () => {
-        console.log("hi");
         setNav((current) => !current)
     }
 

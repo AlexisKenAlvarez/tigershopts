@@ -1,3 +1,5 @@
+import { stringify } from "querystring"
+
 export const stockRadio = [
     {
         value: "Many"
@@ -97,4 +99,32 @@ export const orgs = [
         label: "class",
         word: "CVSU League of Automotive Superb Studies"
     },
+]
+
+export const members = [
+    {
+        image: '/about/Aki.webp',
+        name: 'Alexis Ken Alvarez',
+        pos: 'Software Developer',
+        facebook: 'https://www.facebook.com/alvarez.aki/',
+        github: 'https://github.com/AlexisKenAlvarez',
+        instagram: 'https://www.instagram.com/alexiskenalvarez/'
+    },
+    {
+        image: '/about/Karylle.webp',
+        name: 'Karylle Lozada',
+        pos: 'UI/UX Designer',
+        facebook: 'https://www.facebook.com/kryll.lzd',
+        github: '',
+        instagram: 'https://www.instagram.com/kryllzd/'
+    },
+    {
+        image: '/about/Alyanna.webp',
+        name: 'Alyanna Nicolas',
+        pos: 'Project Manager',
+        facebook: 'https://www.facebook.com/alyanna.nicolas17?mibextid=ZbWKwL',
+        github: '',
+        instagram: 'https://www.instagram.com/yanna_ncls/?igshid=ZDdkNTZiNTM%3D'
+    },
+    
 ]

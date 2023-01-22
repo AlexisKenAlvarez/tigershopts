@@ -7,6 +7,12 @@ import jwt_decode from "jwt-decode";
 import Head from 'next/head';
 import clientPromise from "../lib/mongodb";
 import { FaLongArrowAltDown } from 'react-icons/fa'
+import Footer from "../components/Footer/Footer";
+import { useInView } from 'react-intersection-observer';
+import { members } from "../utils/List";
+import ProfileTemplate from "../components/About/ProfileTemplate";
+import { use } from "react";
+
 
 interface decode {
     exp: number,
@@ -77,6 +83,35 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 const About: NextPage<myProp> = (props) => {
     const { status } = props
+    const [prodRef1, prodView1] = useInView({ triggerOnce: true, threshold: 0.5 })
+
+
+    const variants = {
+        initial1: {
+            translateX: "-40%"
+        },
+
+        initial2: {
+            translateX: "40%"
+        },
+
+        animate1: {
+            translateX: "0%",
+            transition: {
+                duration: 0.6,
+                delay: 0.3
+            }
+        },
+
+        animate2: {
+            translateX: "0%",
+            transition: {
+                duration: 0.6,
+                delay: 0.3
+            }
+        },
+
+    }
 
     return (
         <section className="w-full h-auto z-10 bg-cover bg-white">
@@ -101,9 +136,9 @@ const About: NextPage<myProp> = (props) => {
                         <p className="mt-10 lg:mt-14">All currently available merchandise will be compiled per organization, along with their descriptions.</p>
                     </div>
 
-                    <motion.div initial={{y: 0}} animate={{y: [5, -5, 5]}} transition={{repeat: Infinity, duration: 1.5}} className="w-fit mx-auto flex items-center justify-center absolute left-0 right-0 bottom-12">
+                    <motion.div initial={{ y: 0 }} animate={{ y: [5, -5, 5] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-fit mx-auto flex items-center justify-center absolute left-0 right-0 bottom-12">
                         <p className="font-bold text-[#023815] lg:text-2xl">Know more about our team</p>
-                        <FaLongArrowAltDown className="text-[#F6AB00] text-2xl"/>
+                        <FaLongArrowAltDown className="text-[#F6AB00] text-2xl" />
                     </motion.div>
                 </div>
 
@@ -118,9 +153,28 @@ const About: NextPage<myProp> = (props) => {
                 </motion.div>
 
             </div>
-            <div className="w-full h-screen bg-black">
+            <div className="w-full h-fit bg-[#117031] border-b-8 border-b-[#0f7a33] pb-20">
+                <div className='w-full h-[20rem] lg:h-[23rem] bg-[#117031] flex items-center justify-center relative border-t-8 border-t-[#0f7a33] overflow-hidden'>
+                    <motion.h2 variants={variants} initial="initial1" animate={prodView1 ? "animate1" : ""} className='absolute left-[-8.5rem] top-4 text-6xl font-raleway font-black text-white opacity-20 md:text-8xl 2xl:text-[120px]'>MEMBERS</motion.h2>
+                    <motion.h2 variants={variants} initial="initial2" animate={prodView1 ? "animate2" : ""} className='absolute right-[-8.5rem] bottom-4 text-6xl font-raleway font-black text-white opacity-20 md:text-8xl  2xl:text-[120px]'>MEMBERS</motion.h2>
+                    <div className='w-fit h-fit text-center font-raleway relative'>
+                        <div className='w-fit relative hover:scale-150 hover:-rotate-12 transition-all ease-in-out duration-300 peer cursor-pointer select-none group'>
+                            <h1 className="text-white text-5xl font-extrabold lg:text-7xl 2xl:text-[100px] " ref={prodRef1}>TIGERSHOP?</h1>
+                        </div>
 
+                        <h3 className='text-[#F6AB00] font-bold lg:text-2xl peer-hover:scale-0 absolute mx-auto left-0 right-0 top-[-1.7rem] md:top-[-2rem] transition-all ease-in-out duration-300'>Who's behind</h3>
+                    </div>
+                </div>
+
+                <div className="flex w-fit mx-auto flex-col md:flex-row gap-y-10 mt-6 md:gap-x-4 lg:gap-x-10 xl:mt-10 2xl:gap-x-20">
+                    {members.map((user) => {
+                        return (
+                            <ProfileTemplate image={user.image} name={user.name} pos={user.pos} facebook={user.facebook} github={user.github} instagram={user.instagram} />
+                        )
+                    })}
+                </div>
             </div>
+            <Footer />
         </section>
     );
 }
