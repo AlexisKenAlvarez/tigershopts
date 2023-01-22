@@ -162,7 +162,7 @@ const About: NextPage<myProp> = (props) => {
                             <h1 className="text-white text-5xl font-extrabold lg:text-7xl 2xl:text-[100px] " ref={prodRef1}>TIGERSHOP?</h1>
                         </div>
 
-                        <h3 className='text-[#F6AB00] font-bold lg:text-2xl peer-hover:scale-0 absolute mx-auto left-0 right-0 top-[-1.7rem] md:top-[-2rem] transition-all ease-in-out duration-300'>Who's behind</h3>
+                        <h3 className='text-[#F6AB00] font-bold lg:text-2xl peer-hover:scale-0 absolute mx-auto left-0 right-0 top-[-1.7rem] md:top-[-2rem] transition-all ease-in-out duration-300'>Who&apos;s behind</h3>
                     </div>
                 </div>
 
