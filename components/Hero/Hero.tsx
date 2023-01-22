@@ -80,7 +80,7 @@ const Hero = () => {
                 </motion.div>
 
 
-                <motion.div initial={{ x: 300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1 }} className="md:items-center justify-center w-full md:h-full flex z-0 md:self-center self-start h-full mt-7 md:mt-0">
+                <motion.div initial={{ x: 0, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1 }} className="md:items-center justify-center w-full md:h-full flex z-0 md:self-center self-start h-full mt-7 md:mt-0">
                     <div className="2xl:w-[45vw] xl:w-[40vw] lg:w-[32rem] md:w-[23.5rem] w-[13rem] md:mt-0 h-full md:absolute overflow-hidden right-0 bg ">
                         <AnimatePresence mode='wait'>
                             {toggle ? <ImageChanger key="CHANGER" image={image} /> : <ImageChanger key="CHANGER2" image={image} />}

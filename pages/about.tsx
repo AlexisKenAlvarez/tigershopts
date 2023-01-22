@@ -123,7 +123,7 @@ const About: NextPage<myProp> = (props) => {
                 <Image src="/about/ceit.webp" alt="CSSO" width="1000" height="1000" className="w-full h-full object-cover absolute top-[-21rem] brightness-50"></Image>
             </div>
 
-            <div className="w-full max-w-[1700px] xl:mx-0 md:mx-[0rem] h-[100vh] flex md:flex-row border-2 flex-col">
+            <div className="w-full max-w-[1700px] xl:mx-0 md:mx-[0rem] h-[100vh] flex md:flex-row flex-col">
 
                 <div className="h-full w-full z-10 px-10 relative">
                     <motion.div initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7}} className="w-fit h-fit mx-auto relative">
@@ -142,15 +142,15 @@ const About: NextPage<myProp> = (props) => {
                     </motion.div>
                 </div>
 
-                <motion.div initial={{ x: 300, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1 }} className="md:items-center justify-center w-full z-0 md:self-center h-full md:mt-0 md:flex hidden">
+                <div className="md:items-center justify-center w-full z-0 h-full md:mt-0 md:flex hidden">
                     <div className="2xl:w-[45vw] xl:w-[40vw] lg:w-[32rem] md:w-[23.5rem] w-[13rem] md:mt-0 h-full absolute overflow-hidden right-0 bg ">
-                        <div className="w-full h-full hidden md:block">
+                        <motion.div initial={{ x: 100, opacity: 0 }} animate={{ x:0, opacity: 100 }} transition={{ duration: 1 }}  className="w-full h-full hidden md:block">
                             <Image src="/about/csso.webp" alt="CSSO" width="1300" height="1300" className="z-[-1] w-full h-full object-cover brightness-75"></Image>
-                        </div>
+                        </motion.div>
 
 
                     </div>
-                </motion.div>
+                </div>
 
             </div>
             <div className="w-full h-fit bg-[#117031] border-b-8 border-b-[#0f7a33] pb-20">
