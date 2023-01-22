@@ -15,7 +15,7 @@ const Nav: FunctionComponent<myProp> = (props) => {
     const { status } = props
     const [nav, setNav] = useState(false)
     const { asPath } = useRouter()
-    const validPath = ['/', '/#products', '/order']
+    const validPath = ['/', '/#products', '/order', '/about']
 
 
     const toggleNav = () => {

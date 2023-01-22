@@ -71,6 +71,9 @@ module.exports = {
       },
       screens: {
         '3xl': '1800px'
+      },
+      clipPath: {
+        about: "polygon(100% 0, 100% 15%, 50% 25%, 0 15%, 0 0)"
       }
     },
   },
@@ -78,5 +81,6 @@ module.exports = {
     require('tailwindcss-textshadow'),
     require('tailwindcss-text-fill-stroke')(), // no options to configure
     require('@tailwindcss/line-clamp'),
+    require('tailwind-clip-path'),
   ],
 }

@@ -22,8 +22,6 @@ interface decode {
 	email: string
 }
 
-const prisma = new PrismaClient()
-
 export const getServerSideProps: GetServerSideProps = async (context) => {
 	const secret = process.env.NEXT_PUBLIC_SECRET || ''
 	const jwt = context.req.cookies['authToken'] || ''
@@ -46,11 +44,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 			const user = await db.collection("Users").findOne({ email: email })
 
 			if (admins.includes(username)) {
-				const products = await prisma.products.findMany({
-					where: {
-						org: username,
-					}
-				})
 
 				return {
 					redirect: {
