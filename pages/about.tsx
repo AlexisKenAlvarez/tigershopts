@@ -167,9 +167,9 @@ const About: NextPage<myProp> = (props) => {
                 </div>
 
                 <div className="flex w-fit mx-auto flex-col md:flex-row gap-y-10 mt-6 md:gap-x-4 lg:gap-x-10 xl:mt-10 2xl:gap-x-20">
-                    {members.map((user) => {
+                    {members.map((user, i) => {
                         return (
-                            <ProfileTemplate image={user.image} name={user.name} pos={user.pos} facebook={user.facebook} github={user.github} instagram={user.instagram} />
+                            <ProfileTemplate image={user.image} name={user.name} pos={user.pos} facebook={user.facebook} github={user.github} instagram={user.instagram} key={i} />
                         )
                     })}
                 </div>
