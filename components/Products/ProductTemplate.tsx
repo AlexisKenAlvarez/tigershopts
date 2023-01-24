@@ -73,7 +73,7 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
             <motion.div initial={{ opacity: 0 }} animate={inView ? { opacity: 100 } : {}} transition={{ delay: 0.9 }} className="relative w-full h-full">
                 <img src={image} alt="Products" className="object-cover w-full h-full absolute bottom-0 z-0 hover:brightness-50 transition-all ease-in-out duration-300 peer" onClick={() => { handleOrder(id) }}></img>
                 <div className="shadow-customInset z-10 absolute w-full h-full pointer-events-none border-b-4 border-b-lightg"></div>
-                <div className="w-[4.5rem] pointer-events-none absolute top-4 z-10 right-0 bg-orange-500 h-[2rem] flex items-center justify-center left-0 md:left-auto mx-auto">
+                <div className="w-[4.5rem] pointer-events-none absolute top-4 z-10 bg-orange-500 h-[2rem] flex items-center justify-center right-0 md:left-auto">
                     <h2 className="text-white font-bold font-poppins text-xl uppercase ">₱ {price}</h2>
                 </div>
 
