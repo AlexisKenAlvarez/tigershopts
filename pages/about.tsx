@@ -11,7 +11,7 @@ import Footer from "../components/Footer/Footer";
 import { useInView } from 'react-intersection-observer';
 import { members } from "../utils/List";
 import ProfileTemplate from "../components/About/ProfileTemplate";
-import { use } from "react";
+import { useEffect } from "react";
 
 
 interface decode {
@@ -113,6 +113,11 @@ const About: NextPage<myProp> = (props) => {
 
     }
 
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
+
     return (
         <section className="w-full h-auto z-10 bg-cover bg-white">
             <Nav status={status} />
@@ -123,17 +128,17 @@ const About: NextPage<myProp> = (props) => {
                 <Image src="/about/ceit.webp" alt="CSSO" width="1000" height="1000" className="w-full h-full object-cover absolute top-[-21rem] brightness-50"></Image>
             </div>
 
-            <div className="w-full max-w-[1700px] xl:mx-0 md:mx-[0rem] h-[100vh] flex md:flex-row flex-col">
+            <div className="w-full max-w-[1700px] xl:mx-0 md:mx-[0rem] h-[100vh] flex md:flex-row flex-col xl:ml-10 min-h-[680px]">
 
                 <div className="h-full w-full z-10 px-10 relative">
-                    <motion.div initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7}} className="w-fit h-fit mx-auto relative">
+                    <motion.div initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7 }} className="w-fit h-fit mx-auto relative">
                         <h1 className="mt-[10rem] text-center text-[#023815] text-4xl font-black font-raleway md:mt-[8rem] lg:text-5xl xl:text-7xl">About us</h1>
                         <Image alt="underline" src="/about/underline.svg" width="200" height="200" className="w-[9rem] mx-auto lg:w-[10rem] xl:w-[15rem]"></Image>
                     </motion.div>
                     <div className="max-w-[28rem] mx-auto text-center text-[#272727] text-sm md:text-md lg:text-lg lg:max-w-[33rem] xl:max-w-[36rem] xl:text-xl">
-                        <motion.p initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.1}} className="mt-7 lg:mt-12"><span className="text-[#F6AB00] font-semibold">Tiger&apos;s Shop</span> aims to act as a connector between student organizations and those looking to buy their goods. </motion.p>
-                        <motion.p initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.2}} className="mt-10 lg:mt-14"><span className="text-[#F6AB00] font-semibold">Tiger&apos;s Shop&apos;s</span> objective is to create an online selling platform for student organizations affiliated with the College of Engineering and Information Technology (CEIT). </motion.p>
-                        <motion.p initial={{x: -100, opacity: 0}} animate={{x: 0, opacity: 100}} transition={{duration: 0.7, delay: 0.3}} className="mt-10 lg:mt-14">All currently available merchandise will be compiled per organization, along with their descriptions.</motion.p>
+                        <motion.p initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.1 }} className="mt-7 lg:mt-12"><span className="text-[#F6AB00] font-semibold">Tiger&apos;s Shop</span> aims to act as a connector between student organizations and those looking to buy their goods. </motion.p>
+                        <motion.p initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.2 }} className="mt-10 lg:mt-14"><span className="text-[#F6AB00] font-semibold">Tiger&apos;s Shop&apos;s</span> objective is to create an online selling platform for student organizations affiliated with the College of Engineering and Information Technology (CEIT). </motion.p>
+                        <motion.p initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 0.7, delay: 0.3 }} className="mt-10 lg:mt-14">All currently available merchandise will be compiled per organization, along with their descriptions.</motion.p>
                     </div>
 
                     <motion.div initial={{ y: 0 }} animate={{ y: [5, -5, 5] }} transition={{ repeat: Infinity, duration: 1.5 }} className="w-fit mx-auto flex items-center justify-center absolute left-0 right-0 bottom-12">
@@ -143,8 +148,8 @@ const About: NextPage<myProp> = (props) => {
                 </div>
 
                 <div className="md:items-center justify-center w-full z-0 h-full md:mt-0 md:flex hidden">
-                    <div className="2xl:w-[45vw] xl:w-[40vw] lg:w-[32rem] md:w-[23.5rem] w-[13rem] md:mt-0 h-full absolute overflow-hidden right-0 bg ">
-                        <motion.div initial={{ x: 100, opacity: 0 }} animate={{ x:0, opacity: 100 }} transition={{ duration: 1 }}  className="w-full h-full hidden md:block">
+                    <div className="2xl:w-[45vw] xl:w-[40vw] lg:w-[32rem] md:w-[23.5rem] w-[13rem] md:mt-0 h-full absolute overflow-hidden right-0 min-h-[700px]">
+                        <motion.div initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 100 }} transition={{ duration: 1 }} className="w-full h-full hidden md:block">
                             <Image src="/about/csso.webp" alt="CSSO" width="1300" height="1300" className="z-[-1] w-full h-full object-cover brightness-75"></Image>
                         </motion.div>
 

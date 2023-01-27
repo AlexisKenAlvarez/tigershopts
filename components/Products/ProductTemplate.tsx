@@ -81,7 +81,6 @@ const ProductTemplate: FunctionComponent<productProp> = (props) => {
                 <h2 className="text-white font-bold font-poppins md:text-xl text-md uppercase max-w-[12rem] pointer-events-none absolute top-4 z-10 left-4 translate-x-[-120%] peer-hover:translate-x-[0] transition-all ease-in-out duration-300">Click to order</h2>
                 <div className="p-4 absolute peer-hover:opacity-0 z-30 transition-all ease-in-out duration-300" onClick={handleLike}>
                     {doesLike ? <BsStarFill className="text-2xl absolute top-0 left-0 text-heroOrange m-3" /> : <BsStar className="text-2xl absolute top-0 left-0 text-orange-300 m-3" />}
-
                 </div>
 
 
