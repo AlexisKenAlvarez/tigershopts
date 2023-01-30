@@ -50,6 +50,12 @@ const EditMode: FunctionComponent<myObj> = (props) => {
             fileReader.readAsDataURL(file[0])
         }
     }
+    
+    useEffect(() => {
+      console.log("Price:" + product.price);
+
+    }, [])
+    
 
     const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProduct(current => ({ ...current, "name": e.target.value }))
@@ -124,6 +130,7 @@ const EditMode: FunctionComponent<myObj> = (props) => {
                             newId: r.public_id,
                             oldId: product.public_id,
                             newImage: r.secure_url,
+                            price: product.price,
                             org,
                             imageChanged: true
                         })

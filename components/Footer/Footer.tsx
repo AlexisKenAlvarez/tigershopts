@@ -20,8 +20,8 @@ const Footer = () => {
         <section>
             <div className="w-full h-auto bg-white relative flex flex-col">
                 <div className="w-full h-[21.5rem] md:h-[25rem] border-2 flex flex-col text-center items-center font-poppins px-7 text-[#3F3F3F]">
-                    <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 100, y: 0 }} transition={{ duration: 0.6 }} className="mt-14">Organizations under</motion.p>
-                    <motion.h1 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 100, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="text-[1.5rem] md:text-[2rem] mt-3 font-semibold  max-w-[40rem] md:mt-0 min-w-[20rem]">College of Engineering and Information Technology</motion.h1>
+                    <motion.p  transition={{ duration: 0.6 }} className="mt-14">Organizations under</motion.p>
+                    <motion.h1  transition={{ duration: 0.6, delay: 0.3 }} className="text-[1.5rem] md:text-[2rem] mt-3 font-semibold  max-w-[40rem] md:mt-0 min-w-[20rem]">College of Engineering and Information Technology</motion.h1>
                 </div>
                 <div className="w-full h-[19rem] bg-[#1B783A]" ref={ref}>
                     <div className='w-[90%] h-[14rem] translate-y-[-40%] justify-start flex items-center mx-auto'>
